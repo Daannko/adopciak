@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'my_user_info.dart';
 
 late User loggedinUser;
+late MyUserInfo userInfo = new MyUserInfo();
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -10,10 +12,10 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final _auth = FirebaseAuth.instance;
-
   void initState() {
     super.initState();
     getCurrentUser();
+    userInfo.loadUserInfo(loggedinUser.email);
   }
 
   //using this function you can use the credentials of the user
@@ -24,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
         loggedinUser = user;
       }
     } catch (e) {
-      print(e);
+      Navigator.pushNamed(context, 'welcome_screen');
     }
   }
 
@@ -48,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Center(
         child: Text(
-          "Welcome User",
+          "Welcome " + userInfo.name,
           style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
         ),
       ),

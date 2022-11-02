@@ -1,0 +1,91 @@
+import 'dart:ui';
+import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+
+
+void showSnackBar(BuildContext context, String message, String type) {
+  Color primaryColor = Color.fromARGB(255, 0, 0, 0);
+  Color secondaryColor = Color.fromARGB(255, 0, 0, 0);
+  String title = "";
+  IconData icon = Icons.error_outline;
+  switch (type) {
+    case "Error":
+      title = "Oh snap!";
+      primaryColor = Color.fromARGB(255, 135, 33, 25);
+      secondaryColor = Color.fromARGB(255, 135, 33, 25);
+      icon = Icons.error_outline;
+      break;
+    case "Registered":
+      title = "Registration succeeded!";
+      primaryColor = Color.fromARGB(255, 0, 208, 63);
+      secondaryColor = Color.fromARGB(255, 0, 208, 63);
+      icon = Icons.check;
+      break;
+
+    case "Login":
+      title = "Login successful!";
+      icon = Icons.lightbulb_outline;
+      primaryColor = Color.fromARGB(255, 20, 118, 167);
+      secondaryColor = Color.fromARGB(255, 0, 208, 63);
+      break;
+    case "Information":
+      icon = Icons.lightbulb_outline;
+      primaryColor = Color.fromARGB(255, 20, 118, 167);
+      primaryColor = Color.fromARGB(255, 0, 208, 63);
+  }
+  final snackBar = SnackBar(
+    backgroundColor: Colors.transparent,
+    elevation: 0,
+    behavior: SnackBarBehavior.floating,
+    content: Stack(
+      children: [
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(15),
+          height: 90,
+          decoration:  BoxDecoration(
+              color: primaryColor,
+              borderRadius: BorderRadius.all(Radius.circular(20))),
+          child: Row(children: [
+            const SizedBox(
+              width: 60,
+            ),
+            Expanded(
+                child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(fontSize: 19, color: Colors.white),
+                ),
+                Text(
+                  message,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                )
+              ],
+            ))
+          ]),
+        ),
+        Container(
+          height: 90,
+          width: 60,
+          padding: EdgeInsets.fromLTRB(15, 20, 25, 20),
+          child: Icon(
+            color: Color.fromARGB(123, 0, 0, 0),
+            icon,
+            size: 48,
+          ),
+        )
+      ],
+    ),
+  );
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+}
