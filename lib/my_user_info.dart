@@ -12,13 +12,16 @@ class MyUserInfo {
 
   MyUserInfo() {}
 
-  Future<void> loadUserInfo(String email) async {
+  void loadUserInfo(String email) async {
     final user =
         await FirebaseFirestore.instance.collection('users').doc(email).get();
-    name = user.data()["Name"];
-    surname = user.data()["Surname"];
-    credits = user.data()["Credits"];
-    email = user.data()["Email"];
-    supports = user.data()["Supports"];
+
+    print(email);
+    this.name = user.data()["Name"];
+    this.surname = user.data()["Surname"];
+    this.credits = user.data()["Credits"];
+    this.email = user.data()["Email"];
+    this.supports = user.data()["Supports"];
+    print(name);
   }
 }

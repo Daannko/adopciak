@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'my_user_info.dart';
-
-late User loggedinUser;
-late MyUserInfo userInfo = new MyUserInfo();
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:adopciak/custom_snackbar';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -12,22 +13,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final _auth = FirebaseAuth.instance;
+  CollectionReference collectionReference =
+      FirebaseFirestore.instance.collection("animals");
+  late Stream<QuerySnapshot> animalStream;
+
   void initState() {
     super.initState();
-    getCurrentUser();
-    userInfo.loadUserInfo(loggedinUser.email);
-  }
-
-  //using this function you can use the credentials of the user
-  void getCurrentUser() async {
-    try {
-      final user = await _auth.currentUser;
-      if (user != null) {
-        loggedinUser = user;
-      }
-    } catch (e) {
-      Navigator.pushNamed(context, 'welcome_screen');
-    }
+    animalStream = collectionReference.snapshots();
   }
 
   @override
@@ -49,9 +41,44 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.lightBlueAccent,
       ),
       body: Center(
-        child: Text(
-          "Welcome " + userInfo.name,
-          style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+        child: StreamBuilder<QuerySnapshot>(
+          stream: animalStream,
+          builder: (BuildContextcontext, AsyncSnapshot snapshot) {
+            if (snapshot.hasError) {
+              return Center(child: Text(snapshot.error.toString()));
+            }
+            if (snapshot.connectionState == ConnectionState.active) {
+              QuerySnapshot querySnapshot = snapshot.data;
+              List<QueryDocumentSnapshot> documents = querySnapshot.docs;
+
+              List<Map> items = documents
+                  .map((e) => {
+                        'age': e['Age'],
+                        'name': e['Name'],
+                        'breed': e['Breed'],
+                        'owner': e['Owner']
+                      })
+                  .toList();
+
+              return ListView.builder(
+                  itemCount: items.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    //Get the item at this index
+                    Map thisItem = items[index];
+                    //REturn the widget for the list items
+                    return ListTile(
+                      title: Text('${thisItem['name']}'),
+                      subtitle: Text('${thisItem['breed']}'),
+                      onTap: () {
+                        showSnackBar(context, '${thisItem['owner']}', "Login");
+                      },
+                    );
+                  });
+            } else
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+          },
         ),
       ),
     );

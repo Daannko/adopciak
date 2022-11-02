@@ -1,6 +1,6 @@
-import 'package:adopciak/my_user_info.dart';
 import 'package:adopciak/particles.dart';
 import 'package:animated_background/animated_background.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:flutter/material.dart';
@@ -99,11 +99,14 @@ class _LoginScreenState extends State<LoginScreen>
                         final user = await _auth.signInWithEmailAndPassword(
                             email: email, password: password);
                         if (user != null) {
-                          MyUserInfo myUserInfo = MyUserInfo();
-                          myUserInfo.loadUserInfo(email);
+                          final user = await FirebaseFirestore.instance
+                              .collection('users')
+                              .doc(email)
+                              .get();
+                          String name = user.data()['Name'];
 
-                          showSnackBar(context,
-                              "Welcome back, " + myUserInfo.name, "Login");
+                          showSnackBar(
+                              context, "Welcome back, " + name, "Login");
                           Navigator.pushNamed(context, 'home_screen');
                         }
                       } on FirebaseAuthException catch (e) {
