@@ -177,7 +177,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         "Surname": surname,
                         "Supports": [],
                         "Email": email,
-                        "UserID": newUser.user.uid
+                        "UserID": newUser.user?.uid
                       };
 
                       FirebaseFirestore.instance

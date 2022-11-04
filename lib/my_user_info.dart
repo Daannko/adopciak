@@ -17,11 +17,11 @@ class MyUserInfo {
         await FirebaseFirestore.instance.collection('users').doc(email).get();
 
     print(email);
-    this.name = user.data()["Name"];
-    this.surname = user.data()["Surname"];
-    this.credits = user.data()["Credits"];
-    this.email = user.data()["Email"];
-    this.supports = user.data()["Supports"];
+    // this.name = user.get("Name");
+    // this.surname = user.get("Surname");
+    // this.credits = user.data()["Credits"];
+    // this.email = user.data()["Email"];
+    // this.supports = user.data()["Supports"];
     print(name);
   }
 }
