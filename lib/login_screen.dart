@@ -103,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen>
                               .collection('users')
                               .doc(email)
                               .get();
-                          String name = user.data()['Name'];
+                          String name = user.get("Name");
 
                           showSnackBar(
                               context, "Welcome back, " + name, "Login");
