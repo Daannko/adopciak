@@ -1,4 +1,5 @@
 import 'package:firebase_database/firebase_database.dart';
+import 'package:expandable_text/expandable_text.dart';
 
 import 'package:flutter/material.dart';
 import 'package:adopciak/animal_screen.dart';
@@ -18,33 +19,18 @@ class AnimalScreen extends StatefulWidget {
 }
 
 class _AnimeScreenState extends State<AnimalScreen> {
-  Future<void> getAnimal(String uid) async {
-    FirebaseDatabase.instance
-        .ref()
-        .child("users")
-        .child("ZhoAw4U3Zhy3uEGlRu9F")
-        .get();
-  }
-
-  late Future _doctorsFuture;
-  String name = "";
-  String breed = "";
-
-  void updateAnimal(data) {
-    print(data['Name']);
-    this.name = data['Name'];
-    this.breed = data['Breed'];
-  }
+  void updateAnimal(data) {}
 
   void initState() {
     super.initState();
-    getAnimal(widget.animalId);
   }
 
   @override
   Widget build(BuildContext context) {
     CollectionReference users =
         FirebaseFirestore.instance.collection('animals');
+
+    bool expandedText = false;
 
     return Scaffold(
       body: Center(
@@ -80,83 +66,80 @@ class _AnimeScreenState extends State<AnimalScreen> {
                         //// MOŻNA TO TUTAJ ZMIENĆ DLA WYGLĄDU
                         // color: Color.fromARGB(255, 86, 129, 143)
                       ),
-                      child: Column(
-                        children: [
-                          Container(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(20.0),
-                              child: Image(
-                                image: AssetImage("images/dog.png"),
-                              ),
+                      child: Column(children: [
+                        Container(
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20.0),
+                            child: Image(
+                              image: AssetImage("images/dog.png"),
                             ),
                           ),
-                          Container(
-                            width: double.infinity,
-                            margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                            padding: EdgeInsets.all(7),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                color: Color.fromARGB(255, 86, 129, 143)),
-                            child: Text(
-                              "Name: ${data["Name"]}",
-                              style: TextStyle(fontSize: 20),
-                              maxLines: 2,
-                            ),
+                        ),
+                        Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                          padding: EdgeInsets.all(7),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              color: Color.fromARGB(255, 86, 129, 143)),
+                          child: Text(
+                            "Name: ${data["Name"]}",
+                            style: TextStyle(fontSize: 20),
+                            maxLines: 2,
                           ),
-                          Container(
-                            width: double.infinity,
-                            margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                            padding: EdgeInsets.all(7),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                color: Color.fromARGB(255, 86, 129, 143)),
-                            child: Text(
-                              "Breed: ${data["Breed"]}",
-                              style: TextStyle(fontSize: 20),
-                              maxLines: 2,
-                            ),
+                        ),
+                        Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                          padding: EdgeInsets.all(7),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              color: Color.fromARGB(255, 86, 129, 143)),
+                          child: Text(
+                            "Breed: ${data["Breed"]}",
+                            style: TextStyle(fontSize: 20),
+                            maxLines: 2,
                           ),
-                          Container(
-                            width: double.infinity,
-                            margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                            padding: EdgeInsets.all(7),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                color: Color.fromARGB(255, 86, 129, 143)),
-                            child: Text(
-                              "Localization: ${data["Localization"]}",
-                              style: TextStyle(fontSize: 20),
-                              maxLines: 2,
-                            ),
+                        ),
+                        Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                          padding: EdgeInsets.all(7),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              color: Color.fromARGB(255, 86, 129, 143)),
+                          child: Text(
+                            "Localization: ${data["Localization"]}",
+                            style: TextStyle(fontSize: 20),
+                            maxLines: 2,
                           ),
-                          Container(
-                            width: double.infinity,
-                            margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                            padding: EdgeInsets.all(7),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                color: Color.fromARGB(255, 86, 129, 143)),
-                            child: Text(
-                              "Owner: ${data["Owner"]}",
-                              style: TextStyle(fontSize: 20),
-                              maxLines: 2,
-                            ),
+                        ),
+                        Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                          padding: EdgeInsets.all(7),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              color: Color.fromARGB(255, 86, 129, 143)),
+                          child: Text(
+                            "Owner: ${data["Owner"]}",
+                            style: TextStyle(fontSize: 20),
+                            maxLines: 2,
                           ),
-                          Container(
-                            width: double.infinity,
-                            margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                            padding: EdgeInsets.all(7),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                color: Color.fromARGB(255, 86, 129, 143)),
-                            child: Text(
-                              "Info: ${data["Info"]}",
-                              style: TextStyle(fontSize: 20),
-                              maxLines: 2,
-                            ),
+                        ),
+                        Container(
+                          width: double.infinity,
+                          margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                          padding: EdgeInsets.all(7),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              color: Color.fromARGB(255, 86, 129, 143)),
+                          child: Text(
+                            "Info: ${data["Info"]}",
+                            style: TextStyle(fontSize: 20),
                           ),
-                        ],
-                      ),
+                        ),
+                      ]),
                     ),
                   )),
             );
