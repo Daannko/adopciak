@@ -27,7 +27,7 @@ class _AnimeScreenState extends State<AnimalScreen> {
 
   @override
   Widget build(BuildContext context) {
-    CollectionReference users =
+    CollectionReference animals =
         FirebaseFirestore.instance.collection('animals');
 
     bool expandedText = false;
@@ -35,7 +35,7 @@ class _AnimeScreenState extends State<AnimalScreen> {
     return Scaffold(
       body: Center(
           child: FutureBuilder<DocumentSnapshot>(
-        future: users.doc(widget.animalId).get(),
+        future: animals.doc(widget.animalId).get(),
         builder:
             (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
           if (snapshot.hasError) {
@@ -109,7 +109,7 @@ class _AnimeScreenState extends State<AnimalScreen> {
                               borderRadius: BorderRadius.circular(30),
                               color: Color.fromARGB(255, 86, 129, 143)),
                           child: Text(
-                            "Localization: ${data["Localization"]}",
+                            "Location: ${data["Location"]}",
                             style: TextStyle(fontSize: 20),
                             maxLines: 2,
                           ),
