@@ -1,11 +1,15 @@
 import 'package:adopciak/animal_screen.dart';
+import 'package:adopciak/controllers/animal_image_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'my_user_info.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:adopciak/custom_snackbar';
+
+import 'services/firebase_storage_service.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -14,6 +18,10 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final _auth = FirebaseAuth.instance;
+  final FirebaseStorageService firebaseStorageSerivce =
+      Get.put(FirebaseStorageService());
+  final AnimalImageController animalImageController =
+      Get.put(AnimalImageController());
   CollectionReference collectionReference =
       FirebaseFirestore.instance.collection("animals");
   late Stream<QuerySnapshot> animalStream;
@@ -110,13 +118,28 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                      padding:
-                                          EdgeInsets.fromLTRB(20, 10, 20, 10),
-                                      width: double.infinity,
-                                      child: Image(
-                                        image: AssetImage("images/dog.png"),
-                                      )),
+                                  FutureBuilder(
+                                      future: firebaseStorageSerivce
+                                          .getImage("dog.png"),
+                                      builder: (BuildContext context,
+                                          AsyncSnapshot<String?> snapshot) {
+                                        if (snapshot.connectionState ==
+                                                ConnectionState.done &&
+                                            snapshot.hasData) {
+                                          return Container(
+                                              padding: EdgeInsets.fromLTRB(
+                                                  20, 10, 20, 10),
+                                              width: double.infinity,
+                                              child: Image.network(
+                                                  snapshot.data!));
+                                        }
+                                        if (snapshot.connectionState ==
+                                                ConnectionState.waiting ||
+                                            !snapshot.hasData) {
+                                          return CircularProgressIndicator();
+                                        }
+                                        return Container();
+                                      }),
                                   Container(
                                     child: Row(
                                         mainAxisSize: MainAxisSize.max,
