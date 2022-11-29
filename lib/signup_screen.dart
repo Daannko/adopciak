@@ -2,11 +2,14 @@
 
 import 'dart:ui';
 
+import 'package:adopciak/model/user_data.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:adopciak/custom_snackbar';
+
+import 'model/register_info.dart';
 
 class RegistrationScreen extends StatefulWidget {
   @override
@@ -39,7 +42,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 keyboardType: TextInputType.name,
                 textAlign: TextAlign.center,
                 onChanged: (value) {
-                  name = value;
+                  registerInfo.name = value;
                   //Do something with the user input.
                 },
                 decoration: const InputDecoration(
@@ -59,7 +62,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 keyboardType: TextInputType.name,
                 textAlign: TextAlign.center,
                 onChanged: (value) {
-                  surname = value;
+                  registerInfo.surname = value;
                   //Do something with the user input.
                 },
                 decoration: const InputDecoration(
@@ -79,7 +82,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 keyboardType: TextInputType.emailAddress,
                 textAlign: TextAlign.center,
                 onChanged: (value) {
-                  email = value;
+                  registerInfo.email = value;
                   //Do something with the user input.
                 },
                 decoration: const InputDecoration(
@@ -101,7 +104,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 enableSuggestions: false,
                 textAlign: TextAlign.center,
                 onChanged: (value) {
-                  password = value;
+                  registerInfo.password = value;
                   //Do something with the user input.
                 },
                 decoration: const InputDecoration(
@@ -123,7 +126,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 enableSuggestions: false,
                 textAlign: TextAlign.center,
                 onChanged: (value) {
-                  passwordTwo = value;
+                  registerInfo.passwordTwo = value;
                   //Do something with the user input.
                 },
                 decoration: const InputDecoration(
@@ -150,36 +153,31 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   });
                   try {
                     FocusManager.instance.primaryFocus?.unfocus();
-                    if (name.length < 2) {
+                    if (registerInfo.name.length < 2) {
                       throw new Exception("NameException");
                     }
-                    if (password.length < 1) {
+                    if (registerInfo.password.length < 1) {
                       throw new FirebaseAuthException(code: "weak-password");
                     }
-                    if (surname.length < 2) {
-                      print(surname.toString());
+                    if (registerInfo.surname.length < 2) {
+                      print(registerInfo.surname.toString());
                       throw new Exception("SurnameException");
                     }
-                    if (password != passwordTwo) {
+                    if (registerInfo.password != registerInfo.passwordTwo) {
                       throw new Exception("PasswordsDontMatch");
                     }
                     final newUser = await _auth.createUserWithEmailAndPassword(
-                        email: email, password: password);
+                        email: registerInfo.email,
+                        password: registerInfo.password);
 
                     if (newUser != null) {
-                      final data = {
-                        "Credits": 0,
-                        "Name": name,
-                        "Surname": surname,
-                        "Supports": [],
-                        "Email": email,
-                        "UserID": newUser.user?.uid
-                      };
-
+                      String currentUserUid = newUser.user!.uid;
                       FirebaseFirestore.instance
                           .collection("users")
-                          .doc(email)
-                          .set(data);
+                          .doc(currentUserUid)
+                          .set(SaveUserData(registerInfo.name,
+                                  registerInfo.surname, registerInfo.email)
+                              .returnMap());
 
                       showSnackBar(
                           context, "Welcome to Adopciak!", "Registered");

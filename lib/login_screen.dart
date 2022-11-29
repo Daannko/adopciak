@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:adopciak/custom_snackbar';
+import 'package:adopciak/model/colors.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -19,13 +20,11 @@ class _LoginScreenState extends State<LoginScreen>
   String password = "";
   bool showSpinner = false;
   String errorMessage = "";
-  late Color imputTextBorderColor;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    imputTextBorderColor = Color.fromRGBO(38, 70, 83, 0.5);
   }
 
   //final Color imputTextBorderColor = Color.fromRGBO(38, 70, 83, 0.5);
@@ -53,17 +52,19 @@ class _LoginScreenState extends State<LoginScreen>
                     email = value;
                     //Do something with the user input.
                   },
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                       hintText: 'Email',
                       filled: true,
                       fillColor: Colors.white,
                       contentPadding: EdgeInsets.all(20.0),
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: imputTextBorderColor, width: 2)),
+                              color: CustomColors.inputTextBorderColor,
+                              width: 2)),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(38, 70, 83, 1), width: 2))),
+                              color: CustomColors.selectedInputTextBorderColor,
+                              width: 2))),
                 ),
                 SizedBox(
                   height: 8.0,
@@ -77,18 +78,19 @@ class _LoginScreenState extends State<LoginScreen>
                     password = value;
                     //Do something with the user input.
                   },
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                       hintText: 'Password',
                       filled: true,
                       fillColor: Colors.white,
                       contentPadding: EdgeInsets.all(20.0),
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(38, 70, 83, 0.5),
+                              color: CustomColors.inputTextBorderColor,
                               width: 2)),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(38, 70, 83, 1), width: 2))),
+                              color: CustomColors.selectedInputTextBorderColor,
+                              width: 2))),
                 ),
                 const SizedBox(
                   height: 40.0,
@@ -96,7 +98,8 @@ class _LoginScreenState extends State<LoginScreen>
                 TextButton(
                     style: TextButton.styleFrom(
                         foregroundColor: Colors.white,
-                        backgroundColor: const Color.fromRGBO(38, 70, 83, 1)),
+                        backgroundColor:
+                            CustomColors.selectedInputTextBorderColor),
                     child: const Text('Login', style: TextStyle(fontSize: 40)),
                     onPressed: () async {
                       setState(() {
