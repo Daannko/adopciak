@@ -16,8 +16,8 @@ final _auth = FirebaseAuth.instance;
 
 class _LoginScreenState extends State<LoginScreen>
     with TickerProviderStateMixin {
-  String email = "";
-  String password = "";
+  String email = "testmail@mail.com";
+  String password = "123456";
   bool showSpinner = false;
   String errorMessage = "";
 
@@ -26,9 +26,6 @@ class _LoginScreenState extends State<LoginScreen>
     // TODO: implement initState
     super.initState();
   }
-
-  //final Color imputTextBorderColor = Color.fromRGBO(38, 70, 83, 0.5);
-  //Color selectedInputTextBorderColor = ;
 
   @override
   Widget build(BuildContext context) {
@@ -115,6 +112,14 @@ class _LoginScreenState extends State<LoginScreen>
                               .doc(email)
                               .get();
                           String name = user.get("Name");
+
+                          final db = FirebaseFirestore.instance;
+                          final cities = db
+                              .collection("animals")
+                              .get()
+                              .then((value) => {});
+
+                          List<String> animalsImagePaths = [];
 
                           showSnackBar(
                               context, "Welcome back, " + name, "Login");

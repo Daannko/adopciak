@@ -1,6 +1,7 @@
 import 'package:adopciak/animal_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'model/colors.dart';
 import 'my_user_info.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -45,10 +46,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 }),
           ],
           title: Text('Home Page'),
-          backgroundColor: Color.fromARGB(255, 112, 157, 179),
+          backgroundColor: CustomColors.appBarColor,
         ),
         body: Container(
-          color: Color.fromARGB(255, 189, 210, 217),
+          color: CustomColors.homePageBackgroundColor,
           child: Center(
             child: StreamBuilder<QuerySnapshot>(
               stream: animalStream,
@@ -153,8 +154,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                               padding: EdgeInsets.fromLTRB(
                                                   20, 10, 20, 10),
                                               decoration: BoxDecoration(
-                                                  color: Color.fromARGB(
-                                                      255, 48, 220, 217),
+                                                  color: CustomColors
+                                                      .supportBtnColor,
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           30)),
@@ -177,8 +178,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                               padding: EdgeInsets.fromLTRB(
                                                   20, 10, 20, 10),
                                               decoration: BoxDecoration(
-                                                  color: Color.fromARGB(
-                                                      255, 255, 160, 7),
+                                                  color: CustomColors
+                                                      .adoptBtnColor,
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           30)),

@@ -25,6 +25,13 @@ class _AnimeScreenState extends State<AnimalScreen> {
     super.initState();
   }
 
+  //   getMarker() async {
+
+  //   FirebaseDatabase firebaseDatabase = f
+  //   const snapshot = await firebase.firestore().collection('events').get()
+  //   return snapshot.docs.map(doc => doc.data());
+  // }
+
   @override
   Widget build(BuildContext context) {
     CollectionReference animals =
