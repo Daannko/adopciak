@@ -190,8 +190,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                   registerInfo.surname, registerInfo.email)
                               .returnMap());
 
-                      showSnackBar(
-                          context, "Welcome to Adopciak!", "Registered");
                       Navigator.pushNamed(context, 'home_screen');
                     }
                   } on FirebaseAuthException catch (e) {
@@ -229,10 +227,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     }
                   }
 
-                  if (errorMessage.isNotEmpty)
-                    showSnackBar(context, errorMessage, "Error");
-
-                  errorMessage = "";
+                  if (errorMessage.isNotEmpty) errorMessage = "";
                   setState(() {
                     showSpinner = false;
                   });

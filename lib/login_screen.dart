@@ -116,8 +116,6 @@ class _LoginScreenState extends State<LoginScreen>
                               .get();
                           String name = user.get("Name");
 
-                          showSnackBar(
-                              context, "Welcome back, " + name, "Login");
                           Navigator.pushNamed(context, 'home_screen');
                         }
                       } on FirebaseAuthException catch (e) {
@@ -143,10 +141,7 @@ class _LoginScreenState extends State<LoginScreen>
                         print(e.code);
                       }
 
-                      if (errorMessage.isNotEmpty)
-                        showSnackBar(context, errorMessage, "Error");
-
-                      errorMessage = "";
+                      if (errorMessage.isNotEmpty) errorMessage = "";
                       setState(() {
                         showSpinner = false;
                       });

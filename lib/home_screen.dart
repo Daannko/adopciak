@@ -151,12 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   MainAxisAlignment.spaceAround,
                                               children: [
                                                 TextButton(
-                                                  onPressed: (() => {
-                                                        showSnackBar(
-                                                            context,
-                                                            "To jest ${thisItem.name}!",
-                                                            "Login")
-                                                      }),
+                                                  onPressed: (() => {}),
                                                   child: Container(
                                                     padding: CustomStyles
                                                         .listViewPadding,
@@ -175,12 +170,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   ),
                                                 ),
                                                 TextButton(
-                                                  onPressed: (() => {
-                                                        showSnackBar(
-                                                            context,
-                                                            "To jest ${thisItem.name}!",
-                                                            "Login")
-                                                      }),
+                                                  onPressed: (() => {}),
                                                   child: Container(
                                                     padding: CustomStyles
                                                         .listViewPadding,
