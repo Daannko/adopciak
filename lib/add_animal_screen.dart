@@ -8,19 +8,24 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:adopciak/custom_snackbar';
 
 import 'model/colors.dart';
+import 'model/styles.dart';
 
-class RegistrationScreen extends StatefulWidget {
+import 'model/styles.dart';
+
+class AddAnimalScreen extends StatefulWidget {
   @override
-  _RegistrationScreenState createState() => _RegistrationScreenState();
+  _AddAnimalScreenStatus createState() => _AddAnimalScreenStatus();
 }
 
-class _RegistrationScreenState extends State<RegistrationScreen> {
+class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
   final _auth = FirebaseAuth.instance;
-  String email = "";
-  String password = "";
-  String passwordTwo = "";
   String name = "";
-  String surname = "";
+  int age = 0;
+  String type = "";
+  String breed = "";
+  String owner = "";
+  String location = "";
+  String info = "";
   String errorMessage = "";
   bool showSpinner = false;
 
@@ -32,219 +37,209 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         inAsyncCall: showSpinner,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Text("Enter to register:", style: TextStyle(fontSize: 30)),
-              SizedBox(
-                height: 30,
-              ),
-              TextField(
-                keyboardType: TextInputType.name,
-                textAlign: TextAlign.center,
-                onChanged: (value) {
-                  name = value;
-                  //Do something with the user input.
-                },
-                decoration: InputDecoration(
-                    hintText: 'Name',
-                    contentPadding: EdgeInsets.all(20.0),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: CustomColors.inputTextBorderColor,
-                            width: 2)),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: CustomColors.selectedInputTextBorderColor,
-                            width: 2))),
-              ),
-              const SizedBox(
-                height: 8.0,
-              ),
-              TextField(
-                keyboardType: TextInputType.name,
-                textAlign: TextAlign.center,
-                onChanged: (value) {
-                  surname = value;
-                  //Do something with the user input.
-                },
-                decoration: InputDecoration(
-                    hintText: 'Surname',
-                    contentPadding: EdgeInsets.all(20.0),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: CustomColors.inputTextBorderColor,
-                            width: 2)),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: CustomColors.selectedInputTextBorderColor,
-                            width: 2))),
-              ),
-              const SizedBox(
-                height: 8.0,
-              ),
-              TextField(
-                keyboardType: TextInputType.emailAddress,
-                textAlign: TextAlign.center,
-                onChanged: (value) {
-                  email = value;
-                  //Do something with the user input.
-                },
-                decoration: InputDecoration(
-                    hintText: 'Email Address',
-                    contentPadding: EdgeInsets.all(20.0),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: CustomColors.inputTextBorderColor,
-                            width: 2)),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: CustomColors.selectedInputTextBorderColor,
-                            width: 2))),
-              ),
-              const SizedBox(
-                height: 8.0,
-              ),
-              TextField(
-                obscureText: true,
-                autocorrect: false,
-                enableSuggestions: false,
-                textAlign: TextAlign.center,
-                onChanged: (value) {
-                  password = value;
-                  //Do something with the user input.
-                },
-                decoration: InputDecoration(
-                    hintText: 'Password',
-                    contentPadding: EdgeInsets.all(20.0),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: CustomColors.inputTextBorderColor,
-                            width: 2)),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: CustomColors.selectedInputTextBorderColor,
-                            width: 2))),
-              ),
-              const SizedBox(
-                height: 8.0,
-              ),
-              TextField(
-                obscureText: true,
-                autocorrect: false,
-                enableSuggestions: false,
-                textAlign: TextAlign.center,
-                onChanged: (value) {
-                  passwordTwo = value;
-                  //Do something with the user input.
-                },
-                decoration: InputDecoration(
-                    hintText: 'Confirm password',
-                    contentPadding: EdgeInsets.all(20.0),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: CustomColors.inputTextBorderColor,
-                            width: 2)),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: CustomColors.selectedInputTextBorderColor,
-                            width: 2))),
-              ),
-              const SizedBox(
-                height: 40.0,
-              ),
-              TextButton(
-                style: TextButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: CustomColors.selectedInputTextBorderColor),
-                child: const Text('Register', style: TextStyle(fontSize: 40)),
-                onPressed: () async {
-                  setState(() {
-                    showSpinner = true;
-                  });
-                  try {
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Text("Enter information to add animal:",
+                    style:
+                        TextStyle(fontSize: CustomStyles.enterToRegisterSize)),
+                SizedBox(height: CustomStyles.enterToRegisterSize),
+                TextField(
+                  keyboardType: TextInputType.name,
+                  textAlign: TextAlign.center,
+                  onChanged: (value) {
+                    name = value;
+                    //Do something with the user input.
+                  },
+                  decoration: InputDecoration(
+                      hintText: 'Name',
+                      contentPadding: CustomStyles.mariginsAll20,
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: CustomColors.inputTextBorderColor,
+                              width: CustomStyles.width)),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: CustomColors.selectedInputTextBorderColor,
+                              width: CustomStyles.width))),
+                ),
+                SizedBox(
+                  height: CustomStyles.smallBoxHeight,
+                ),
+                TextField(
+                  keyboardType: TextInputType.name,
+                  textAlign: TextAlign.center,
+                  onChanged: (value) {
+                    age = int.parse(value);
+                    //Do something with the user input.
+                  },
+                  decoration: InputDecoration(
+                      hintText: 'Age',
+                      contentPadding: CustomStyles.mariginsAll20,
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: CustomColors.inputTextBorderColor,
+                              width: CustomStyles.width)),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: CustomColors.selectedInputTextBorderColor,
+                              width: CustomStyles.width))),
+                ),
+                SizedBox(
+                  height: CustomStyles.smallBoxHeight,
+                ),
+                TextField(
+                  keyboardType: TextInputType.emailAddress,
+                  textAlign: TextAlign.center,
+                  onChanged: (value) {
+                    type = value;
+                    //Do something with the user input.
+                  },
+                  decoration: InputDecoration(
+                      hintText: 'Type',
+                      contentPadding: CustomStyles.mariginsAll20,
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: CustomColors.inputTextBorderColor,
+                              width: CustomStyles.width)),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: CustomColors.selectedInputTextBorderColor,
+                              width: CustomStyles.width))),
+                ),
+                SizedBox(
+                  height: CustomStyles.smallBoxHeight,
+                ),
+                TextField(
+                  textAlign: TextAlign.center,
+                  onChanged: (value) {
+                    breed = value;
+                    //Do something with the user input.
+                  },
+                  decoration: InputDecoration(
+                      hintText: 'Breed',
+                      contentPadding: CustomStyles.mariginsAll20,
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: CustomColors.inputTextBorderColor,
+                              width: CustomStyles.width)),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: CustomColors.selectedInputTextBorderColor,
+                              width: CustomStyles.width))),
+                ),
+                SizedBox(
+                  height: CustomStyles.smallBoxHeight,
+                ),
+                TextField(
+                  textAlign: TextAlign.center,
+                  onChanged: (value) {
+                    owner = value;
+                    //Do something with the user input.
+                  },
+                  decoration: InputDecoration(
+                      hintText: 'Owner',
+                      contentPadding: CustomStyles.mariginsAll20,
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: CustomColors.inputTextBorderColor,
+                              width: CustomStyles.width)),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: CustomColors.selectedInputTextBorderColor,
+                              width: CustomStyles.width))),
+                ),
+                SizedBox(
+                  height: CustomStyles.smallBoxHeight,
+                ),
+                TextField(
+                  textAlign: TextAlign.center,
+                  onChanged: (value) {
+                    location = value;
+                    //Do something with the user input.
+                  },
+                  decoration: InputDecoration(
+                      hintText: 'Location',
+                      contentPadding: CustomStyles.mariginsAll20,
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: CustomColors.inputTextBorderColor,
+                              width: CustomStyles.width)),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: CustomColors.selectedInputTextBorderColor,
+                              width: CustomStyles.width))),
+                ),
+                SizedBox(
+                  height: CustomStyles.smallBoxHeight,
+                ),
+                TextField(
+                  textAlign: TextAlign.center,
+                  onChanged: (value) {
+                    info = value;
+                    //Do something with the user input.
+                  },
+                  decoration: InputDecoration(
+                      hintText: 'Info',
+                      contentPadding: CustomStyles.mariginsAll20,
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: CustomColors.inputTextBorderColor,
+                              width: CustomStyles.width)),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: CustomColors.selectedInputTextBorderColor,
+                              width: CustomStyles.width))),
+                ),
+                SizedBox(
+                  height: CustomStyles.bigBoxHeight,
+                ),
+                TextButton(
+                  style: TextButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: const Color.fromRGBO(38, 70, 83, 1)),
+                  child: Text('Dodaj pieska ',
+                      style: TextStyle(fontSize: CustomStyles.fontSize40)),
+                  onPressed: () async {
+                    setState(() {
+                      showSpinner = true;
+                    });
                     FocusManager.instance.primaryFocus?.unfocus();
-                    if (name.length < 2) {
-                      throw new Exception("NameException");
-                    }
-                    if (password.length < 1) {
-                      throw new FirebaseAuthException(code: "weak-password");
-                    }
-                    if (surname.length < 2) {
-                      print(surname.toString());
-                      throw new Exception("SurnameException");
-                    }
-                    if (password != passwordTwo) {
-                      throw new Exception("PasswordsDontMatch");
-                    }
-                    final newUser = await _auth.createUserWithEmailAndPassword(
-                        email: email, password: password);
 
-                    if (newUser != null) {
-                      final data = {
-                        "Credits": 0,
-                        "Name": name,
-                        "Surname": surname,
-                        "Supports": [],
-                        "Email": email,
-                        "UserID": newUser.user?.uid
-                      };
+                    final data = {
+                      "Name": name,
+                      "Age": age,
+                      "Type": type,
+                      "Breed": breed,
+                      "Owner": owner,
+                      "Location": location,
+                      "Info": info,
+                      "Supports": [],
+                      "Needs": []
+                      //TODO: ta tabela pewnie bedzie wypierdalać
+                    };
 
-                      FirebaseFirestore.instance
-                          .collection("users")
-                          .doc(email)
-                          .set(data);
+                    FirebaseFirestore.instance
+                        .collection("animals")
+                        .doc()
+                        .set(data);
 
-                      showSnackBar(
-                          context, "Welcome to Adopciak!", "Registered");
-                      Navigator.pushNamed(context, 'home_screen');
-                    }
-                  } on FirebaseAuthException catch (e) {
-                    switch (e.code) {
-                      case "weak-password":
-                        errorMessage =
-                            "Password should be at least 6 characters";
-                        break;
-                      case "unknown":
-                      case "invalid-email":
-                        errorMessage = "Incorrect Email";
-                        break;
-                      case "network-request-failed":
-                        errorMessage =
-                            "Connection to internet lost, try again later";
-                        break;
-                      case "email-already-in-use":
-                        errorMessage =
-                            "The email address is already in use by another account.";
-                        break;
-                    }
-                  } catch (e) {
-                    switch (e.toString()) {
-                      case "Exception: PasswordsDontMatch":
-                        errorMessage = "Passwords dont match";
-                        break;
-                      case "Exception: NameException":
-                        errorMessage =
-                            "Name should have at least two characters";
-                        break;
-                      case "Exception: SurnameException":
-                        errorMessage =
-                            "Surname should have at least two characters";
-                        break;
-                    }
-                  }
+                    showSnackBar(context, "Added new animal", "Login");
+                    Navigator.pushNamed(context, 'home_screen');
 
-                  if (errorMessage.isNotEmpty)
-                    showSnackBar(context, errorMessage, "Error");
+                    if (errorMessage.isNotEmpty)
+                      showSnackBar(context, errorMessage, "Error");
 
-                  errorMessage = "";
-                  setState(() {
-                    showSpinner = false;
-                  });
-                },
-              )
-            ],
+                    errorMessage = "";
+                    setState(() {
+                      showSpinner = false;
+                    });
+                  },
+                )
+              ],
+            ),
           ),
         ),
       ),

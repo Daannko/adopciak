@@ -43,6 +43,7 @@ dependencies:
   expandable_text: ^2.3.0
   get: ^4.6.5
   firebase_storage: ^11.0.6
+  anim_search_bar: ^2.0.2
 
 dev_dependencies:
   flutter_test:

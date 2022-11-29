@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:adopciak/custom_snackbar';
 import 'package:adopciak/model/colors.dart';
 
+import 'model/styles.dart';
+
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -37,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen>
           vsync: this,
           behaviour: RandomParticleBehaviour(options: particles),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.0),
+            padding: CustomStyles.paddingSymmetric,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -53,18 +55,18 @@ class _LoginScreenState extends State<LoginScreen>
                       hintText: 'Email',
                       filled: true,
                       fillColor: Colors.white,
-                      contentPadding: EdgeInsets.all(20.0),
+                      contentPadding: CustomStyles.paddingAll20,
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               color: CustomColors.inputTextBorderColor,
-                              width: 2)),
+                              width: CustomStyles.width)),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               color: CustomColors.selectedInputTextBorderColor,
-                              width: 2))),
+                              width: CustomStyles.width))),
                 ),
                 SizedBox(
-                  height: 8.0,
+                  height: CustomStyles.smallBoxHeight,
                 ),
                 TextField(
                   obscureText: true,
@@ -79,25 +81,26 @@ class _LoginScreenState extends State<LoginScreen>
                       hintText: 'Password',
                       filled: true,
                       fillColor: Colors.white,
-                      contentPadding: EdgeInsets.all(20.0),
+                      contentPadding: CustomStyles.paddingAll20,
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               color: CustomColors.inputTextBorderColor,
-                              width: 2)),
+                              width: CustomStyles.width)),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               color: CustomColors.selectedInputTextBorderColor,
-                              width: 2))),
+                              width: CustomStyles.width))),
                 ),
-                const SizedBox(
-                  height: 40.0,
+                SizedBox(
+                  height: CustomStyles.bigBoxHeight,
                 ),
                 TextButton(
                     style: TextButton.styleFrom(
                         foregroundColor: Colors.white,
                         backgroundColor:
                             CustomColors.selectedInputTextBorderColor),
-                    child: const Text('Login', style: TextStyle(fontSize: 40)),
+                    child: Text('Login',
+                        style: TextStyle(fontSize: CustomStyles.fontSize40)),
                     onPressed: () async {
                       setState(() {
                         showSpinner = true;

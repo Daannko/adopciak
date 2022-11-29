@@ -82,8 +82,8 @@ class _AnimeScreenState extends State<AnimalScreen> {
                               color: CustomColors.animalScreenBodyColor),
                           child: Text(
                             "Name: ${data["Name"]}",
-                            style: TextStyle(fontSize: CustomStyles.fontSize),
-                            maxLines: 2,
+                            style: TextStyle(fontSize: CustomStyles.fontSize20),
+                            maxLines: CustomStyles.animalScreenMaxLines,
                           ),
                         ),
                         Container(
@@ -95,8 +95,8 @@ class _AnimeScreenState extends State<AnimalScreen> {
                               color: CustomColors.animalScreenBodyColor),
                           child: Text(
                             "Breed: ${data["Breed"]}",
-                            style: TextStyle(fontSize: CustomStyles.fontSize),
-                            maxLines: 2,
+                            style: TextStyle(fontSize: CustomStyles.fontSize20),
+                            maxLines: CustomStyles.animalScreenMaxLines,
                           ),
                         ),
                         Container(
@@ -108,8 +108,8 @@ class _AnimeScreenState extends State<AnimalScreen> {
                               color: CustomColors.animalScreenBodyColor),
                           child: Text(
                             "Location: ${data["Location"]}",
-                            style: TextStyle(fontSize: CustomStyles.fontSize),
-                            maxLines: 2,
+                            style: TextStyle(fontSize: CustomStyles.fontSize20),
+                            maxLines: CustomStyles.animalScreenMaxLines,
                           ),
                         ),
                         Container(
@@ -121,8 +121,8 @@ class _AnimeScreenState extends State<AnimalScreen> {
                               color: CustomColors.animalScreenBodyColor),
                           child: Text(
                             "Owner: ${data["Owner"]}",
-                            style: TextStyle(fontSize: CustomStyles.fontSize),
-                            maxLines: 2,
+                            style: TextStyle(fontSize: CustomStyles.fontSize20),
+                            maxLines: CustomStyles.animalScreenMaxLines,
                           ),
                         ),
                         Container(
@@ -134,7 +134,7 @@ class _AnimeScreenState extends State<AnimalScreen> {
                               color: CustomColors.animalScreenBodyColor),
                           child: Text(
                             "Info: ${data["Info"]}",
-                            style: TextStyle(fontSize: CustomStyles.fontSize),
+                            style: TextStyle(fontSize: CustomStyles.fontSize20),
                           ),
                         ),
                       ]),

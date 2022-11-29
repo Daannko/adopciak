@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'model/colors.dart';
 
 
 void showSnackBar(BuildContext context, String message, String type) {
@@ -14,27 +14,27 @@ void showSnackBar(BuildContext context, String message, String type) {
   switch (type) {
     case "Error":
       title = "Oh snap!";
-      primaryColor = Color.fromARGB(255, 135, 33, 25);
-      secondaryColor = Color.fromARGB(255, 135, 33, 25);
+      primaryColor = CustomColors.snackBarErrorColor;
+      secondaryColor = CustomColors.snackBarErrorColor;
       icon = Icons.error_outline;
       break;
     case "Registered":
       title = "Registration succeeded!";
-      primaryColor = Color.fromARGB(255, 0, 208, 63);
-      secondaryColor = Color.fromARGB(255, 0, 208, 63);
+      primaryColor = CustomColors.snackBarSuccessColor;
+      secondaryColor = CustomColors.snackBarSuccessColor;
       icon = Icons.check;
       break;
 
     case "Login":
       title = "Login successful!";
       icon = Icons.lightbulb_outline;
-      primaryColor = Color.fromARGB(255, 20, 118, 167);
-      secondaryColor = Color.fromARGB(255, 0, 208, 63);
+      primaryColor = CustomColors.snackBarLoginPrimaryColor;
+      secondaryColor = CustomColors.snackBarLoginSecondaryColor;
       break;
     case "Information":
       icon = Icons.lightbulb_outline;
-      primaryColor = Color.fromARGB(255, 20, 118, 167);
-      primaryColor = Color.fromARGB(255, 0, 208, 63);
+      primaryColor = CustomColors.snackBarLoginSecondaryColor;
+      secondaryColor = CustomColors.snackBarRegisterColor;
   }
   final snackBar = SnackBar(
     backgroundColor: Colors.transparent,
