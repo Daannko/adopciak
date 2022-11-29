@@ -28,6 +28,10 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
   String info = "";
   String errorMessage = "";
   bool showSpinner = false;
+  bool displaySet1 = true;
+  bool displaySet2 = false;
+  bool displayAddBtn = false;
+  bool displayImageUpload = false;
 
   @override
   Widget build(BuildContext context) {
@@ -39,207 +43,226 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: SingleChildScrollView(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Text("Enter information to add animal:",
-                    style:
-                        TextStyle(fontSize: CustomStyles.enterToRegisterSize)),
-                SizedBox(height: CustomStyles.enterToRegisterSize),
-                TextField(
-                  keyboardType: TextInputType.name,
-                  textAlign: TextAlign.center,
-                  onChanged: (value) {
-                    name = value;
-                    //Do something with the user input.
-                  },
-                  decoration: InputDecoration(
-                      hintText: 'Name',
-                      contentPadding: CustomStyles.mariginsAll20,
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.inputTextBorderColor,
-                              width: CustomStyles.width)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.selectedInputTextBorderColor,
-                              width: CustomStyles.width))),
-                ),
-                SizedBox(
-                  height: CustomStyles.smallBoxHeight,
-                ),
-                TextField(
-                  keyboardType: TextInputType.name,
-                  textAlign: TextAlign.center,
-                  onChanged: (value) {
-                    age = int.parse(value);
-                    //Do something with the user input.
-                  },
-                  decoration: InputDecoration(
-                      hintText: 'Age',
-                      contentPadding: CustomStyles.mariginsAll20,
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.inputTextBorderColor,
-                              width: CustomStyles.width)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.selectedInputTextBorderColor,
-                              width: CustomStyles.width))),
-                ),
-                SizedBox(
-                  height: CustomStyles.smallBoxHeight,
-                ),
-                TextField(
-                  keyboardType: TextInputType.emailAddress,
-                  textAlign: TextAlign.center,
-                  onChanged: (value) {
-                    type = value;
-                    //Do something with the user input.
-                  },
-                  decoration: InputDecoration(
-                      hintText: 'Type',
-                      contentPadding: CustomStyles.mariginsAll20,
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.inputTextBorderColor,
-                              width: CustomStyles.width)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.selectedInputTextBorderColor,
-                              width: CustomStyles.width))),
-                ),
-                SizedBox(
-                  height: CustomStyles.smallBoxHeight,
-                ),
-                TextField(
-                  textAlign: TextAlign.center,
-                  onChanged: (value) {
-                    breed = value;
-                    //Do something with the user input.
-                  },
-                  decoration: InputDecoration(
-                      hintText: 'Breed',
-                      contentPadding: CustomStyles.mariginsAll20,
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.inputTextBorderColor,
-                              width: CustomStyles.width)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.selectedInputTextBorderColor,
-                              width: CustomStyles.width))),
-                ),
-                SizedBox(
-                  height: CustomStyles.smallBoxHeight,
-                ),
-                TextField(
-                  textAlign: TextAlign.center,
-                  onChanged: (value) {
-                    owner = value;
-                    //Do something with the user input.
-                  },
-                  decoration: InputDecoration(
-                      hintText: 'Owner',
-                      contentPadding: CustomStyles.mariginsAll20,
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.inputTextBorderColor,
-                              width: CustomStyles.width)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.selectedInputTextBorderColor,
-                              width: CustomStyles.width))),
-                ),
-                SizedBox(
-                  height: CustomStyles.smallBoxHeight,
-                ),
-                TextField(
-                  textAlign: TextAlign.center,
-                  onChanged: (value) {
-                    location = value;
-                    //Do something with the user input.
-                  },
-                  decoration: InputDecoration(
-                      hintText: 'Location',
-                      contentPadding: CustomStyles.mariginsAll20,
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.inputTextBorderColor,
-                              width: CustomStyles.width)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.selectedInputTextBorderColor,
-                              width: CustomStyles.width))),
-                ),
-                SizedBox(
-                  height: CustomStyles.smallBoxHeight,
-                ),
-                TextField(
-                  textAlign: TextAlign.center,
-                  onChanged: (value) {
-                    info = value;
-                    //Do something with the user input.
-                  },
-                  decoration: InputDecoration(
-                      hintText: 'Info',
-                      contentPadding: CustomStyles.mariginsAll20,
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.inputTextBorderColor,
-                              width: CustomStyles.width)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: CustomColors.selectedInputTextBorderColor,
-                              width: CustomStyles.width))),
-                ),
-                SizedBox(
-                  height: CustomStyles.bigBoxHeight,
-                ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: const Color.fromRGBO(38, 70, 83, 1)),
-                  child: Text('Dodaj pieska ',
-                      style: TextStyle(fontSize: CustomStyles.fontSize40)),
-                  onPressed: () async {
-                    setState(() {
-                      showSpinner = true;
-                    });
-                    FocusManager.instance.primaryFocus?.unfocus();
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Text("Enter information to add animal:",
+                      style: TextStyle(
+                          fontSize: CustomStyles.enterToRegisterSize)),
+                  SizedBox(height: CustomStyles.enterToRegisterSize),
+                  displaySet1
+                      ? TextField(
+                          keyboardType: TextInputType.name,
+                          textAlign: TextAlign.center,
+                          onChanged: (value) {
+                            name = value;
+                            //Do something with the user input.
+                          },
+                          decoration: InputDecoration(
+                              hintText: 'Name',
+                              contentPadding: CustomStyles.mariginsAll20,
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: CustomColors.inputTextBorderColor,
+                                      width: CustomStyles.width)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: CustomColors
+                                          .selectedInputTextBorderColor,
+                                      width: CustomStyles.width))),
+                        )
+                      : new Container(),
+                  SizedBox(
+                    height: CustomStyles.smallBoxHeight,
+                  ),
+                  displaySet2
+                      ? TextField(
+                          keyboardType: TextInputType.name,
+                          textAlign: TextAlign.center,
+                          onChanged: (value) {
+                            age = int.parse(value);
+                            //Do something with the user input.
+                          },
+                          decoration: InputDecoration(
+                              hintText: 'Age',
+                              contentPadding: CustomStyles.mariginsAll20,
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: CustomColors.inputTextBorderColor,
+                                      width: CustomStyles.width)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: CustomColors
+                                          .selectedInputTextBorderColor,
+                                      width: CustomStyles.width))),
+                        )
+                      : new Container(),
+                  SizedBox(
+                    height: CustomStyles.smallBoxHeight,
+                  ),
+                  displaySet1
+                      ? TextField(
+                          keyboardType: TextInputType.emailAddress,
+                          textAlign: TextAlign.center,
+                          onChanged: (value) {
+                            type = value;
+                            //Do something with the user input.
+                          },
+                          decoration: InputDecoration(
+                              hintText: 'Type',
+                              contentPadding: CustomStyles.mariginsAll20,
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: CustomColors.inputTextBorderColor,
+                                      width: CustomStyles.width)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: CustomColors
+                                          .selectedInputTextBorderColor,
+                                      width: CustomStyles.width))),
+                        )
+                      : new Container(),
+                  SizedBox(
+                    height: CustomStyles.smallBoxHeight,
+                  ),
+                  displaySet1
+                      ? TextField(
+                          textAlign: TextAlign.center,
+                          onChanged: (value) {
+                            breed = value;
+                            //Do something with the user input.
+                          },
+                          decoration: InputDecoration(
+                              hintText: 'Breed',
+                              contentPadding: CustomStyles.mariginsAll20,
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: CustomColors.inputTextBorderColor,
+                                      width: CustomStyles.width)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: CustomColors
+                                          .selectedInputTextBorderColor,
+                                      width: CustomStyles.width))),
+                        )
+                      : new Container(),
+                  SizedBox(
+                    height: CustomStyles.smallBoxHeight,
+                  ),
+                  displaySet2
+                      ? TextField(
+                          textAlign: TextAlign.center,
+                          onChanged: (value) {
+                            owner = value;
+                            //Do something with the user input.
+                          },
+                          decoration: InputDecoration(
+                              hintText: 'Owner',
+                              contentPadding: CustomStyles.mariginsAll20,
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: CustomColors.inputTextBorderColor,
+                                      width: CustomStyles.width)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: CustomColors
+                                          .selectedInputTextBorderColor,
+                                      width: CustomStyles.width))),
+                        )
+                      : new Container(),
+                  SizedBox(
+                    height: CustomStyles.smallBoxHeight,
+                  ),
+                  displaySet2
+                      ? TextField(
+                          textAlign: TextAlign.center,
+                          onChanged: (value) {
+                            location = value;
+                            //Do something with the user input.
+                          },
+                          decoration: InputDecoration(
+                              hintText: 'Location',
+                              contentPadding: CustomStyles.mariginsAll20,
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: CustomColors.inputTextBorderColor,
+                                      width: CustomStyles.width)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: CustomColors
+                                          .selectedInputTextBorderColor,
+                                      width: CustomStyles.width))),
+                        )
+                      : new Container(),
+                  SizedBox(
+                    height: CustomStyles.smallBoxHeight,
+                  ),
+                  displaySet2
+                      ? TextField(
+                          textAlign: TextAlign.center,
+                          onChanged: (value) {
+                            info = value;
+                            //Do something with the user input.
+                          },
+                          decoration: InputDecoration(
+                              hintText: 'Info',
+                              contentPadding: CustomStyles.mariginsAll20,
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: CustomColors.inputTextBorderColor,
+                                      width: CustomStyles.width)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: CustomColors
+                                          .selectedInputTextBorderColor,
+                                      width: CustomStyles.width))),
+                        )
+                      : new Container(),
+                  SizedBox(
+                    height: CustomStyles.bigBoxHeight,
+                  ),
+                  displayAddBtn
+                      ? TextButton(
+                          style: TextButton.styleFrom(
+                              foregroundColor: Colors.white,
+                              backgroundColor: CustomColors.addAnimalColor),
+                          child: Text('Dodaj pieska ',
+                              style:
+                                  TextStyle(fontSize: CustomStyles.fontSize40)),
+                          onPressed: () async {
+                            setState(() {
+                              showSpinner = true;
+                            });
+                            FocusManager.instance.primaryFocus?.unfocus();
 
-                    final data = {
-                      "Name": name,
-                      "Age": age,
-                      "Type": type,
-                      "Breed": breed,
-                      "Owner": owner,
-                      "Location": location,
-                      "Info": info,
-                      "Supports": [],
-                      "Needs": []
-                      //TODO: ta tabela pewnie bedzie wypierdalać
-                    };
+                            final data = {
+                              "Name": name,
+                              "Age": age,
+                              "Type": type,
+                              "Breed": breed,
+                              "Owner": owner,
+                              "Location": location,
+                              "Info": info,
+                              "Supports": [],
+                              "Needs": []
+                              //TODO: ta tabela pewnie bedzie wypierdalać
+                            };
 
-                    FirebaseFirestore.instance
-                        .collection("animals")
-                        .doc()
-                        .set(data);
+                            FirebaseFirestore.instance
+                                .collection("animals")
+                                .doc()
+                                .set(data);
 
-                    showSnackBar(context, "Added new animal", "Login");
-                    Navigator.pushNamed(context, 'home_screen');
+                            Navigator.pushNamed(context, 'home_screen');
 
-                    if (errorMessage.isNotEmpty)
-                      showSnackBar(context, errorMessage, "Error");
-
-                    errorMessage = "";
-                    setState(() {
-                      showSpinner = false;
-                    });
-                  },
-                )
-              ],
-            ),
+                            if (errorMessage.isNotEmpty) errorMessage = "";
+                            setState(() {
+                              showSpinner = false;
+                            });
+                          },
+                        )
+                      : new Container()
+                ]),
           ),
         ),
       ),

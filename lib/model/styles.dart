@@ -14,6 +14,8 @@ class CustomStyles {
   static EdgeInsets paddingAll20 = const EdgeInsets.all(20);
   static EdgeInsets paddingSymmetric = EdgeInsets.symmetric(horizontal: 24.0);
   static double fontSize20 = 20;
+  static double fontSize18 = 18;
+  static double fontSize15 = 15;
   static double enterToRegisterSize = 30;
   static double fontSize40 = 40;
   static double smallBoxHeight = 8;
