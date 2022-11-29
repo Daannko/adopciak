@@ -8,4 +8,5 @@ class CustomColors {
   static Color homePageBackgroundColor = Color.fromARGB(255, 184, 222, 253);
   static Color adoptBtnColor = Color.fromARGB(255, 255, 160, 7);
   static Color supportBtnColor = Color.fromARGB(255, 48, 220, 217);
+  static Color animalScreenBodyColor = Color.fromARGB(255, 86, 129, 143);
 }

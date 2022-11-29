@@ -1,14 +1,7 @@
-import 'package:firebase_database/firebase_database.dart';
-import 'package:expandable_text/expandable_text.dart';
-
-import 'package:flutter/material.dart';
-import 'package:adopciak/animal_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:adopciak/custom_snackbar';
+import 'model/colors.dart';
+import 'model/styles.dart';
 
 class AnimalScreen extends StatefulWidget {
   final String animalId;
@@ -61,22 +54,20 @@ class _AnimeScreenState extends State<AnimalScreen> {
                 leading: null,
                 actions: <Widget>[],
                 title: Text(data["Name"]),
-                backgroundColor: Color.fromARGB(255, 112, 157, 179),
+                backgroundColor: CustomColors.appBarColor,
               ),
               body: Container(
-                  color: Color.fromARGB(255, 189, 210, 217),
+                  color: CustomColors.homePageBackgroundColor,
                   child: SingleChildScrollView(
                     child: Container(
-                      margin: EdgeInsets.all(20),
+                      margin: CustomStyles.mariginsAll20,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        //// MOŻNA TO TUTAJ ZMIENĆ DLA WYGLĄDU
-                        // color: Color.fromARGB(255, 86, 129, 143)
+                        borderRadius: CustomStyles.radius20,
                       ),
                       child: Column(children: [
                         Container(
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20.0),
+                            borderRadius: CustomStyles.radius20,
                             child: Image(
                               image: AssetImage("images/dog.png"),
                             ),
@@ -84,66 +75,66 @@ class _AnimeScreenState extends State<AnimalScreen> {
                         ),
                         Container(
                           width: double.infinity,
-                          margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                          padding: EdgeInsets.all(7),
+                          margin: CustomStyles.marigin10,
+                          padding: CustomStyles.paddingAll7,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: Color.fromARGB(255, 86, 129, 143)),
+                              borderRadius: CustomStyles.radius30,
+                              color: CustomColors.animalScreenBodyColor),
                           child: Text(
                             "Name: ${data["Name"]}",
-                            style: TextStyle(fontSize: 20),
+                            style: TextStyle(fontSize: CustomStyles.fontSize),
                             maxLines: 2,
                           ),
                         ),
                         Container(
                           width: double.infinity,
-                          margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                          padding: EdgeInsets.all(7),
+                          margin: CustomStyles.marigin10,
+                          padding: CustomStyles.paddingAll7,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: Color.fromARGB(255, 86, 129, 143)),
+                              borderRadius: CustomStyles.radius30,
+                              color: CustomColors.animalScreenBodyColor),
                           child: Text(
                             "Breed: ${data["Breed"]}",
-                            style: TextStyle(fontSize: 20),
+                            style: TextStyle(fontSize: CustomStyles.fontSize),
                             maxLines: 2,
                           ),
                         ),
                         Container(
                           width: double.infinity,
-                          margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                          padding: EdgeInsets.all(7),
+                          margin: CustomStyles.marigin10,
+                          padding: CustomStyles.paddingAll7,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: Color.fromARGB(255, 86, 129, 143)),
+                              borderRadius: CustomStyles.radius30,
+                              color: CustomColors.animalScreenBodyColor),
                           child: Text(
                             "Location: ${data["Location"]}",
-                            style: TextStyle(fontSize: 20),
+                            style: TextStyle(fontSize: CustomStyles.fontSize),
                             maxLines: 2,
                           ),
                         ),
                         Container(
                           width: double.infinity,
-                          margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                          padding: EdgeInsets.all(7),
+                          margin: CustomStyles.marigin10,
+                          padding: CustomStyles.paddingAll7,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: Color.fromARGB(255, 86, 129, 143)),
+                              borderRadius: CustomStyles.radius30,
+                              color: CustomColors.animalScreenBodyColor),
                           child: Text(
                             "Owner: ${data["Owner"]}",
-                            style: TextStyle(fontSize: 20),
+                            style: TextStyle(fontSize: CustomStyles.fontSize),
                             maxLines: 2,
                           ),
                         ),
                         Container(
                           width: double.infinity,
-                          margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                          padding: EdgeInsets.all(7),
+                          margin: CustomStyles.marigin10,
+                          padding: CustomStyles.paddingAll7,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: Color.fromARGB(255, 86, 129, 143)),
+                              borderRadius: CustomStyles.radius30,
+                              color: CustomColors.animalScreenBodyColor),
                           child: Text(
                             "Info: ${data["Info"]}",
-                            style: TextStyle(fontSize: 20),
+                            style: TextStyle(fontSize: CustomStyles.fontSize),
                           ),
                         ),
                       ]),

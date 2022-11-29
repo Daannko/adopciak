@@ -1,7 +1,10 @@
 import 'package:adopciak/animal_screen.dart';
+import 'package:adopciak/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'model/colors.dart';
+import 'model/styles.dart';
 import 'my_user_info.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -23,10 +26,34 @@ class _HomeScreenState extends State<HomeScreen> {
   CollectionReference collectionReference =
       FirebaseFirestore.instance.collection("animals");
   late Stream<QuerySnapshot> animalStream;
+  final myController = TextEditingController();
+
+  List<String?> imagePath = [];
+  List<Image> images = [];
+  bool displayList = false;
 
   void initState() {
     super.initState();
     animalStream = collectionReference.snapshots();
+    myController.addListener(changeData);
+
+    final db = FirebaseFirestore.instance;
+    db.collection("animals").get().then(((value) async {
+      for (int i = 0; i < value.size; i++) {
+        imagePath.add(await firebaseStorageSerivce
+            .getImage(value.docs[i].data()["imageName"].toString()));
+      }
+      for (int i = 0; i < imagePath.length; i++) {
+        images.add(Image.network(imagePath[i]!));
+      }
+      setState(() {
+        displayList = true;
+      });
+    }));
+  }
+
+  void changeData() {
+    setState(() {});
   }
 
   final borderSize = 1.5;
@@ -34,176 +61,172 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          leading: null,
-          actions: <Widget>[
-            IconButton(
-                icon: Icon(Icons.close),
-                onPressed: () {
-                  _auth.signOut();
-                  Navigator.pop(context);
-                  //Implement logout functionality
-                }),
-          ],
-          title: Text('Home Page'),
-          backgroundColor: CustomColors.appBarColor,
-        ),
         body: Container(
-          color: CustomColors.homePageBackgroundColor,
-          child: Center(
-            child: StreamBuilder<QuerySnapshot>(
-              stream: animalStream,
-              builder: (BuildContextcontext, AsyncSnapshot snapshot) {
-                if (snapshot.hasError) {
-                  return Center(child: Text(snapshot.error.toString()));
-                }
-                if (snapshot.connectionState == ConnectionState.active) {
-                  QuerySnapshot querySnapshot = snapshot.data;
-                  List<QueryDocumentSnapshot> documents = querySnapshot.docs;
+      color: CustomColors.homePageBackgroundColor,
+      child: Center(
+        child: Column(
+          children: [
+            Flexible(
+              child: StreamBuilder<QuerySnapshot>(
+                stream: animalStream,
+                builder: (BuildContextcontext, AsyncSnapshot snapshot) {
+                  if (snapshot.hasError) {
+                    return Center(child: Text(snapshot.error.toString()));
+                  }
+                  if (snapshot.connectionState == ConnectionState.active) {
+                    QuerySnapshot querySnapshot = snapshot.data;
+                    List<QueryDocumentSnapshot> documents = querySnapshot.docs;
 
-                  List<Map> items = documents
-                      .map((e) => {
-                            'id': e.id,
-                            'age': e['Age'],
-                            'name': e['Name'],
-                            'breed': e['Breed'],
-                            'owner': e['Owner']
-                          })
-                      .toList();
+                    List<Map> items = documents
+                        .map((e) => {
+                              'id': e.id,
+                              'age': e['Age'],
+                              'name': e['Name'],
+                              'breed': e['Breed'],
+                              'owner': e['Owner']
+                            })
+                        .toList();
 
-                  return ListView.builder(
-                      itemCount: items.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        Map thisItem = items[index];
-                        return GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) =>
-                                      AnimalScreen(thisItem['id'])));
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border.all(
-                                      color: Colors.black, width: borderSize),
-                                  borderRadius: BorderRadius.circular(35)),
-                              margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                              child: Column(
-                                children: [
-                                  Container(
-                                      width: double.infinity,
-                                      decoration: BoxDecoration(
-                                          border: Border(
-                                              bottom: BorderSide(
-                                                  width: borderSize,
-                                                  color: Colors.black))),
+                    return displayList
+                        ? ListView.builder(
+                            itemCount: items.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              Map thisItem = items[index];
+                              return
+                                  // thisItem["name"]
+                                  //         .toString()
+                                  //         .toLowerCase()
+                                  //         .contains(myController.text.toLowerCase())
+                                  //     ?
+                                  GestureDetector(
+                                      onTap: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    AnimalScreen(
+                                                        thisItem['id'])));
+                                      },
                                       child: Container(
-                                        margin: EdgeInsets.all(10),
-                                        child: Text(
-                                          thisItem['owner'],
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )),
-                                  Container(
-                                    padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                    width: double.infinity,
-                                    child: Text(
-                                      thisItem['name'],
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontSize: 30,
-                                      ),
-                                    ),
-                                  ),
-                                  FutureBuilder(
-                                      future: firebaseStorageSerivce
-                                          .getImage("dog.png"),
-                                      builder: (BuildContext context,
-                                          AsyncSnapshot<String?> snapshot) {
-                                        if (snapshot.connectionState ==
-                                                ConnectionState.done &&
-                                            snapshot.hasData) {
-                                          return Container(
-                                              padding: EdgeInsets.fromLTRB(
-                                                  20, 10, 20, 10),
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            border: Border.all(
+                                                color: Colors.black,
+                                                width: borderSize),
+                                            borderRadius: CustomStyles
+                                                .radiusAnimalScreen),
+                                        margin: CustomStyles.marigin20,
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                                width: double.infinity,
+                                                decoration: BoxDecoration(
+                                                    border: Border(
+                                                        bottom: BorderSide(
+                                                            width: borderSize,
+                                                            color:
+                                                                Colors.black))),
+                                                child: Container(
+                                                  margin:
+                                                      CustomStyles.paddingAll10,
+                                                  child: Text(
+                                                    thisItem['owner'],
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                )),
+                                            Container(
+                                              padding: CustomStyles
+                                                  .listViewPaddingName,
                                               width: double.infinity,
-                                              child: Image.network(
-                                                  snapshot.data!));
-                                        }
-                                        if (snapshot.connectionState ==
-                                                ConnectionState.waiting ||
-                                            !snapshot.hasData) {
-                                          return CircularProgressIndicator();
-                                        }
-                                        return Container();
-                                      }),
-                                  Container(
-                                    child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
-                                        children: [
-                                          TextButton(
-                                            onPressed: (() => {
-                                                  showSnackBar(
-                                                      context,
-                                                      "To jest ${thisItem['name']}!",
-                                                      "Login")
-                                                }),
-                                            child: Container(
-                                              padding: EdgeInsets.fromLTRB(
-                                                  20, 10, 20, 10),
-                                              decoration: BoxDecoration(
-                                                  color: CustomColors
-                                                      .supportBtnColor,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          30)),
                                               child: Text(
-                                                "Wspomóż",
+                                                thisItem['name'],
+                                                textAlign: TextAlign.center,
                                                 style: TextStyle(
-                                                    fontSize: 15,
-                                                    color: Colors.black),
+                                                  fontSize: 30,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          TextButton(
-                                            onPressed: (() => {
-                                                  showSnackBar(
-                                                      context,
-                                                      "To jest ${thisItem['name']}!",
-                                                      "Login")
-                                                }),
-                                            child: Container(
-                                              padding: EdgeInsets.fromLTRB(
-                                                  20, 10, 20, 10),
-                                              decoration: BoxDecoration(
-                                                  color: CustomColors
-                                                      .adoptBtnColor,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          30)),
-                                              child: Text(
-                                                "Adoptiuj",
-                                                style: TextStyle(
-                                                    fontSize: 15,
-                                                    color: Colors.black),
-                                              ),
-                                            ),
-                                          )
-                                        ]),
-                                  )
-                                ],
-                              ),
-                            ));
-                      });
-                } else
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-              },
+                                            Container(
+                                                padding: CustomStyles
+                                                    .listViewPadding,
+                                                width: double.infinity,
+                                                child: images[index]),
+                                            Container(
+                                              child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceAround,
+                                                  children: [
+                                                    TextButton(
+                                                      onPressed: (() => {
+                                                            showSnackBar(
+                                                                context,
+                                                                "To jest ${thisItem['name']}!",
+                                                                "Login")
+                                                          }),
+                                                      child: Container(
+                                                        padding:
+                                                            EdgeInsets.fromLTRB(
+                                                                20, 10, 20, 10),
+                                                        decoration: BoxDecoration(
+                                                            color: Colors.amber,
+                                                            borderRadius:
+                                                                CustomStyles
+                                                                    .radius30),
+                                                        child: Text(
+                                                          "Wspomóż",
+                                                          style: TextStyle(
+                                                              fontSize: 15,
+                                                              color:
+                                                                  Colors.black),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    TextButton(
+                                                      onPressed: (() => {
+                                                            showSnackBar(
+                                                                context,
+                                                                "To jest ${thisItem['name']}!",
+                                                                "Login")
+                                                          }),
+                                                      child: Container(
+                                                        padding:
+                                                            EdgeInsets.fromLTRB(
+                                                                20, 10, 20, 10),
+                                                        decoration: BoxDecoration(
+                                                            color: CustomColors
+                                                                .adoptBtnColor,
+                                                            borderRadius:
+                                                                CustomStyles
+                                                                    .radius30),
+                                                        child: Text(
+                                                          "Adoptiuj",
+                                                          style: TextStyle(
+                                                              fontSize: 15,
+                                                              color:
+                                                                  Colors.black),
+                                                        ),
+                                                      ),
+                                                    )
+                                                  ]),
+                                            )
+                                          ],
+                                        ),
+                                      ));
+                              //: Container();
+                            })
+                        : Center(child: CircularProgressIndicator());
+                  } else
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                },
+              ),
             ),
-          ),
-        ));
+          ],
+        ),
+      ),
+    ));
   }
 }

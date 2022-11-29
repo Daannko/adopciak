@@ -113,14 +113,6 @@ class _LoginScreenState extends State<LoginScreen>
                               .get();
                           String name = user.get("Name");
 
-                          final db = FirebaseFirestore.instance;
-                          final cities = db
-                              .collection("animals")
-                              .get()
-                              .then((value) => {});
-
-                          List<String> animalsImagePaths = [];
-
                           showSnackBar(
                               context, "Welcome back, " + name, "Login");
                           Navigator.pushNamed(context, 'home_screen');

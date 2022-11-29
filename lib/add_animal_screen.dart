@@ -7,6 +7,8 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:adopciak/custom_snackbar';
 
+import 'model/colors.dart';
+
 class RegistrationScreen extends StatefulWidget {
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
@@ -45,15 +47,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   name = value;
                   //Do something with the user input.
                 },
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                     hintText: 'Name',
                     contentPadding: EdgeInsets.all(20.0),
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: Color.fromRGBO(38, 70, 83, 0.5), width: 2)),
+                            color: CustomColors.inputTextBorderColor,
+                            width: 2)),
                     focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: Color.fromRGBO(38, 70, 83, 1), width: 2))),
+                            color: CustomColors.selectedInputTextBorderColor,
+                            width: 2))),
               ),
               const SizedBox(
                 height: 8.0,
@@ -65,15 +69,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   surname = value;
                   //Do something with the user input.
                 },
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                     hintText: 'Surname',
                     contentPadding: EdgeInsets.all(20.0),
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: Color.fromRGBO(38, 70, 83, 0.5), width: 2)),
+                            color: CustomColors.inputTextBorderColor,
+                            width: 2)),
                     focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: Color.fromRGBO(38, 70, 83, 1), width: 2))),
+                            color: CustomColors.selectedInputTextBorderColor,
+                            width: 2))),
               ),
               const SizedBox(
                 height: 8.0,
@@ -85,15 +91,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   email = value;
                   //Do something with the user input.
                 },
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                     hintText: 'Email Address',
                     contentPadding: EdgeInsets.all(20.0),
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: Color.fromRGBO(38, 70, 83, 0.5), width: 2)),
+                            color: CustomColors.inputTextBorderColor,
+                            width: 2)),
                     focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: Color.fromRGBO(38, 70, 83, 1), width: 2))),
+                            color: CustomColors.selectedInputTextBorderColor,
+                            width: 2))),
               ),
               const SizedBox(
                 height: 8.0,
@@ -107,15 +115,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   password = value;
                   //Do something with the user input.
                 },
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                     hintText: 'Password',
                     contentPadding: EdgeInsets.all(20.0),
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: Color.fromRGBO(38, 70, 83, 0.5), width: 2)),
+                            color: CustomColors.inputTextBorderColor,
+                            width: 2)),
                     focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: Color.fromRGBO(38, 70, 83, 1), width: 2))),
+                            color: CustomColors.selectedInputTextBorderColor,
+                            width: 2))),
               ),
               const SizedBox(
                 height: 8.0,
@@ -129,15 +139,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   passwordTwo = value;
                   //Do something with the user input.
                 },
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                     hintText: 'Confirm password',
                     contentPadding: EdgeInsets.all(20.0),
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: Color.fromRGBO(38, 70, 83, 0.5), width: 2)),
+                            color: CustomColors.inputTextBorderColor,
+                            width: 2)),
                     focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: Color.fromRGBO(38, 70, 83, 1), width: 2))),
+                            color: CustomColors.selectedInputTextBorderColor,
+                            width: 2))),
               ),
               const SizedBox(
                 height: 40.0,
@@ -145,7 +157,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               TextButton(
                 style: TextButton.styleFrom(
                     foregroundColor: Colors.white,
-                    backgroundColor: const Color.fromRGBO(38, 70, 83, 1)),
+                    backgroundColor: CustomColors.selectedInputTextBorderColor),
                 child: const Text('Register', style: TextStyle(fontSize: 40)),
                 onPressed: () async {
                   setState(() {
