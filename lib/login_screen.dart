@@ -1,4 +1,4 @@
-import 'package:adopciak/particles.dart';
+import 'package:adopciak/model/particles.dart';
 import 'package:animated_background/animated_background.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -17,10 +17,19 @@ class _LoginScreenState extends State<LoginScreen>
     with TickerProviderStateMixin {
   String email = "";
   String password = "";
-
   bool showSpinner = false;
-
   String errorMessage = "";
+  late Color imputTextBorderColor;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    imputTextBorderColor = Color.fromRGBO(38, 70, 83, 0.5);
+  }
+
+  //final Color imputTextBorderColor = Color.fromRGBO(38, 70, 83, 0.5);
+  //Color selectedInputTextBorderColor = ;
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +60,7 @@ class _LoginScreenState extends State<LoginScreen>
                       contentPadding: EdgeInsets.all(20.0),
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(38, 70, 83, 0.5),
-                              width: 2)),
+                              color: imputTextBorderColor, width: 2)),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               color: Color.fromRGBO(38, 70, 83, 1), width: 2))),

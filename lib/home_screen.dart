@@ -1,5 +1,4 @@
 import 'package:adopciak/animal_screen.dart';
-import 'package:adopciak/controllers/animal_image_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'my_user_info.dart';
@@ -20,8 +19,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final _auth = FirebaseAuth.instance;
   final FirebaseStorageService firebaseStorageSerivce =
       Get.put(FirebaseStorageService());
-  final AnimalImageController animalImageController =
-      Get.put(AnimalImageController());
   CollectionReference collectionReference =
       FirebaseFirestore.instance.collection("animals");
   late Stream<QuerySnapshot> animalStream;
@@ -44,7 +41,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () {
                   _auth.signOut();
                   Navigator.pop(context);
-
                   //Implement logout functionality
                 }),
           ],
