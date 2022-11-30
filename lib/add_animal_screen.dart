@@ -30,7 +30,6 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
   bool showSpinner = false;
   bool displaySet1 = true;
   bool displaySet2 = false;
-  bool displayAddBtn = false;
   bool displayImageUpload = false;
 
   @override
@@ -46,7 +45,7 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  Text("Enter information to add animal:",
+                  Text("Dodaj informacje o zwierzaku:",
                       style: TextStyle(
                           fontSize: CustomStyles.enterToRegisterSize)),
                   SizedBox(height: CustomStyles.enterToRegisterSize),
@@ -54,38 +53,16 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
                       ? TextField(
                           keyboardType: TextInputType.name,
                           textAlign: TextAlign.center,
+                          controller: name.isNotEmpty
+                              ? TextEditingController(text: name)
+                              : TextEditingController(text: ""),
                           onChanged: (value) {
                             name = value;
                             //Do something with the user input.
                           },
                           decoration: InputDecoration(
                               hintText: 'Name',
-                              contentPadding: CustomStyles.mariginsAll20,
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: CustomColors.inputTextBorderColor,
-                                      width: CustomStyles.width)),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: CustomColors
-                                          .selectedInputTextBorderColor,
-                                      width: CustomStyles.width))),
-                        )
-                      : new Container(),
-                  SizedBox(
-                    height: CustomStyles.smallBoxHeight,
-                  ),
-                  displaySet2
-                      ? TextField(
-                          keyboardType: TextInputType.name,
-                          textAlign: TextAlign.center,
-                          onChanged: (value) {
-                            age = int.parse(value);
-                            //Do something with the user input.
-                          },
-                          decoration: InputDecoration(
-                              hintText: 'Age',
-                              contentPadding: CustomStyles.mariginsAll20,
+                              contentPadding: CustomStyles.marginsAll20,
                               enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                       color: CustomColors.inputTextBorderColor,
@@ -104,13 +81,16 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
                       ? TextField(
                           keyboardType: TextInputType.emailAddress,
                           textAlign: TextAlign.center,
+                          controller: type.isNotEmpty
+                              ? TextEditingController(text: type)
+                              : TextEditingController(text: ""),
                           onChanged: (value) {
                             type = value;
                             //Do something with the user input.
                           },
                           decoration: InputDecoration(
                               hintText: 'Type',
-                              contentPadding: CustomStyles.mariginsAll20,
+                              contentPadding: CustomStyles.marginsAll20,
                               enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                       color: CustomColors.inputTextBorderColor,
@@ -128,13 +108,64 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
                   displaySet1
                       ? TextField(
                           textAlign: TextAlign.center,
+                          controller: breed.isNotEmpty
+                              ? TextEditingController(text: breed)
+                              : TextEditingController(text: ""),
                           onChanged: (value) {
                             breed = value;
                             //Do something with the user input.
                           },
                           decoration: InputDecoration(
                               hintText: 'Breed',
-                              contentPadding: CustomStyles.mariginsAll20,
+                              contentPadding: CustomStyles.marginsAll20,
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: CustomColors.inputTextBorderColor,
+                                      width: CustomStyles.width)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: CustomColors
+                                          .selectedInputTextBorderColor,
+                                      width: CustomStyles.width))),
+                        )
+                      : new Container(),
+                  SizedBox(
+                    height: CustomStyles.smallBoxHeight,
+                  ),
+                  displaySet1
+                      ? TextButton(
+                          style: TextButton.styleFrom(
+                              foregroundColor: Colors.white,
+                              backgroundColor: CustomColors.addAnimalColor),
+                          child: Text('Następna strona',
+                              style:
+                                  TextStyle(fontSize: CustomStyles.fontSize40)),
+                          onPressed: () async {
+                            if (name.isNotEmpty &&
+                                breed.isNotEmpty &&
+                                type.isNotEmpty) {
+                              setState(() {
+                                displaySet1 = false;
+                                displaySet2 = true;
+                              });
+                            }
+                          },
+                        )
+                      : new Container(),
+                  displaySet2
+                      ? TextField(
+                          keyboardType: TextInputType.number,
+                          textAlign: TextAlign.center,
+                          controller: age.toString().isNotEmpty
+                              ? TextEditingController(text: age.toString())
+                              : TextEditingController(text: ""),
+                          onChanged: (value) {
+                            age = int.parse(value);
+                            //Do something with the user input.
+                          },
+                          decoration: InputDecoration(
+                              hintText: 'Age',
+                              contentPadding: CustomStyles.marginsAll20,
                               enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                       color: CustomColors.inputTextBorderColor,
@@ -152,13 +183,16 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
                   displaySet2
                       ? TextField(
                           textAlign: TextAlign.center,
+                          controller: owner.isNotEmpty
+                              ? TextEditingController(text: owner)
+                              : TextEditingController(text: ""),
                           onChanged: (value) {
                             owner = value;
                             //Do something with the user input.
                           },
                           decoration: InputDecoration(
                               hintText: 'Owner',
-                              contentPadding: CustomStyles.mariginsAll20,
+                              contentPadding: CustomStyles.marginsAll20,
                               enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                       color: CustomColors.inputTextBorderColor,
@@ -176,13 +210,16 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
                   displaySet2
                       ? TextField(
                           textAlign: TextAlign.center,
+                          controller: location.isNotEmpty
+                              ? TextEditingController(text: location)
+                              : TextEditingController(text: ""),
                           onChanged: (value) {
                             location = value;
                             //Do something with the user input.
                           },
                           decoration: InputDecoration(
                               hintText: 'Location',
-                              contentPadding: CustomStyles.mariginsAll20,
+                              contentPadding: CustomStyles.marginsAll20,
                               enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                       color: CustomColors.inputTextBorderColor,
@@ -200,13 +237,16 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
                   displaySet2
                       ? TextField(
                           textAlign: TextAlign.center,
+                          controller: info.isNotEmpty
+                              ? TextEditingController(text: info)
+                              : TextEditingController(text: ""),
                           onChanged: (value) {
                             info = value;
                             //Do something with the user input.
                           },
                           decoration: InputDecoration(
                               hintText: 'Info',
-                              contentPadding: CustomStyles.mariginsAll20,
+                              contentPadding: CustomStyles.marginsAll20,
                               enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                       color: CustomColors.inputTextBorderColor,
@@ -221,12 +261,54 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
                   SizedBox(
                     height: CustomStyles.bigBoxHeight,
                   ),
-                  displayAddBtn
+                  displaySet2
                       ? TextButton(
                           style: TextButton.styleFrom(
                               foregroundColor: Colors.white,
                               backgroundColor: CustomColors.addAnimalColor),
-                          child: Text('Dodaj pieska ',
+                          child: Text('Następna strona',
+                              style: TextStyle(
+                                fontSize: CustomStyles.fontSize40,
+                              )),
+                          onPressed: () async {
+                            if (age != 0 &&
+                                age.toString().isNotEmpty &&
+                                owner.isNotEmpty &&
+                                location.isNotEmpty &&
+                                info.isNotEmpty) {
+                              setState(() {
+                                displaySet2 = false;
+                                displayImageUpload = true;
+                              });
+                            }
+                          },
+                        )
+                      : new Container(),
+                  displaySet2
+                      ? TextButton(
+                          style: TextButton.styleFrom(
+                              foregroundColor: Colors.white,
+                              backgroundColor: CustomColors.addAnimalColor),
+                          child: Text('Poprzednia strona',
+                              style:
+                                  TextStyle(fontSize: CustomStyles.fontSize40)),
+                          onPressed: () async {
+                            setState(() {
+                              displaySet1 = true;
+                              displaySet2 = false;
+                            });
+                          },
+                        )
+                      : new Container(),
+                  SizedBox(
+                    height: CustomStyles.smallBoxHeight,
+                  ),
+                  displayImageUpload
+                      ? TextButton(
+                          style: TextButton.styleFrom(
+                              foregroundColor: Colors.white,
+                              backgroundColor: CustomColors.addAnimalColor),
+                          child: Text('Dodaj zwierzaka ',
                               style:
                                   TextStyle(fontSize: CustomStyles.fontSize40)),
                           onPressed: () async {
@@ -258,6 +340,22 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
                             if (errorMessage.isNotEmpty) errorMessage = "";
                             setState(() {
                               showSpinner = false;
+                            });
+                          },
+                        )
+                      : new Container(),
+                  displayImageUpload
+                      ? TextButton(
+                          style: TextButton.styleFrom(
+                              foregroundColor: Colors.white,
+                              backgroundColor: CustomColors.addAnimalColor),
+                          child: Text('Poprzednia strona',
+                              style:
+                                  TextStyle(fontSize: CustomStyles.fontSize40)),
+                          onPressed: () async {
+                            setState(() {
+                              displaySet2 = true;
+                              displayImageUpload = false;
                             });
                           },
                         )
