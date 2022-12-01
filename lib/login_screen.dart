@@ -116,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen>
                               .get();
                           String name = user.get("Name");
 
-                          Navigator.pushNamed(context, 'home_screen');
+                          Navigator.pushNamed(context, 'navbar_screen');
                         }
                       } on FirebaseAuthException catch (e) {
                         switch (e.code) {
