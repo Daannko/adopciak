@@ -1,10 +1,13 @@
-import 'package:adopciak/particles.dart';
+import 'package:adopciak/model/particles.dart';
 import 'package:animated_background/animated_background.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:adopciak/custom_snackbar';
+import 'package:adopciak/model/colors.dart';
+
+import 'model/styles.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -15,12 +18,16 @@ final _auth = FirebaseAuth.instance;
 
 class _LoginScreenState extends State<LoginScreen>
     with TickerProviderStateMixin {
-  String email = "";
-  String password = "";
-
+  String email = "testmail@mail.com";
+  String password = "123456";
   bool showSpinner = false;
-
   String errorMessage = "";
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen>
           vsync: this,
           behaviour: RandomParticleBehaviour(options: particles),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.0),
+            padding: CustomStyles.paddingSymmetric,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -44,21 +51,22 @@ class _LoginScreenState extends State<LoginScreen>
                     email = value;
                     //Do something with the user input.
                   },
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                       hintText: 'Email',
                       filled: true,
                       fillColor: Colors.white,
-                      contentPadding: EdgeInsets.all(20.0),
+                      contentPadding: CustomStyles.paddingAll20,
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(38, 70, 83, 0.5),
-                              width: 2)),
+                              color: CustomColors.inputTextBorderColor,
+                              width: CustomStyles.width)),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(38, 70, 83, 1), width: 2))),
+                              color: CustomColors.selectedInputTextBorderColor,
+                              width: CustomStyles.width))),
                 ),
                 SizedBox(
-                  height: 8.0,
+                  height: CustomStyles.smallBoxHeight,
                 ),
                 TextField(
                   obscureText: true,
@@ -69,27 +77,30 @@ class _LoginScreenState extends State<LoginScreen>
                     password = value;
                     //Do something with the user input.
                   },
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                       hintText: 'Password',
                       filled: true,
                       fillColor: Colors.white,
-                      contentPadding: EdgeInsets.all(20.0),
+                      contentPadding: CustomStyles.paddingAll20,
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(38, 70, 83, 0.5),
-                              width: 2)),
+                              color: CustomColors.inputTextBorderColor,
+                              width: CustomStyles.width)),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: Color.fromRGBO(38, 70, 83, 1), width: 2))),
+                              color: CustomColors.selectedInputTextBorderColor,
+                              width: CustomStyles.width))),
                 ),
-                const SizedBox(
-                  height: 40.0,
+                SizedBox(
+                  height: CustomStyles.bigBoxHeight,
                 ),
                 TextButton(
                     style: TextButton.styleFrom(
                         foregroundColor: Colors.white,
-                        backgroundColor: const Color.fromRGBO(38, 70, 83, 1)),
-                    child: const Text('Login', style: TextStyle(fontSize: 40)),
+                        backgroundColor:
+                            CustomColors.selectedInputTextBorderColor),
+                    child: Text('Login',
+                        style: TextStyle(fontSize: CustomStyles.fontSize40)),
                     onPressed: () async {
                       setState(() {
                         showSpinner = true;
@@ -105,8 +116,6 @@ class _LoginScreenState extends State<LoginScreen>
                               .get();
                           String name = user.get("Name");
 
-                          showSnackBar(
-                              context, "Welcome back, " + name, "Login");
                           Navigator.pushNamed(context, 'home_screen');
                         }
                       } on FirebaseAuthException catch (e) {
@@ -132,10 +141,7 @@ class _LoginScreenState extends State<LoginScreen>
                         print(e.code);
                       }
 
-                      if (errorMessage.isNotEmpty)
-                        showSnackBar(context, errorMessage, "Error");
-
-                      errorMessage = "";
+                      if (errorMessage.isNotEmpty) errorMessage = "";
                       setState(() {
                         showSpinner = false;
                       });
