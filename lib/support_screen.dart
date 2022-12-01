@@ -41,7 +41,10 @@ class _SupportScreenState extends State<SupportScreen> {
     myController.addListener(changeData);
 
     final db = FirebaseFirestore.instance;
-    db.collection("animals").get().then(((value) async {
+    db.collection("animals")
+    .where('SupportedBy', arrayContains: "tempXD")
+    .get()
+    .then(((value) async {
       for (int i = 0; i < value.size; i++) {
         final data = value.docs[i].data();
 
