@@ -7,7 +7,8 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:path/path.dart';
 
 class ImageUploads extends StatefulWidget {
-  ImageUploads({Key? key}) : super(key: key);
+  String path;
+  ImageUploads({Key? key, required this.path}) : super(key: key);
 
   @override
   _ImageUploadsState createState() => _ImageUploadsState();
@@ -49,12 +50,12 @@ class _ImageUploadsState extends State<ImageUploads> {
   Future uploadFile() async {
     if (_photo == null) return;
     final fileName = basename(_photo!.path);
-    final destination = 'files/$fileName';
+    final destination = 'animal_images/';
 
     try {
       final ref = firebase_storage.FirebaseStorage.instance
           .ref(destination)
-          .child('file/');
+          .child('${widget.path}');
       await ref.putFile(_photo!);
     } catch (e) {
       print('error occured');

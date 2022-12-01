@@ -7,7 +7,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:adopciak/custom_snackbar';
+import 'package:uuid/uuid.dart';
 
+import 'model/animal.dart';
 import 'model/colors.dart';
 import 'model/styles.dart';
 
@@ -20,18 +22,27 @@ class AddAnimalScreen extends StatefulWidget {
 
 class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
   final _auth = FirebaseAuth.instance;
-  String name = "h";
-  int age = 1;
-  String type = "h";
-  String breed = "h";
-  String owner = "h";
-  String location = "h";
-  String info = "h";
+  String name = "";
+  int age = 0;
+  String type = "";
+  String breed = "";
+  String owner = "";
+  String location = "";
+  String info = "";
   String errorMessage = "";
   bool showSpinner = false;
   bool displaySet1 = true;
   bool displaySet2 = false;
   bool displayImageUpload = false;
+  var uuid = Uuid();
+  late String animalUId;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    animalUId = uuid.v4();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -272,8 +283,7 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
                                 fontSize: CustomStyles.fontSize40,
                               )),
                           onPressed: () async {
-                            if (age != 0 &&
-                                age.toString().isNotEmpty &&
+                            if (age.toString().isNotEmpty &&
                                 owner.isNotEmpty &&
                                 location.isNotEmpty &&
                                 info.isNotEmpty) {
@@ -307,7 +317,7 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
                   displayImageUpload
                       ? Container(
                           color: CustomColors.appBarColor,
-                          child: ImageUploads())
+                          child: ImageUploads(path: animalUId))
                       : new Container(),
                   displayImageUpload
                       ? TextButton(
@@ -321,25 +331,29 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
                             setState(() {
                               showSpinner = true;
                             });
+
                             FocusManager.instance.primaryFocus?.unfocus();
 
-                            final data = {
-                              "Name": name,
-                              "Age": age,
-                              "Type": type,
-                              "Breed": breed,
-                              "Owner": owner,
-                              "Location": location,
-                              "Info": info,
-                              "Supports": [],
-                              "Needs": []
-                              //TODO: ta tabela pewnie bedzie wypierdalać
-                            };
+                            String? userUId = FirebaseAuth
+                                .instance.currentUser?.uid
+                                .toString();
+
+                            Animal animal = Animal(
+                                animalUId,
+                                age,
+                                breed,
+                                name,
+                                info,
+                                location,
+                                owner,
+                                userUId!,
+                                type,
+                                animalUId);
 
                             FirebaseFirestore.instance
                                 .collection("animals")
-                                .doc()
-                                .set(data);
+                                .doc(animalUId)
+                                .set(animal.returnMap());
 
                             Navigator.pushNamed(context, 'home_screen');
 
