@@ -1,6 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'dart:ui';
+import 'package:adopciak/services/firebase_upload_image_service.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
@@ -19,13 +20,13 @@ class AddAnimalScreen extends StatefulWidget {
 
 class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
   final _auth = FirebaseAuth.instance;
-  String name = "";
-  int age = 0;
-  String type = "";
-  String breed = "";
-  String owner = "";
-  String location = "";
-  String info = "";
+  String name = "h";
+  int age = 1;
+  String type = "h";
+  String breed = "h";
+  String owner = "h";
+  String location = "h";
+  String info = "h";
   String errorMessage = "";
   bool showSpinner = false;
   bool displaySet1 = true;
@@ -42,8 +43,8 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: SingleChildScrollView(
             child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Text("Dodaj informacje o zwierzaku:",
                       style: TextStyle(
@@ -303,6 +304,11 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
                   SizedBox(
                     height: CustomStyles.smallBoxHeight,
                   ),
+                  displayImageUpload
+                      ? Container(
+                          color: CustomColors.appBarColor,
+                          child: ImageUploads())
+                      : new Container(),
                   displayImageUpload
                       ? TextButton(
                           style: TextButton.styleFrom(
