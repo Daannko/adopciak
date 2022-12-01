@@ -77,12 +77,12 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => AddAnimalScreen()));
-          },
-          child: const Icon(Icons.add),
-        ),
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => AddAnimalScreen()));
+            },
+            child: const Icon(Icons.add),
+            backgroundColor: CustomColors.secondColor),
         body: Container(
           color: CustomColors.homePageBackgroundColor,
           child: Center(

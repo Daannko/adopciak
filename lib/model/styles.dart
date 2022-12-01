@@ -24,5 +24,5 @@ class CustomStyles {
   static double width = 2;
   static BorderRadius radius20 = BorderRadius.circular(20);
   static BorderRadius radius30 = BorderRadius.circular(30);
-  static BorderRadius radiusAnimalScreen = BorderRadius.circular(35);
+  static BorderRadius radiusAnimalScreen = BorderRadius.circular(5);
 }
