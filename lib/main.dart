@@ -1,3 +1,4 @@
+import 'package:adopciak/add_animal_screen.dart';
 import 'package:adopciak/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
         'registration_screen': (context) => RegistrationScreen(),
         'login_screen': (context) => LoginScreen(),
         'home_screen': (context) => HomeScreen(),
-        'navbar_screen': (context) => NavBarScreen()
+        'navbar_screen': (context) => NavBarScreen(),
+        // 'add_anima_screen': (context) => AddAnimalScreen(),
       },
     );
   }

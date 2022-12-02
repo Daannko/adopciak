@@ -6,8 +6,8 @@ import 'model/colors.dart';
 import 'model/styles.dart';
 
 class UserDetalisScreen extends StatefulWidget {
-  final String userId;
-  UserDetalisScreen(this.userId);
+  // final String userId;
+  UserDetalisScreen();
 
   @override
   _UserDetalisState createState() => _UserDetalisState();
@@ -15,42 +15,8 @@ class UserDetalisScreen extends StatefulWidget {
 
 class _UserDetalisState extends State<UserDetalisScreen> {
   bool expandedText = false;
-  bool displayList = false;
-  List<Animal> animals = [];
-  List<Image> image = [];
+  bool displayList = true;
 
-  @override
-  void initState() {
-    super.initState();
-
-    print(widget.userId);
-
-    final db = FirebaseFirestore.instance;
-    db.collection("users").doc(widget.userId).get().then(((value) async {
-      final data = value.data();
-
-      animals.add(Animal(
-          data!["Id"],
-          data["Age"],
-          data["Breed"],
-          data["Name"],
-          data["Info"],
-          data["Location"],
-          data["Owner"],
-          data["OwnerId"],
-          data["Type"],
-          data["imageName"]));
-
-      String? path = await FirebaseStorageService()
-          .getImage(data["imageName"]?.toString());
-      image.add(Image.network(path!));
-      setState(() {
-        displayList = true;
-      });
-    }));
-  }
-
-  void updateAnimal(data) {}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,9 +43,7 @@ class _UserDetalisState extends State<UserDetalisScreen> {
                             ],
                             borderRadius: CustomStyles.radius20,
                           ),
-                          child: ClipRRect(
-                              borderRadius: CustomStyles.radius20,
-                              child: image.last),
+                          child: Image.asset('images/down.jpg'),
                         ),
                         Container(
                           width: double.infinity,
@@ -91,63 +55,19 @@ class _UserDetalisState extends State<UserDetalisScreen> {
                           child: Row(
                             children: [
                               Text(
-                                "${animals.last.type}",
+                                "Downiel",
                                 style: TextStyle(
                                     fontSize: CustomStyles.fontSize20),
                                 maxLines: CustomStyles.animalScreenMaxLines,
                               ),
                               Text(
-                                " ${animals.last.breed}: ",
+                                "Koziarski",
                                 style: TextStyle(
                                     color: Color.fromARGB(255, 0, 0, 0),
                                     fontSize: CustomStyles.fontSize20),
                                 maxLines: CustomStyles.animalScreenMaxLines,
                               ),
-                              Text(
-                                "${animals.last.name} ",
-                                style: TextStyle(
-                                    fontSize: CustomStyles.fontSize20),
-                                maxLines: CustomStyles.animalScreenMaxLines,
-                              ),
                             ],
-                          ),
-                        ),
-                        Container(
-                          width: double.infinity,
-                          margin: CustomStyles.marigin10,
-                          padding: CustomStyles.paddingAll7,
-                          decoration: BoxDecoration(
-                              borderRadius: CustomStyles.radius30,
-                              color: CustomColors.animalScreenBodyColor),
-                          child: Text(
-                            "Location: ${animals.last.location}",
-                            style: TextStyle(fontSize: CustomStyles.fontSize20),
-                            maxLines: CustomStyles.animalScreenMaxLines,
-                          ),
-                        ),
-                        Container(
-                          width: double.infinity,
-                          margin: CustomStyles.marigin10,
-                          padding: CustomStyles.paddingAll7,
-                          decoration: BoxDecoration(
-                              borderRadius: CustomStyles.radius30,
-                              color: CustomColors.animalScreenBodyColor),
-                          child: Text(
-                            "Owner: ${animals.last.owner}",
-                            style: TextStyle(fontSize: CustomStyles.fontSize20),
-                            maxLines: CustomStyles.animalScreenMaxLines,
-                          ),
-                        ),
-                        Container(
-                          width: double.infinity,
-                          margin: CustomStyles.marigin10,
-                          padding: CustomStyles.paddingAll7,
-                          decoration: BoxDecoration(
-                              borderRadius: CustomStyles.radius30,
-                              color: CustomColors.animalScreenBodyColor),
-                          child: Text(
-                            "Info: ${animals.last.info}",
-                            style: TextStyle(fontSize: CustomStyles.fontSize20),
                           ),
                         ),
                       ]),

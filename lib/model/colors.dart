@@ -15,5 +15,8 @@ class CustomColors {
   static Color snackBarLoginSecondaryColor = Color.fromARGB(255, 20, 118, 167);
   static Color snackBarInfoPrimaryColor = Color.fromARGB(255, 20, 118, 167);
   static Color addAnimalColor = Color.fromRGBO(38, 70, 83, 1);
+  static Color firstColor = Colors.white;
   static Color secondColor = Colors.green;
+  static Color thirdColor = Color.fromARGB(255, 164, 190, 123);
+  static Color fourthColor = Color.fromARGB(255, 95, 141, 78);
 }
