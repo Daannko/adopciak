@@ -5,6 +5,7 @@ import 'package:adopciak/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'add_animal_screen.dart';
 import 'model/animal.dart';
 import 'model/colors.dart';
@@ -41,10 +42,15 @@ class _SupportScreenState extends State<SupportScreen> {
     myController.addListener(changeData);
 
     final db = FirebaseFirestore.instance;
-    db.collection("animals")
-    .where('SupportedBy', arrayContains: "tempXD")
-    .get()
-    .then(((value) async {
+
+    final User? user = _auth.currentUser;
+    final uid = user!.uid;
+
+    db
+        .collection("animals")
+        .where('SupportedBy', arrayContains: uid)
+        .get()
+        .then(((value) async {
       for (int i = 0; i < value.size; i++) {
         final data = value.docs[i].data();
 

@@ -2,6 +2,7 @@ import 'package:adopciak/add_animal_screen.dart';
 import 'package:adopciak/model/colors.dart';
 import 'package:adopciak/model/styles.dart';
 import 'package:adopciak/user_details_screen.dart';
+import 'package:adopciak/support_screen.dart';
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
 
@@ -16,10 +17,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   final List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
-    const Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
+    SupportScreen(),
     AddAnimalScreen(),
     UserDetalisScreen(),
     const Text(

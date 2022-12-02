@@ -117,10 +117,6 @@ class _LoginScreenState extends State<LoginScreen>
                               .get();
                           String name = user.get("Name");
 
-                          final prefs = await SharedPreferences.getInstance();
-
-                          await prefs.setString('UserID', user.get('UserID'));
-
                           Navigator.pushNamed(context, 'navbar_screen');
                         }
                       } on FirebaseAuthException catch (e) {
