@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomStyles {
   static EdgeInsets marigin20 = const EdgeInsets.fromLTRB(20, 20, 20, 0);
+  static EdgeInsets mariginAnimal = const EdgeInsets.fromLTRB(5, 10, 5, 0);
   static EdgeInsets marigin10 = const EdgeInsets.fromLTRB(10, 10, 10, 0);
   static EdgeInsets listViewPaddingName =
       const EdgeInsets.fromLTRB(0, 10, 0, 0);
