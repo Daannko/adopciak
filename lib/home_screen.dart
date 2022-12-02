@@ -73,6 +73,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final borderSize = 1.5;
 
+  String text = "";
+  final List<String> filterNames = ["kot", "h", "pies"];
+  List<bool> filterValues = [true, true, true];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,8 +85,18 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Center(
         child: Column(
           children: [
-            TextField(
-              controller: myController,
+            SearchBar(
+              filterNames: filterNames,
+              filterValues: filterValues,
+              onSelectedFiltersAnimalsChanged: (value) {
+                setState(() {
+                  filterValues = value;
+                });
+              },
+              onTextChanged: (value) {
+                text = value;
+                setState(() {});
+              },
             ),
             Flexible(
                 child: displayList
@@ -91,9 +105,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemBuilder: (BuildContext context, int index) {
                           Animal thisItem = animals[index];
                           return thisItem.name
-                                  .toString()
-                                  .toLowerCase()
-                                  .contains(myController.text.toLowerCase())
+                                      .toLowerCase()
+                                      .contains(text.toLowerCase()) &&
+                                  filterValues[filterNames.indexOf(
+                                      thisItem.type.toString().toLowerCase())]
                               ? GestureDetector(
                                   onTap: () {
                                     Navigator.of(context).push(
@@ -156,9 +171,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.spaceAround,
                                               children: [
-                                                SizedBox(
-                                                  width: 400,
-                                                ),
                                                 TextButton(
                                                   onPressed: (() => {}),
                                                   child: Container(
@@ -166,7 +178,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                                         .listViewPadding,
                                                     decoration: BoxDecoration(
                                                         color: CustomColors
-                                                            .thirdColor),
+                                                            .thirdColor,
+                                                        borderRadius:
+                                                            CustomStyles
+                                                                .radius30),
                                                     child: Text(
                                                       "Wspomóż",
                                                       style: TextStyle(
