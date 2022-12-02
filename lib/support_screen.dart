@@ -85,13 +85,6 @@ class _SupportScreenState extends State<SupportScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => AddAnimalScreen()));
-          },
-          child: const Icon(Icons.add),
-        ),
         body: Container(
           color: CustomColors.homePageBackgroundColor,
           child: Center(
