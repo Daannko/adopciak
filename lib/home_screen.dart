@@ -117,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 width: borderSize),
                                             borderRadius: CustomStyles
                                                 .radiusAnimalScreen),
-                                        margin: CustomStyles.marigin20,
+                                        margin: CustomStyles.mariginAnimal,
                                         child: Column(
                                           children: [
                                             Container(
