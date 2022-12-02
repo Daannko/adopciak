@@ -119,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen>
 
                           final prefs = await SharedPreferences.getInstance();
 
-                          await prefs.setInt('UserID', user.get('UserID'));
+                          await prefs.setString('UserID', user.get('UserID'));
 
                           Navigator.pushNamed(context, 'navbar_screen');
                         }
