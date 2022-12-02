@@ -156,6 +156,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.spaceAround,
                                               children: [
+                                                SizedBox(
+                                                  width: 400,
+                                                ),
                                                 TextButton(
                                                   onPressed: (() => {}),
                                                   child: Container(
