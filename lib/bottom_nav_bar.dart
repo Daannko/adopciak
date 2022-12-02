@@ -1,3 +1,4 @@
+import 'package:adopciak/support_screen.dart';
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
 
@@ -12,10 +13,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   final List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
-    const Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
+    SupportScreen(),
     const Text(
       'Index 2: School',
       style: optionStyle,

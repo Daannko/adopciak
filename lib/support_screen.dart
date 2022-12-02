@@ -5,6 +5,7 @@ import 'package:adopciak/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'add_animal_screen.dart';
 import 'model/animal.dart';
 import 'model/colors.dart';
@@ -18,12 +19,12 @@ import 'package:adopciak/custom_snackbar';
 
 import 'services/firebase_storage_service.dart';
 
-class HomeScreen extends StatefulWidget {
+class SupportScreen extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _SupportScreenState createState() => _SupportScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _SupportScreenState extends State<SupportScreen> {
   final _auth = FirebaseAuth.instance;
   final FirebaseStorageService firebaseStorageSerivce =
       Get.put(FirebaseStorageService());
@@ -41,7 +42,15 @@ class _HomeScreenState extends State<HomeScreen> {
     myController.addListener(changeData);
 
     final db = FirebaseFirestore.instance;
-    db.collection("animals").get().then(((value) async {
+
+    final User? user = _auth.currentUser;
+    final uid = user!.uid;
+
+    db
+        .collection("animals")
+        .where('SupportedBy', arrayContains: uid)
+        .get()
+        .then(((value) async {
       for (int i = 0; i < value.size; i++) {
         final data = value.docs[i].data();
 
@@ -77,12 +86,12 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => AddAnimalScreen()));
-            },
-            child: const Icon(Icons.add),
-            backgroundColor: CustomColors.secondColor),
+          onPressed: () {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => AddAnimalScreen()));
+          },
+          child: const Icon(Icons.add),
+        ),
         body: Container(
           color: CustomColors.homePageBackgroundColor,
           child: Center(
@@ -117,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 width: borderSize),
                                             borderRadius: CustomStyles
                                                 .radiusAnimalScreen),
-                                        margin: CustomStyles.mariginAnimal,
+                                        margin: CustomStyles.marigin20,
                                         child: Column(
                                           children: [
                                             Container(

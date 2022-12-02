@@ -6,6 +6,7 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:adopciak/custom_snackbar';
 import 'package:adopciak/model/colors.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'model/styles.dart';
 
