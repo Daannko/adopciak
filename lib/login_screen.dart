@@ -6,6 +6,7 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:adopciak/custom_snackbar';
 import 'package:adopciak/model/colors.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'model/styles.dart';
 
@@ -115,6 +116,10 @@ class _LoginScreenState extends State<LoginScreen>
                               .doc(email)
                               .get();
                           String name = user.get("Name");
+
+                          final prefs = await SharedPreferences.getInstance();
+
+                          await prefs.setInt('UserID', user.get('UserID'));
 
                           Navigator.pushNamed(context, 'navbar_screen');
                         }
