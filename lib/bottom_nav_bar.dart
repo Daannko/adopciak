@@ -1,3 +1,7 @@
+import 'package:adopciak/add_animal_screen.dart';
+import 'package:adopciak/model/colors.dart';
+import 'package:adopciak/model/styles.dart';
+import 'package:adopciak/user_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
 
@@ -16,10 +20,8 @@ class _NavBarScreenState extends State<NavBarScreen> {
       'Index 1: Business',
       style: optionStyle,
     ),
-    const Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
+    AddAnimalScreen(),
+    UserDetalisScreen(),
     const Text(
       'Index 3: School',
       style: optionStyle,
@@ -39,30 +41,35 @@ class _NavBarScreenState extends State<NavBarScreen> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.pets),
             label: 'Animals',
-            backgroundColor: Colors.green,
+            backgroundColor: CustomColors.secondColor,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite_border),
             label: 'Supported',
-            backgroundColor: Colors.green,
+            backgroundColor: CustomColors.secondColor,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add_circle),
+            label: 'Add',
+            backgroundColor: CustomColors.secondColor,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: 'User',
-            backgroundColor: Colors.green,
+            backgroundColor: CustomColors.secondColor,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: 'Settings',
-            backgroundColor: Colors.green,
+            backgroundColor: CustomColors.secondColor,
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: CustomColors.firstColor,
         onTap: _onItemTapped,
       ),
     );

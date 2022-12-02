@@ -76,175 +76,163 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => AddAnimalScreen()));
-            },
-            child: const Icon(Icons.add),
-            backgroundColor: CustomColors.secondColor),
         body: Container(
-          color: CustomColors.homePageBackgroundColor,
-          child: Center(
-            child: Column(
-              children: [
-                TextField(
-                  controller: myController,
-                ),
-                Flexible(
-                    child: displayList
-                        ? ListView.builder(
-                            itemCount: animals.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              Animal thisItem = animals[index];
-                              return thisItem.name
-                                      .toString()
-                                      .toLowerCase()
-                                      .contains(myController.text.toLowerCase())
-                                  ? GestureDetector(
-                                      onTap: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    AnimalScreen(
-                                                        thisItem.uId)));
-                                      },
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            border: Border.all(
-                                                color: Colors.black,
-                                                width: borderSize),
-                                            borderRadius: CustomStyles
-                                                .radiusAnimalScreen),
-                                        margin: CustomStyles.mariginAnimal,
-                                        child: Column(
-                                          children: [
-                                            Container(
-                                                width: double.infinity,
-                                                decoration: BoxDecoration(
-                                                    border: Border(
-                                                        bottom: BorderSide(
-                                                            width: borderSize,
-                                                            color:
-                                                                Colors.black))),
-                                                child: Container(
-                                                  margin:
-                                                      CustomStyles.paddingAll10,
-                                                  child: Text(
-                                                    thisItem.owner,
-                                                    textAlign: TextAlign.center,
-                                                  ),
-                                                )),
-                                            Container(
-                                              padding: CustomStyles
-                                                  .listViewPaddingName,
-                                              width: double.infinity,
-                                              child: Text(
-                                                thisItem.name,
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  fontSize: CustomStyles
-                                                      .fontListViewName,
-                                                ),
-                                              ),
-                                            ),
-                                            Container(
-                                                padding: CustomStyles
-                                                    .listViewPadding,
-                                                width: double.infinity,
-                                                child: images[index]),
-                                            Container(
-                                              child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceAround,
-                                                  children: [
-                                                    TextButton(
-                                                      onPressed: (() => {}),
-                                                      child: Container(
-                                                        padding: CustomStyles
-                                                            .listViewPadding,
-                                                        decoration: BoxDecoration(
-                                                            color: Colors.amber,
-                                                            borderRadius:
-                                                                CustomStyles
-                                                                    .radius30),
-                                                        child: Text(
-                                                          "Wspomóż",
-                                                          style: TextStyle(
-                                                              fontSize: CustomStyles
-                                                                  .fontListView,
-                                                              color:
-                                                                  Colors.black),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    TextButton(
-                                                      onPressed: (() =>
-                                                          showDialog<String>(
-                                                            context: context,
-                                                            builder: (BuildContext
-                                                                    context) =>
-                                                                AlertDialog(
-                                                              title: Text(
-                                                                  'Czy na pewno chcesz adoptować ${thisItem.name}'),
-                                                              content: const Text(
-                                                                  'AlertDialog description'),
-                                                              actions: <Widget>[
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          context,
-                                                                          'Cancel'),
-                                                                  child:
-                                                                      const Text(
-                                                                          'nie'),
-                                                                ),
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          context,
-                                                                          'OK'),
-                                                                  child:
-                                                                      const Text(
-                                                                          'tak'),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          )),
-                                                      child: Container(
-                                                        padding: CustomStyles
-                                                            .listViewPadding,
-                                                        decoration: BoxDecoration(
-                                                            color: CustomColors
-                                                                .adoptBtnColor,
-                                                            borderRadius:
-                                                                CustomStyles
-                                                                    .radius30),
-                                                        child: Text(
-                                                          "Adoptiuj",
-                                                          style: TextStyle(
-                                                              fontSize: CustomStyles
-                                                                  .fontListView,
-                                                              color:
-                                                                  Colors.black),
-                                                        ),
-                                                      ),
-                                                    )
-                                                  ]),
-                                            )
-                                          ],
-                                        ),
-                                      ))
-                                  : Container();
-                            })
-                        : Center(child: CircularProgressIndicator())),
-              ],
+      color: CustomColors.homePageBackgroundColor,
+      child: Center(
+        child: Column(
+          children: [
+            TextField(
+              controller: myController,
             ),
-          ),
-        ));
+            Flexible(
+                child: displayList
+                    ? ListView.builder(
+                        itemCount: animals.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          Animal thisItem = animals[index];
+                          return thisItem.name
+                                  .toString()
+                                  .toLowerCase()
+                                  .contains(myController.text.toLowerCase())
+                              ? GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                AnimalScreen(thisItem.uId)));
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.withOpacity(0.5),
+                                            spreadRadius: 2,
+                                            blurRadius: 4,
+                                            offset: Offset(0,
+                                                3), // changes position of shadow
+                                          ),
+                                        ],
+                                        borderRadius:
+                                            CustomStyles.radiusAnimalScreen),
+                                    margin: CustomStyles.mariginAnimal,
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                            width: double.infinity,
+                                            decoration: BoxDecoration(
+                                                border: Border(
+                                                    bottom: BorderSide(
+                                                        width: borderSize,
+                                                        color: Colors.black))),
+                                            child: Container(
+                                              margin: CustomStyles.paddingAll10,
+                                              child: Text(
+                                                thisItem.owner,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            )),
+                                        Container(
+                                          padding:
+                                              CustomStyles.listViewPaddingName,
+                                          width: double.infinity,
+                                          child: Text(
+                                            thisItem.name,
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontSize:
+                                                  CustomStyles.fontListViewName,
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                            padding:
+                                                CustomStyles.listViewPadding,
+                                            width: double.infinity,
+                                            child: images[index]),
+                                        Container(
+                                          child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceAround,
+                                              children: [
+                                                TextButton(
+                                                  onPressed: (() => {}),
+                                                  child: Container(
+                                                    padding: CustomStyles
+                                                        .listViewPadding,
+                                                    decoration: BoxDecoration(
+                                                        color: CustomColors
+                                                            .thirdColor),
+                                                    child: Text(
+                                                      "Wspomóż",
+                                                      style: TextStyle(
+                                                          fontSize: CustomStyles
+                                                              .fontListView,
+                                                          color: Colors.black),
+                                                    ),
+                                                  ),
+                                                ),
+                                                TextButton(
+                                                  onPressed: (() =>
+                                                      showDialog<String>(
+                                                        context: context,
+                                                        builder: (BuildContext
+                                                                context) =>
+                                                            AlertDialog(
+                                                          title: Text(
+                                                              'Czy na pewno chcesz adoptować ${thisItem.name}'),
+                                                          content: const Text(
+                                                              'AlertDialog description'),
+                                                          actions: <Widget>[
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      context,
+                                                                      'Cancel'),
+                                                              child: const Text(
+                                                                  'nie'),
+                                                            ),
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      context,
+                                                                      'OK'),
+                                                              child: const Text(
+                                                                  'tak'),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      )),
+                                                  child: Container(
+                                                    padding: CustomStyles
+                                                        .listViewPadding,
+                                                    decoration: BoxDecoration(
+                                                        color: CustomColors
+                                                            .adoptBtnColor,
+                                                        borderRadius:
+                                                            CustomStyles
+                                                                .radius30),
+                                                    child: Text(
+                                                      "Adoptiuj",
+                                                      style: TextStyle(
+                                                          fontSize: CustomStyles
+                                                              .fontListView,
+                                                          color: Colors.black),
+                                                    ),
+                                                  ),
+                                                )
+                                              ]),
+                                        )
+                                      ],
+                                    ),
+                                  ))
+                              : Container();
+                        })
+                    : Center(child: CircularProgressIndicator())),
+          ],
+        ),
+      ),
+    ));
   }
 }
