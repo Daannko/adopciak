@@ -9,7 +9,7 @@ class CustomStyles {
   static EdgeInsets listViewPadding = const EdgeInsets.fromLTRB(20, 10, 20, 10);
   static double fontListView = 15;
   static double fontListViewName = 30;
-  static EdgeInsets mariginsAll20 = const EdgeInsets.all(20);
+  static EdgeInsets marginsAll20 = const EdgeInsets.all(20);
   static EdgeInsets paddingAll7 = const EdgeInsets.all(7);
   static EdgeInsets paddingAll10 = const EdgeInsets.all(10);
   static EdgeInsets paddingAll20 = const EdgeInsets.all(20);

@@ -7,7 +7,8 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:path/path.dart';
 
 class ImageUploads extends StatefulWidget {
-  ImageUploads({Key? key}) : super(key: key);
+  String path;
+  ImageUploads({Key? key, required this.path}) : super(key: key);
 
   @override
   _ImageUploadsState createState() => _ImageUploadsState();
@@ -49,12 +50,12 @@ class _ImageUploadsState extends State<ImageUploads> {
   Future uploadFile() async {
     if (_photo == null) return;
     final fileName = basename(_photo!.path);
-    final destination = 'files/$fileName';
+    final destination = 'animal_images/';
 
     try {
       final ref = firebase_storage.FirebaseStorage.instance
           .ref(destination)
-          .child('file/');
+          .child('${widget.path}');
       await ref.putFile(_photo!);
     } catch (e) {
       print('error occured');
@@ -63,47 +64,44 @@ class _ImageUploadsState extends State<ImageUploads> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        children: <Widget>[
-          SizedBox(
-            height: 32,
-          ),
-          Center(
-            child: GestureDetector(
-              onTap: () {
-                _showPicker(context);
-              },
-              child: CircleAvatar(
-                radius: 55,
-                backgroundColor: Color(0xffFDCF09),
-                child: _photo != null
-                    ? ClipRRect(
-                        borderRadius: BorderRadius.circular(50),
-                        child: Image.file(
-                          _photo!,
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.fitHeight,
-                        ),
-                      )
-                    : Container(
-                        decoration: BoxDecoration(
-                            color: Colors.grey[200],
-                            borderRadius: BorderRadius.circular(50)),
+    return Column(
+      children: <Widget>[
+        SizedBox(
+          height: 32,
+        ),
+        Center(
+          child: GestureDetector(
+            onTap: () {
+              _showPicker(context);
+            },
+            child: CircleAvatar(
+              radius: 55,
+              backgroundColor: Color(0xffFDCF09),
+              child: _photo != null
+                  ? ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: Image.file(
+                        _photo!,
                         width: 100,
                         height: 100,
-                        child: Icon(
-                          Icons.camera_alt,
-                          color: Colors.grey[800],
-                        ),
+                        fit: BoxFit.fitHeight,
                       ),
-              ),
+                    )
+                  : Container(
+                      decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          borderRadius: BorderRadius.circular(50)),
+                      width: 100,
+                      height: 100,
+                      child: Icon(
+                        Icons.camera_alt,
+                        color: Colors.grey[800],
+                      ),
+                    ),
             ),
-          )
-        ],
-      ),
+          ),
+        )
+      ],
     );
   }
 
