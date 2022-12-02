@@ -46,6 +46,8 @@ dependencies:
   anim_search_bar: ^2.0.2
   image_picker: ^0.8.6
   permission_handler: ^10.2.0
+  flutter_secure_storage: ^6.1.0
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:
