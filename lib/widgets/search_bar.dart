@@ -40,7 +40,7 @@ class _SearchBarState extends State<SearchBar> {
     double winWidth = MediaQuery.of(context).size.width;
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
+      padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
       child: Container(
           width: winWidth * 0.95,
           height: 40,

@@ -355,7 +355,7 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
                                 .doc(animalUId)
                                 .set(animal.returnMap());
 
-                            Navigator.pushNamed(context, 'home_screen');
+                            Navigator.pushNamed(context, 'navbar_screen');
 
                             if (errorMessage.isNotEmpty) errorMessage = "";
                             setState(() {
