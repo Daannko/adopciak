@@ -27,7 +27,7 @@ class _UserDetalisState extends State<UserDetalisScreen> {
             padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
             child: SingleChildScrollView(
               child: Container(
-                margin: CustomStyles.mariginsAll20,
+                margin: CustomStyles.marginsAll20,
                 decoration: BoxDecoration(
                   borderRadius: CustomStyles.radius20,
                 ),

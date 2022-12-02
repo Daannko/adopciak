@@ -21,7 +21,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
     AddAnimalScreen(),
     UserDetalisScreen(),
     const Text(
-      'Index 3: School',
+      'Settings',
       style: optionStyle,
     )
   ];

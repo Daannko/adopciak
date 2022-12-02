@@ -61,7 +61,7 @@ class _AnimeScreenState extends State<SupportAnimalScreen> {
             padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
             child: SingleChildScrollView(
               child: Container(
-                margin: CustomStyles.mariginsAll20,
+                margin: CustomStyles.marginsAll20,
                 decoration: BoxDecoration(
                   borderRadius: CustomStyles.radius20,
                 ),
@@ -83,7 +83,7 @@ class _AnimeScreenState extends State<SupportAnimalScreen> {
                         ),
                         Container(
                           width: double.infinity,
-                          margin: CustomStyles.marigin10,
+                          margin: CustomStyles.margin10,
                           padding: CustomStyles.paddingAll7,
                           decoration: BoxDecoration(
                               borderRadius: CustomStyles.radius30,
@@ -114,7 +114,7 @@ class _AnimeScreenState extends State<SupportAnimalScreen> {
                         ),
                         Container(
                           width: double.infinity,
-                          margin: CustomStyles.marigin10,
+                          margin: CustomStyles.margin10,
                           padding: CustomStyles.paddingAll7,
                           decoration: BoxDecoration(
                               borderRadius: CustomStyles.radius30,
@@ -127,7 +127,7 @@ class _AnimeScreenState extends State<SupportAnimalScreen> {
                         ),
                         Container(
                           width: double.infinity,
-                          margin: CustomStyles.marigin10,
+                          margin: CustomStyles.margin10,
                           padding: CustomStyles.paddingAll7,
                           decoration: BoxDecoration(
                               borderRadius: CustomStyles.radius30,
@@ -140,7 +140,7 @@ class _AnimeScreenState extends State<SupportAnimalScreen> {
                         ),
                         Container(
                           width: double.infinity,
-                          margin: CustomStyles.marigin10,
+                          margin: CustomStyles.margin10,
                           padding: CustomStyles.paddingAll7,
                           decoration: BoxDecoration(
                               borderRadius: CustomStyles.radius30,
