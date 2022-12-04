@@ -28,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen>
   final TextEditingController _passwordController =
       TextEditingController(text: "");
 
-  bool saveCredentials = false;
+  bool saveCredentials = true;
   bool showSpinner = false;
   String errorMessage = "";
   final _storage = new FlutterSecureStorage();
