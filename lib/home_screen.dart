@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final borderSize = 1.5;
 
-  String text = "";
+  String searchText = "";
   final List<String> filterNames = ["kot", "h", "pies"];
   List<bool> filterValues = [true, true, true];
 
@@ -94,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 });
               },
               onTextChanged: (value) {
-                text = value;
+                searchText = value;
                 setState(() {});
               },
             ),
@@ -106,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Animal thisItem = animals[index];
                           return thisItem.name
                                       .toLowerCase()
-                                      .contains(text.toLowerCase()) &&
+                                      .contains(searchText.toLowerCase()) &&
                                   filterValues[filterNames.indexOf(
                                       thisItem.type.toString().toLowerCase())]
                               ? GestureDetector(
