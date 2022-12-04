@@ -118,7 +118,7 @@ class _SupportScreenState extends State<SupportScreen> {
                                             width: borderSize),
                                         borderRadius:
                                             CustomStyles.radiusAnimalScreen),
-                                    margin: CustomStyles.marigin20,
+                                    margin: CustomStyles.margin20,
                                     child: Column(
                                       children: [
                                         Container(

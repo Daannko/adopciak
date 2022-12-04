@@ -88,7 +88,7 @@ class _UserDetalisState extends State<UserDetalisScreen> {
                         ),
                         Container(
                           width: double.infinity,
-                          margin: CustomStyles.marigin10,
+                          margin: CustomStyles.margin10,
                           padding: CustomStyles.paddingAll7,
                           decoration: BoxDecoration(
                               borderRadius: CustomStyles.radius30,
