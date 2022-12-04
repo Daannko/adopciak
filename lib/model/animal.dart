@@ -1,5 +1,3 @@
-import 'package:adopciak/model/supports.dart';
-
 class Animal {
   int age = 0;
   String breed = "";
@@ -11,13 +9,15 @@ class Animal {
   String imageName = "";
   String owner = "";
   String ownerUId = "";
+  String offertType = "";
+  bool visible = true;
   List<dynamic> needs = [];
   List<Map<String, dynamic>> supports = [
     {'Amount': 0, 'Periodicity': 0, 'UserUid': ""}
   ];
 
   Animal(this.uId, this.age, this.breed, this.name, this.info, this.location,
-      this.owner, this.ownerUId, this.type, this.imageName);
+      this.owner, this.ownerUId, this.type, this.imageName, this.offertType);
 
   Map<String, dynamic> returnMap() {
     final data = {
@@ -33,6 +33,7 @@ class Animal {
       "SuppotedBy": supports,
       "Type": type,
       "imageName": imageName,
+      "offertType": offertType
     };
     return data;
   }
