@@ -84,7 +84,7 @@ class _UserDetalisState extends State<UserDetalisScreen> {
                             ],
                             borderRadius: CustomStyles.radius20,
                           ),
-                          child: Image.asset('images/down.jpg'),
+                          child: Image.asset('images/user.png'),
                         ),
                         Container(
                           width: double.infinity,
