@@ -64,7 +64,10 @@ class _SupportScreenState extends State<SupportScreen> {
             data["Owner"],
             data["OwnerId"],
             data["Type"],
-            data["imageName"]));
+            data["imageName"],
+            data["offertType"],
+            data["dateStart"],
+            data["dateEnd"]));
 
         String? path =
             await firebaseStorageSerivce.getImage(data["imageName"].toString());

@@ -56,7 +56,9 @@ class _HomeScreenState extends State<HomeScreen> {
             data["OwnerId"],
             data["Type"],
             data["imageName"],
-            data["offertType"]));
+            data["offertType"],
+            data["dateStart"],
+            data["dateEnd"]));
 
         String? path =
             await firebaseStorageSerivce.getImage(data["imageName"].toString());

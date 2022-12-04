@@ -9,15 +9,29 @@ class Animal {
   String imageName = "";
   String owner = "";
   String ownerUId = "";
-  String offertType = "";
+  String offerType = "";
+  String dateStart = "";
+  String dateEnd = "";
   bool visible = true;
   List<dynamic> needs = [];
   List<Map<String, dynamic>> supports = [
     {'Amount': 0, 'Periodicity': 0, 'UserUid': ""}
   ];
 
-  Animal(this.uId, this.age, this.breed, this.name, this.info, this.location,
-      this.owner, this.ownerUId, this.type, this.imageName, this.offertType);
+  Animal(
+      this.uId,
+      this.age,
+      this.breed,
+      this.name,
+      this.info,
+      this.location,
+      this.owner,
+      this.ownerUId,
+      this.type,
+      this.imageName,
+      this.offerType,
+      this.dateStart,
+      this.dateEnd);
 
   Map<String, dynamic> returnMap() {
     final data = {
@@ -33,7 +47,9 @@ class Animal {
       "SuppotedBy": supports,
       "Type": type,
       "imageName": imageName,
-      "offertType": offertType
+      "offerType": offerType,
+      "dateStart": dateStart,
+      "dateEnd": dateEnd
     };
     return data;
   }
