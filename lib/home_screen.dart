@@ -117,15 +117,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 AnimalScreen(thisItem.uId)));
                                   },
                                   child: Container(
+                                    //Cały ten śmieszny box
                                     decoration: BoxDecoration(
-                                        color: Colors.white,
+                                        color: CustomColors
+                                            .homeScreenAnimalBoxColor,
                                         boxShadow: [
                                           BoxShadow(
                                             color: Colors.grey.withOpacity(0.5),
                                             spreadRadius: 2,
                                             blurRadius: 4,
-                                            offset: Offset(0,
-                                                3), // changes position of shadow
+                                            offset: Offset(0, 3),
                                           ),
                                         ],
                                         borderRadius:
@@ -133,118 +134,58 @@ class _HomeScreenState extends State<HomeScreen> {
                                     margin: CustomStyles.marginAnimal,
                                     child: Column(
                                       children: [
-                                        Container(
-                                            width: double.infinity,
-                                            decoration: BoxDecoration(
-                                                border: Border(
-                                                    bottom: BorderSide(
-                                                        width: borderSize,
-                                                        color: Colors.black))),
-                                            child: Container(
-                                              margin: CustomStyles.paddingAll10,
-                                              child: Text(
-                                                thisItem.owner,
-                                                textAlign: TextAlign.center,
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Expanded(
+                                              flex: 1,
+                                              child: ClipRRect(
+                                                  borderRadius: CustomStyles
+                                                      .radiusAnimalPhoto,
+
+                                                  // margin: CustomStyles
+                                                  //     .marginAnimalPhoto,
+                                                  child: images[index]),
+                                            ),
+                                            Expanded(
+                                              flex: 2,
+                                              child: Column(
+                                                children: [
+                                                  Text(
+                                                    thisItem.owner,
+                                                  ),
+                                                  Text(
+                                                    thisItem.name,
+                                                  ),
+                                                ],
                                               ),
-                                            )),
+                                            )
+                                          ],
+                                        ),
                                         Container(
-                                          padding:
-                                              CustomStyles.listViewPaddingName,
+                                          height: 40,
                                           width: double.infinity,
-                                          child: Text(
-                                            thisItem.name,
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              fontSize:
-                                                  CustomStyles.fontListViewName,
+                                          decoration: BoxDecoration(
+                                            color: CustomColors.fourthColor,
+                                            borderRadius:
+                                                CustomStyles.radiusAdoptuj,
+                                          ),
+                                          child: TextButton(
+                                            onPressed: (() => {}),
+                                            child: Text(
+                                              "Wspomóż",
+                                              style: TextStyle(
+                                                  fontSize:
+                                                      CustomStyles.fontListView,
+                                                  color: Colors.black),
                                             ),
                                           ),
                                         ),
-                                        Container(
-                                            padding:
-                                                CustomStyles.listViewPadding,
-                                            width: double.infinity,
-                                            child: images[index]),
-                                        Container(
-                                          child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceAround,
-                                              children: [
-                                                TextButton(
-                                                  onPressed: (() => {}),
-                                                  child: Container(
-                                                    padding: CustomStyles
-                                                        .listViewPadding,
-                                                    decoration: BoxDecoration(
-                                                        color: CustomColors
-                                                            .thirdColor,
-                                                        borderRadius:
-                                                            CustomStyles
-                                                                .radius30),
-                                                    child: Text(
-                                                      "Wspomóż",
-                                                      style: TextStyle(
-                                                          fontSize: CustomStyles
-                                                              .fontListView,
-                                                          color: Colors.black),
-                                                    ),
-                                                  ),
-                                                ),
-                                                TextButton(
-                                                  onPressed: (() =>
-                                                      showDialog<String>(
-                                                        context: context,
-                                                        builder: (BuildContext
-                                                                context) =>
-                                                            AlertDialog(
-                                                          title: Text(
-                                                              'Czy na pewno chcesz adoptować ${thisItem.name}'),
-                                                          content: const Text(
-                                                              'AlertDialog description'),
-                                                          actions: <Widget>[
-                                                            TextButton(
-                                                              onPressed: () =>
-                                                                  Navigator.pop(
-                                                                      context,
-                                                                      'Cancel'),
-                                                              child: const Text(
-                                                                  'nie'),
-                                                            ),
-                                                            TextButton(
-                                                              onPressed: () =>
-                                                                  Navigator.pop(
-                                                                      context,
-                                                                      'OK'),
-                                                              child: const Text(
-                                                                  'tak'),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      )),
-                                                  child: Container(
-                                                    padding: CustomStyles
-                                                        .listViewPadding,
-                                                    decoration: BoxDecoration(
-                                                        color: CustomColors
-                                                            .adoptBtnColor,
-                                                        borderRadius:
-                                                            CustomStyles
-                                                                .radius30),
-                                                    child: Text(
-                                                      "Adoptiuj",
-                                                      style: TextStyle(
-                                                          fontSize: CustomStyles
-                                                              .fontListView,
-                                                          color: Colors.black),
-                                                    ),
-                                                  ),
-                                                )
-                                              ]),
-                                        )
                                       ],
                                     ),
-                                  ))
+                                  ),
+                                )
                               : Container();
                         })
                     : Center(child: CircularProgressIndicator())),
