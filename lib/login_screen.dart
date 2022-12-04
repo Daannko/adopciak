@@ -149,7 +149,6 @@ class _LoginScreenState extends State<LoginScreen>
                               .collection('users')
                               .doc(_emailController.text)
                               .get();
-                          String name = user.get("Name");
 
                           if (saveCredentials) {
                             await _storage.write(
