@@ -40,6 +40,10 @@ class _LoginScreenState extends State<LoginScreen>
         await _storage.read(key: "KEY_PASSWORD") ?? "123456";
   }
 
+  _onSignUp() {
+    Navigator.pushNamed(context, 'registration_screen');
+  }
+
   @override
   void initState() {
     super.initState();
@@ -192,6 +196,24 @@ class _LoginScreenState extends State<LoginScreen>
                         showSpinner = false;
                       });
                     }),
+                SizedBox(
+                  height: CustomStyles.bigBoxHeight,
+                ),
+                const Text(
+                  "You don't have an account?",
+                  textAlign: TextAlign.center,
+                ),
+                InkWell(
+                  onTap: _onSignUp,
+                  child: Text(
+                    "Sign Up now to get access.",
+                    style: TextStyle(
+                        color: CustomColors.selectedInputTextBorderColor,
+                        fontSize: CustomStyles.fontSize18,
+                        fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
               ],
             ),
           ),
