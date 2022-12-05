@@ -164,7 +164,8 @@ class _LoginScreenState extends State<LoginScreen>
                             await _storage.delete(key: "KEY_PASSWORD");
                           }
 
-                          Navigator.pushNamed(context, 'navbar_screen');
+                          Navigator.pushReplacementNamed(
+                              context, 'navbar_screen');
                         }
                       } on FirebaseAuthException catch (e) {
                         switch (e.code) {

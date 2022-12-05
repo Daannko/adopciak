@@ -86,6 +86,11 @@ class _UserDetalisState extends State<UserDetalisScreen> {
     });
   }
 
+  void _logout() async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.pushReplacementNamed(context, 'login_screen');
+  }
+
   Future<void> _dialogBuilder(BuildContext context) {
     return showDialog<void>(
       context: context,
@@ -295,6 +300,23 @@ class _UserDetalisState extends State<UserDetalisScreen> {
                                     ),
                                     onPressed: () {
                                       _dialogBuilder(context);
+                                    },
+                                  )),
+                              Container(
+                                  width: double.infinity,
+                                  margin: CustomStyles.margin10,
+                                  padding: CustomStyles.paddingAll7,
+                                  decoration: BoxDecoration(
+                                      borderRadius: CustomStyles.radius30,
+                                      color: Colors.red.shade300),
+                                  child: TextButton(
+                                    child: const Text(
+                                      "Logoutuj się",
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 27),
+                                    ),
+                                    onPressed: () {
+                                      _logout();
                                     },
                                   ))
                             ],
