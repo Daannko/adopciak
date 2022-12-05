@@ -190,7 +190,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                   registerInfo.surname, registerInfo.email)
                               .returnMap());
 
-                      Navigator.pushNamed(context, 'home_screen');
+                      Navigator.pushNamed(context, 'navbar_screen');
                     }
                   } on FirebaseAuthException catch (e) {
                     switch (e.code) {
