@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:flutter/material.dart';
-import 'package:adopciak/custom_snackbar';
 import 'package:adopciak/model/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -153,7 +152,6 @@ class _LoginScreenState extends State<LoginScreen>
                               .collection('users')
                               .doc(_emailController.text)
                               .get();
-                          String name = user.get("Name");
 
                           if (saveCredentials) {
                             await _storage.write(
