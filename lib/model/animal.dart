@@ -31,7 +31,8 @@ class Animal {
       this.imageName,
       this.offerType,
       this.dateStart,
-      this.dateEnd);
+      this.dateEnd,
+      this.visible);
 
   Map<String, dynamic> returnMap() {
     final data = {
@@ -46,10 +47,11 @@ class Animal {
       "OwnerId": ownerUId,
       "SuppotedBy": supports,
       "Type": type,
-      "imageName": imageName,
-      "offerType": offerType,
-      "dateStart": dateStart,
-      "dateEnd": dateEnd
+      "ImageName": imageName,
+      "OfferType": offerType,
+      "DateStart": dateStart,
+      "DateEnd": dateEnd,
+      "Visible": visible
     };
     return data;
   }

@@ -39,13 +39,14 @@ class _AnimeScreenState extends State<AnimalScreen> {
           data["Owner"],
           data["OwnerId"],
           data["Type"],
-          data["imageName"],
-          data["offerType"],
-          data["dateStart"],
-          data["dateEnd"]));
+          data["ImageName"],
+          data["OfferType"],
+          data["DateStart"],
+          data["DateEnd"],
+          data["Visible"]));
 
       String? path = await FirebaseStorageService()
-          .getImage(data["imageName"]?.toString());
+          .getImage(data["ImageName"]?.toString());
       image.add(Image.network(path!));
       setState(() {
         displayList = true;

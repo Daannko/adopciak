@@ -29,5 +29,5 @@ class CustomStyles {
   static String addAnimalTitle = "Add animal details";
   static String nextPage = ">>";
   static String previousPage = "<<";
-  static String addAnimal = "Add animal";
+  static String addAnimal = "Add";
 }

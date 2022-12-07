@@ -38,9 +38,10 @@ class _SearchBarState extends State<SearchBar> {
   @override
   Widget build(BuildContext context) {
     double winWidth = MediaQuery.of(context).size.width;
+    double systemBarHeight = MediaQuery.of(context).viewPadding.top + 5;
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
+      padding: EdgeInsets.fromLTRB(0, systemBarHeight, 0, 5),
       child: Container(
           width: winWidth * 0.95,
           height: 40,

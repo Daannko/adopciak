@@ -35,6 +35,8 @@ class _HomeScreenState extends State<HomeScreen> {
   List<String?> imagePath = [];
   List<Image> images = [];
   bool displayList = false;
+  final List<String> filterNames = ["cat", "dog", "other"];
+  List<bool> filterValues = [true, true, true];
 
   void initState() {
     super.initState();
@@ -55,13 +57,16 @@ class _HomeScreenState extends State<HomeScreen> {
             data["Owner"],
             data["OwnerId"],
             data["Type"],
-            data["imageName"],
-            data["offertType"],
-            data["dateStart"],
-            data["dateEnd"]));
+            data["ImageName"],
+            data["OffertType"],
+            data["DateStart"],
+            data["DateEnd"],
+            data["Visible"]));
+        // print(data["Type"]);
+        // print(filterNames.contains(data["Type"]));
 
         String? path =
-            await firebaseStorageSerivce.getImage(data["imageName"].toString());
+            await firebaseStorageSerivce.getImage(data["ImageName"].toString());
         images.add(Image.network(path!));
       }
       setState(() {
@@ -77,8 +82,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final borderSize = 1.5;
 
   String text = "";
-  final List<String> filterNames = ["kot", "h", "pies"];
-  List<bool> filterValues = [true, true, true];
 
   @override
   Widget build(BuildContext context) {
