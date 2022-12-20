@@ -68,7 +68,7 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
         child: Padding(
-          padding: const EdgeInsets.all(24),
+          padding: const EdgeInsets.fromLTRB(24, 24, 24, 10),
           child: SingleChildScrollView(
             child: Container(
               height: MediaQuery.of(context).size.height - // total height
@@ -80,9 +80,13 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(CustomStyles.addAnimalTitle,
-                      style: TextStyle(
-                          fontSize: CustomStyles.enterToRegisterSize)),
+                  Text(
+                    CustomStyles.addAnimalTitle,
+                    style: TextStyle(
+                      fontSize: CustomStyles.enterToRegisterSize,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                   displaySet1
                       ? Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -105,13 +109,11 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
                                     contentPadding: CustomStyles.marginsAll20,
                                     enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                            color: CustomColors
-                                                .inputTextBorderColor,
+                                            color: CustomColors.thirdColor,
                                             width: CustomStyles.width)),
                                     focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                            color: CustomColors
-                                                .selectedInputTextBorderColor,
+                                            color: CustomColors.fourthColor,
                                             width: CustomStyles.width))),
                               ),
                               SizedBox(
@@ -131,13 +133,11 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
                                     contentPadding: CustomStyles.marginsAll20,
                                     enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                            color: CustomColors
-                                                .inputTextBorderColor,
+                                            color: CustomColors.thirdColor,
                                             width: CustomStyles.width)),
                                     focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                            color: CustomColors
-                                                .selectedInputTextBorderColor,
+                                            color: CustomColors.fourthColor,
                                             width: CustomStyles.width))),
                               ),
                               SizedBox(
@@ -159,13 +159,11 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
                                     contentPadding: CustomStyles.marginsAll20,
                                     enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                            color: CustomColors
-                                                .inputTextBorderColor,
+                                            color: CustomColors.thirdColor,
                                             width: CustomStyles.width)),
                                     focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                            color: CustomColors
-                                                .selectedInputTextBorderColor,
+                                            color: CustomColors.fourthColor,
                                             width: CustomStyles.width))),
                               ),
                               SizedBox(
@@ -188,13 +186,11 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
                                       contentPadding: CustomStyles.marginsAll20,
                                       enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
-                                              color: CustomColors
-                                                  .inputTextBorderColor,
+                                              color: CustomColors.thirdColor,
                                               width: CustomStyles.width)),
                                       focusedBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
-                                              color: CustomColors
-                                                  .selectedInputTextBorderColor,
+                                              color: CustomColors.fourthColor,
                                               width: CustomStyles.width))),
                                   items: animalTypeList
                                       .map<DropdownMenuItem<String>>(
@@ -233,13 +229,11 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
                                             CustomStyles.marginsAll20,
                                         enabledBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
-                                                color: CustomColors
-                                                    .inputTextBorderColor,
+                                                color: CustomColors.thirdColor,
                                                 width: CustomStyles.width)),
                                         focusedBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
-                                                color: CustomColors
-                                                    .selectedInputTextBorderColor,
+                                                color: CustomColors.fourthColor,
                                                 width: CustomStyles.width))),
                                   ),
                                   SizedBox(
@@ -260,13 +254,11 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
                                             CustomStyles.marginsAll20,
                                         enabledBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
-                                                color: CustomColors
-                                                    .inputTextBorderColor,
+                                                color: CustomColors.thirdColor,
                                                 width: CustomStyles.width)),
                                         focusedBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
-                                                color: CustomColors
-                                                    .selectedInputTextBorderColor,
+                                                color: CustomColors.fourthColor,
                                                 width: CustomStyles.width))),
                                   ),
                                   SizedBox(
@@ -287,13 +279,11 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
                                             CustomStyles.marginsAll20,
                                         enabledBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
-                                                color: CustomColors
-                                                    .inputTextBorderColor,
+                                                color: CustomColors.thirdColor,
                                                 width: CustomStyles.width)),
                                         focusedBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
-                                                color: CustomColors
-                                                    .selectedInputTextBorderColor,
+                                                color: CustomColors.fourthColor,
                                                 width: CustomStyles.width))),
                                   ),
                                   SizedBox(
@@ -317,13 +307,13 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
                                               CustomStyles.marginsAll20,
                                           enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
-                                                  color: CustomColors
-                                                      .inputTextBorderColor,
+                                                  color:
+                                                      CustomColors.thirdColor,
                                                   width: CustomStyles.width)),
                                           focusedBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
-                                                  color: CustomColors
-                                                      .selectedInputTextBorderColor,
+                                                  color:
+                                                      CustomColors.fourthColor,
                                                   width: CustomStyles.width))),
                                       items: offerTypeList
                                           .map<DropdownMenuItem<String>>(
@@ -352,7 +342,19 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
                                       TextField(
                                           controller: startDateController,
                                           textAlign: TextAlign.center,
-                                          decoration: const InputDecoration(
+                                          decoration: InputDecoration(
+                                              enabledBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: CustomColors
+                                                          .thirdColor,
+                                                      width:
+                                                          CustomStyles.width)),
+                                              focusedBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: CustomColors
+                                                          .fourthColor,
+                                                      width:
+                                                          CustomStyles.width)),
                                               icon: Icon(Icons.calendar_today),
                                               label: const Center(
                                                 child: Text("Start Date"),
@@ -365,7 +367,19 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
                                       TextField(
                                           controller: endDateController,
                                           textAlign: TextAlign.center,
-                                          decoration: const InputDecoration(
+                                          decoration: InputDecoration(
+                                              enabledBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: CustomColors
+                                                          .thirdColor,
+                                                      width:
+                                                          CustomStyles.width)),
+                                              focusedBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: CustomColors
+                                                          .fourthColor,
+                                                      width:
+                                                          CustomStyles.width)),
                                               icon: Icon(Icons.calendar_today),
                                               label: const Center(
                                                 child: Text("End Date"),
@@ -398,20 +412,21 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
                     children: [
                       TextButton(
                           style: TextButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50.0)),
                               foregroundColor: Colors.white,
-                              backgroundColor: CustomColors.secondColor),
-                          child: Text(CustomStyles.previousPage,
-                              style:
-                                  TextStyle(fontSize: CustomStyles.fontSize40)),
+                              backgroundColor: CustomColors.thirdColor),
+                          child: Icon(Icons.arrow_back, size: 100.0),
                           onPressed: displaySet1 ? null : previousButton),
                       displayImageUpload
                           ? TextButton(
                               style: TextButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(50.0)),
                                   foregroundColor: Colors.white,
-                                  backgroundColor: CustomColors.secondColor),
-                              child: Text(CustomStyles.addAnimal,
-                                  style: TextStyle(
-                                      fontSize: CustomStyles.fontSize40)),
+                                  backgroundColor: CustomColors.thirdColor),
+                              child: Icon(Icons.check, size: 100.0),
                               onPressed: !addedPhoto
                                   ? null
                                   : () async {
@@ -464,11 +479,12 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
                             )
                           : TextButton(
                               style: TextButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(50.0)),
                                   foregroundColor: Colors.white,
-                                  backgroundColor: CustomColors.secondColor),
-                              child: Text(CustomStyles.nextPage,
-                                  style: TextStyle(
-                                      fontSize: CustomStyles.fontSize40)),
+                                  backgroundColor: CustomColors.thirdColor),
+                              child: Icon(Icons.arrow_forward, size: 100.0),
                               onPressed: displayImageUpload ? null : nextButton)
                     ],
                   )

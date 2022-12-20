@@ -81,8 +81,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final borderSize = 1.5;
 
   String searchText = "";
-  final List<String> filterNames = ["kot", "h", "pies"];
-  List<bool> filterValues = [true, true, true];
 
   @override
   Widget build(BuildContext context) {

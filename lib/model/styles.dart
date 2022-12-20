@@ -28,7 +28,7 @@ class CustomStyles {
   static BorderRadius radius20 = BorderRadius.circular(20);
   static BorderRadius radius30 = BorderRadius.circular(30);
   static BorderRadius radiusAnimalScreen = BorderRadius.circular(5);
-  static String addAnimalTitle = "Add animal details";
+  static String addAnimalTitle = "Add animal";
   static String nextPage = ">>";
   static String previousPage = "<<";
   static String addAnimal = "Add";
