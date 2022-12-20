@@ -80,8 +80,8 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {});
   }
 
-  void supportAnimal(String userUid, String animalUid) {
-    Support support = Support(10, userUid, animalUid);
+  void supportAnimal(int amount, String userUid, String animalUid) {
+    Support support = Support(amount, userUid, animalUid);
     FirebaseFirestore.instance.collection("users").doc(userUid).update({
       "Supports": FieldValue.arrayUnion([support.returnUserMap()])
     });
@@ -180,7 +180,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                             )
                                           ],
                                         ),
-                                        SupportDialogButton(),
+                                        SupportDialogButton(
+                                          onSupportAccept: (value) {
+                                            supportAnimal(
+                                                value,
+                                                _auth.currentUser!.uid,
+                                                thisItem.uId);
+                                          },
+                                        ),
                                       ],
                                     ),
                                   ),
