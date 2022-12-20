@@ -98,6 +98,41 @@ class _SupportScreenState extends State<SupportScreen> {
     setState(() {});
   }
 
+  void modifySupport(int amount, String userUid, String animalUid) {
+    final db = FirebaseFirestore.instance;
+    db
+        .collection("supports")
+        .where("AnimalUid", isEqualTo: animalUid)
+        .where("UserUid", isEqualTo: userUid)
+        .get()
+        .then((value) => {
+              db
+                  .collection("supports")
+                  .doc(value.docs[0].id)
+                  .update({"Amount": amount})
+            });
+  }
+
+  void endSupport(String userUid, String animalUid) {
+    final db = FirebaseFirestore.instance;
+    db
+        .collection("supports")
+        .where("AnimalUid", isEqualTo: animalUid)
+        .where("UserUid", isEqualTo: userUid)
+        .get()
+        .then((value) =>
+            {db.collection("supports").doc(value.docs[0].id).delete()});
+
+    FirebaseFirestore.instance.collection("users").doc(userUid).update({
+      "Supports": FieldValue.arrayRemove([animalUid])
+    });
+    FirebaseFirestore.instance.collection("animals").doc(animalUid).update({
+      "SupportedBy": FieldValue.arrayRemove([userUid])
+    });
+    getDatabaseData();
+    widget.setToRefresh(0);
+  }
+
   final borderSize = 1.5;
 
   @override
@@ -166,6 +201,19 @@ class _SupportScreenState extends State<SupportScreen> {
                                       )
                                     ],
                                   ),
+                                  SupportDialogButton(
+                                    onSupportAccept: (value) {
+                                      modifySupport(value,
+                                          _auth.currentUser!.uid, thisItem.uId);
+                                    },
+                                  ),
+                                  TextButton(
+                                    onPressed: () => endSupport(
+                                        _auth.currentUser!.uid, thisItem.uId),
+                                    child: Text(
+                                      "Skończ wspomagać",
+                                    ),
+                                  )
                                 ],
                               ),
                             ),

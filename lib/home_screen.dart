@@ -58,10 +58,17 @@ class _HomeScreenState extends State<HomeScreen> {
       images = [];
     });
     final db = FirebaseFirestore.instance;
+    List supportedList = [];
+    db.collection("users").doc(_auth.currentUser!.uid).get().then((value) {
+      final data = value.data();
+      supportedList = data!["Supports"];
+    });
+
     db.collection("animals").get().then(((value) async {
       for (int i = 0; i < value.size; i++) {
         final data = value.docs[i].data();
 
+        if (supportedList.contains(data["Id"])) continue;
         animals.add(Animal(
             data["Id"],
             data["Age"],
@@ -104,6 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
       "SupportedBy": FieldValue.arrayUnion([userUid])
     });
     widget.setToRefresh(1);
+    getDatabaseData();
   }
 
   final borderSize = 1.5;
