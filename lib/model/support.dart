@@ -12,7 +12,7 @@ class Support {
       "Amount": amount,
       "Periodicity": periodicity,
       "NextSupport": nextSupport.toString(),
-      "UserUId": userUid,
+      "UserUid": userUid,
       "AnimalUid": animalUid,
     };
     return data;
