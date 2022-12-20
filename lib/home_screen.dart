@@ -1,6 +1,7 @@
 import 'dart:core';
 
 import 'package:adopciak/animal_screen.dart';
+import 'package:adopciak/model/support.dart';
 import 'package:adopciak/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -76,6 +77,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void changeData() {
     setState(() {});
+  }
+
+  void supportAnimal(String userUid, String animalUid) {
+    Support support = Support(10, userUid, animalUid);
+    FirebaseFirestore.instance.collection("users").doc(userUid).update({
+      "Supports": FieldValue.arrayUnion([support.returnUserMap()])
+    });
+    FirebaseFirestore.instance.collection("animals").doc(animalUid).update({
+      "SupportedBy": FieldValue.arrayUnion([support.returnAnimalMap()])
+    });
   }
 
   final borderSize = 1.5;

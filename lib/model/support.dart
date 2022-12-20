@@ -1,15 +1,17 @@
 class Support {
   int amount = 0;
-  int periodicity = 0;
-  String userUId = "";
+  int periodicity = 7;
+  DateTime nextSupport = DateTime.now().add(const Duration(days: 7));
+  String userUid = "";
   String animalUid = "";
 
-  Support(this.amount, this.periodicity, this.userUId, this.animalUid);
+  Support(this.amount, this.userUid, this.animalUid);
 
   Map<String, dynamic> returnUserMap() {
     final data = {
       "Amount": amount,
       "Periodicity": periodicity,
+      "NextSupport": nextSupport.toString(),
       "AnimalUid": animalUid,
     };
     return data;
@@ -19,7 +21,8 @@ class Support {
     final data = {
       "Amount": amount,
       "Periodicity": periodicity,
-      "UserUId": userUId,
+      "NextSupport": nextSupport.toString(),
+      "UserUId": userUid,
     };
     return data;
   }

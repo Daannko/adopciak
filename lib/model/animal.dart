@@ -45,7 +45,7 @@ class Animal {
       "Needs": needs,
       "Owner": owner,
       "OwnerId": ownerUId,
-      "SuppotedBy": supports,
+      "SupportedBy": supports,
       "Type": type,
       "ImageName": imageName,
       "OfferType": offerType,
