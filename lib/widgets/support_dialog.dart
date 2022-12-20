@@ -35,7 +35,7 @@ class _SupportDialogButtonState extends State<SupportDialogButton> {
       child: TextButton(
         onPressed: (() => {showMyDialog(context)}),
         child: Text(
-          "Wspomóż",
+          "Support",
           style: TextStyle(
               fontSize: CustomStyles.fontListView, color: Colors.black),
         ),
@@ -49,10 +49,11 @@ class _SupportDialogButtonState extends State<SupportDialogButton> {
       builder: (BuildContext context) {
         return AlertDialog(
           content: Container(
-            height: 200,
+            height: 117,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text("Podaj sumę comiesięcznego wsparcia"),
+                const Text("Provide monthly donation"),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -60,17 +61,20 @@ class _SupportDialogButtonState extends State<SupportDialogButton> {
                         onPressed: () {
                           _controller.text = '5';
                         },
-                        child: const Text("5")),
+                        child: Text("5",
+                            style: TextStyle(color: CustomColors.fourthColor))),
                     TextButton(
                         onPressed: () {
                           _controller.text = '25';
                         },
-                        child: const Text("25")),
+                        child: Text("25",
+                            style: TextStyle(color: CustomColors.fourthColor))),
                     TextButton(
                         onPressed: () {
                           _controller.text = '100';
                         },
-                        child: const Text("100")),
+                        child: Text("100",
+                            style: TextStyle(color: CustomColors.fourthColor))),
                   ],
                 ),
                 TextField(
@@ -84,7 +88,8 @@ class _SupportDialogButtonState extends State<SupportDialogButton> {
           ),
           actions: <Widget>[
             TextButton(
-              child: const Text('OK'),
+              child:
+                  Text('OK', style: TextStyle(color: CustomColors.fourthColor)),
               onPressed: () {
                 widget.onSupportAccept(int.parse(_controller.text));
                 Navigator.pop(context);
