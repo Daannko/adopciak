@@ -1,8 +1,9 @@
+import 'package:adopciak/model/colors.dart';
 import 'package:animated_background/animated_background.dart';
 import 'package:flutter/material.dart';
 
-ParticleOptions particles = const ParticleOptions(
-  baseColor: Colors.cyan,
+ParticleOptions particles = ParticleOptions(
+  baseColor: CustomColors.thirdColor,
   spawnOpacity: 0.0,
   opacityChangeRate: 0.25,
   minOpacity: 0.1,

@@ -10,6 +10,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'model/colors.dart';
 import 'model/register_info.dart';
+import 'model/styles.dart';
 
 class RegistrationScreen extends StatefulWidget {
   @override
@@ -34,7 +35,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Text("Enter to register:", style: TextStyle(fontSize: 30)),
+              Container(
+                alignment: Alignment.center,
+                child: Text(
+                  "Enter to register",
+                  style: TextStyle(
+                    fontSize: CustomStyles.enterToRegisterSize,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
               SizedBox(
                 height: 30,
               ),
@@ -50,12 +60,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     contentPadding: EdgeInsets.all(20.0),
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: CustomColors.inputTextBorderColor,
-                            width: 2)),
+                            color: CustomColors.thirdColor,
+                            width: CustomStyles.width)),
                     focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: CustomColors.selectedInputTextBorderColor,
-                            width: 2))),
+                            color: CustomColors.fourthColor,
+                            width: CustomStyles.width))),
               ),
               const SizedBox(
                 height: 8.0,
@@ -72,12 +82,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     contentPadding: EdgeInsets.all(20.0),
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: CustomColors.inputTextBorderColor,
-                            width: 2)),
+                            color: CustomColors.thirdColor,
+                            width: CustomStyles.width)),
                     focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: CustomColors.selectedInputTextBorderColor,
-                            width: 2))),
+                            color: CustomColors.fourthColor,
+                            width: CustomStyles.width))),
               ),
               const SizedBox(
                 height: 8.0,
@@ -94,12 +104,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     contentPadding: EdgeInsets.all(20.0),
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: CustomColors.inputTextBorderColor,
-                            width: 2)),
+                            color: CustomColors.thirdColor,
+                            width: CustomStyles.width)),
                     focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: CustomColors.selectedInputTextBorderColor,
-                            width: 2))),
+                            color: CustomColors.fourthColor,
+                            width: CustomStyles.width))),
               ),
               const SizedBox(
                 height: 8.0,
@@ -118,12 +128,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     contentPadding: EdgeInsets.all(20.0),
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: CustomColors.inputTextBorderColor,
-                            width: 2)),
+                            color: CustomColors.thirdColor,
+                            width: CustomStyles.width)),
                     focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: CustomColors.selectedInputTextBorderColor,
-                            width: 2))),
+                            color: CustomColors.fourthColor,
+                            width: CustomStyles.width))),
               ),
               const SizedBox(
                 height: 8.0,
@@ -142,12 +152,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     contentPadding: EdgeInsets.all(20.0),
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: CustomColors.inputTextBorderColor,
-                            width: 2)),
+                            color: CustomColors.thirdColor,
+                            width: CustomStyles.width)),
                     focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                            color: CustomColors.selectedInputTextBorderColor,
-                            width: 2))),
+                            color: CustomColors.fourthColor,
+                            width: CustomStyles.width))),
               ),
               const SizedBox(
                 height: 40.0,
@@ -155,7 +165,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               TextButton(
                 style: TextButton.styleFrom(
                     foregroundColor: Colors.white,
-                    backgroundColor: CustomColors.selectedInputTextBorderColor),
+                    backgroundColor: CustomColors.fourthColor),
                 child: const Text('Register', style: TextStyle(fontSize: 40)),
                 onPressed: () async {
                   setState(() {
