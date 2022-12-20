@@ -7,22 +7,13 @@ class Support {
 
   Support(this.amount, this.userUid, this.animalUid);
 
-  Map<String, dynamic> returnUserMap() {
-    final data = {
-      "Amount": amount,
-      "Periodicity": periodicity,
-      "NextSupport": nextSupport.toString(),
-      "AnimalUid": animalUid,
-    };
-    return data;
-  }
-
-  Map<String, dynamic> returnAnimalMap() {
+  Map<String, dynamic> returnMap() {
     final data = {
       "Amount": amount,
       "Periodicity": periodicity,
       "NextSupport": nextSupport.toString(),
       "UserUId": userUid,
+      "AnimalUid": animalUid,
     };
     return data;
   }
