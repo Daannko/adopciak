@@ -3,6 +3,7 @@ import 'dart:core';
 import 'package:adopciak/animal_screen.dart';
 import 'package:adopciak/model/support.dart';
 import 'package:adopciak/widgets/search_bar.dart';
+import 'package:adopciak/widgets/support_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -179,25 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             )
                                           ],
                                         ),
-                                        Container(
-                                          height: 40,
-                                          width: double.infinity,
-                                          decoration: BoxDecoration(
-                                            color: CustomColors.fourthColor,
-                                            borderRadius:
-                                                CustomStyles.radiusAdoptuj,
-                                          ),
-                                          child: TextButton(
-                                            onPressed: (() => {}),
-                                            child: Text(
-                                              "Wspomóż",
-                                              style: TextStyle(
-                                                  fontSize:
-                                                      CustomStyles.fontListView,
-                                                  color: Colors.black),
-                                            ),
-                                          ),
-                                        ),
+                                        SupportDialogButton(),
                                       ],
                                     ),
                                   ),
