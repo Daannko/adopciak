@@ -1,6 +1,7 @@
 import 'dart:core';
 
 import 'package:adopciak/animal_screen.dart';
+import 'package:adopciak/model/support.dart';
 import 'package:adopciak/widgets/search_bar.dart';
 import 'package:adopciak/widgets/support_dialog.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,10 @@ import 'package:firebase_database/firebase_database.dart';
 import 'services/firebase_storage_service.dart';
 
 class HomeScreen extends StatefulWidget {
+  Function refresh = () => {};
+  final Function(int) setToRefresh;
+  HomeScreen({Key? key, required this.setToRefresh}) : super(key: key);
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -42,6 +47,16 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     myController.addListener(changeData);
 
+    widget.refresh = getDatabaseData;
+    getDatabaseData();
+  }
+
+  void getDatabaseData() {
+    setState(() {
+      displayList = false;
+      animals = [];
+      images = [];
+    });
     final db = FirebaseFirestore.instance;
     db.collection("animals").get().then(((value) async {
       for (int i = 0; i < value.size; i++) {
@@ -77,6 +92,18 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void changeData() {
     setState(() {});
+  }
+
+  void supportAnimal(int amount, String userUid, String animalUid) {
+    Support support = Support(amount, userUid, animalUid);
+    FirebaseFirestore.instance.collection("supports").add(support.returnMap());
+    FirebaseFirestore.instance.collection("users").doc(userUid).update({
+      "Supports": FieldValue.arrayUnion([animalUid])
+    });
+    FirebaseFirestore.instance.collection("animals").doc(animalUid).update({
+      "SupportedBy": FieldValue.arrayUnion([userUid])
+    });
+    widget.setToRefresh(1);
   }
 
   final borderSize = 1.5;
@@ -169,7 +196,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                             )
                                           ],
                                         ),
-                                        SupportDialogButton(),
+                                        SupportDialogButton(
+                                          onSupportAccept: (value) {
+                                            supportAnimal(
+                                                value,
+                                                _auth.currentUser!.uid,
+                                                thisItem.uId);
+                                          },
+                                        ),
                                       ],
                                     ),
                                   ),

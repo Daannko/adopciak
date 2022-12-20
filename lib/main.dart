@@ -48,7 +48,6 @@ class _MyAppState extends State<MyApp> {
         // 'welcome_screen': (context) => WelcomeScreen(),
         'registration_screen': (context) => RegistrationScreen(),
         'login_screen': (context) => LoginScreen(),
-        'home_screen': (context) => HomeScreen(),
         'navbar_screen': (context) => NavBarScreen(),
         // 'add_anima_screen': (context) => AddAnimalScreen(),
       },

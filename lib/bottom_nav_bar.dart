@@ -15,19 +15,36 @@ class _NavBarScreenState extends State<NavBarScreen> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  final List<Widget> _widgetOptions = <Widget>[
-    HomeScreen(),
-    SupportScreen(),
-    AddAnimalScreen(),
-    UserDetalisScreen(),
-    const Text(
-      'Settings',
-      style: optionStyle,
-    )
-  ];
+  late final List<Widget> _widgetOptions;
+  final List<bool> _refreshList = [false, false, false, false, false];
+  void setToRefresh(int index) {
+    _refreshList[index] = true;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _widgetOptions = <Widget>[
+      HomeScreen(setToRefresh: setToRefresh),
+      SupportScreen(setToRefresh: setToRefresh),
+      AddAnimalScreen(),
+      UserDetalisScreen(),
+      const Text(
+        'Settings',
+        style: optionStyle,
+      )
+    ];
+  }
 
   void _onItemTapped(int index) {
     setState(() {
+      if (_refreshList[index]) {
+        if (index == 0)
+          (_widgetOptions[0] as HomeScreen).refresh();
+        else if (index == 1) (_widgetOptions[1] as SupportScreen).refresh();
+        _refreshList[index] = false;
+      }
       _selectedIndex = index;
     });
   }
