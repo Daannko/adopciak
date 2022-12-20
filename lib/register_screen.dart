@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:adopciak/custom_snackbar';
 
 import 'model/colors.dart';
 import 'model/register_info.dart';
@@ -190,7 +189,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                   registerInfo.surname, registerInfo.email)
                               .returnMap());
 
-                      Navigator.pushNamed(context, 'home_screen');
+                      Navigator.pushReplacementNamed(context, 'navbar_screen');
                     }
                   } on FirebaseAuthException catch (e) {
                     switch (e.code) {
