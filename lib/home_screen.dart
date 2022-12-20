@@ -34,6 +34,8 @@ class _HomeScreenState extends State<HomeScreen> {
   List<String?> imagePath = [];
   List<Image> images = [];
   bool displayList = false;
+  final List<String> filterNames = ["cat", "dog", "other"];
+  List<bool> filterValues = [true, true, true];
 
   void initState() {
     super.initState();
@@ -54,10 +56,16 @@ class _HomeScreenState extends State<HomeScreen> {
             data["Owner"],
             data["OwnerId"],
             data["Type"],
-            data["imageName"]));
+            data["ImageName"],
+            data["OffertType"],
+            data["DateStart"],
+            data["DateEnd"],
+            data["Visible"]));
+        // print(data["Type"]);
+        // print(filterNames.contains(data["Type"]));
 
         String? path =
-            await firebaseStorageSerivce.getImage(data["imageName"].toString());
+            await firebaseStorageSerivce.getImage(data["ImageName"].toString());
         images.add(Image.network(path!));
       }
       setState(() {

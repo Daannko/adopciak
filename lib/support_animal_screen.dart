@@ -39,7 +39,11 @@ class _AnimeScreenState extends State<SupportAnimalScreen> {
           data["Owner"],
           data["OwnerId"],
           data["Type"],
-          data["imageName"]));
+          data["ImageName"],
+          data["OfferType"],
+          data["DateStart"],
+          data["DateEnd"],
+          data["Visible"]));
 
       String? path = await FirebaseStorageService()
           .getImage(data["imageName"]?.toString());
