@@ -3,7 +3,12 @@ import 'package:adopciak/model/styles.dart';
 import 'package:flutter/material.dart';
 
 class SupportDialogButton extends StatefulWidget {
-  const SupportDialogButton({super.key});
+  const SupportDialogButton({
+    super.key,
+    required this.onSupportAccept,
+  });
+
+  final ValueChanged<int> onSupportAccept;
 
   @override
   State<SupportDialogButton> createState() => _SupportDialogButtonState();
@@ -81,6 +86,7 @@ class _SupportDialogButtonState extends State<SupportDialogButton> {
             TextButton(
               child: const Text('OK'),
               onPressed: () {
+                widget.onSupportAccept(int.parse(_controller.text));
                 Navigator.pop(context);
               },
             ),
