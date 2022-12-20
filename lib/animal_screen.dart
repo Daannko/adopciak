@@ -89,6 +89,7 @@ class _AnimeScreenState extends State<AnimalScreen> {
                               Expanded(
                                 flex: 1,
                                 child: Container(
+                                  padding: const EdgeInsets.all(5),
                                   alignment: Alignment.center,
                                   child: Text(
                                     "${animals.last.name}",
@@ -133,6 +134,8 @@ class _AnimeScreenState extends State<AnimalScreen> {
                               Expanded(
                                 flex: 1,
                                 child: Container(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(10, 0, 10, 0),
                                   alignment: Alignment.center,
                                   child: Text(
                                     "${animals.last.breed}",
@@ -160,6 +163,8 @@ class _AnimeScreenState extends State<AnimalScreen> {
                               Expanded(
                                 flex: 1,
                                 child: Container(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(10, 0, 10, 0),
                                   alignment: Alignment.center,
                                   child: Text(
                                     "${animals.last.age}",
@@ -187,6 +192,8 @@ class _AnimeScreenState extends State<AnimalScreen> {
                               Expanded(
                                 flex: 1,
                                 child: Container(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(10, 0, 10, 0),
                                   alignment: Alignment.center,
                                   child: Text(
                                     "${animals.last.location}",
@@ -214,6 +221,8 @@ class _AnimeScreenState extends State<AnimalScreen> {
                               Expanded(
                                 flex: 1,
                                 child: Container(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(10, 0, 10, 0),
                                   alignment: Alignment.center,
                                   child: Text(
                                     "${animals.last.owner}",
@@ -241,6 +250,8 @@ class _AnimeScreenState extends State<AnimalScreen> {
                               Expanded(
                                 flex: 1,
                                 child: Container(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(10, 0, 10, 0),
                                   alignment: Alignment.center,
                                   child: Text(
                                     "${animals.last.info}",

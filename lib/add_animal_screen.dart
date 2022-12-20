@@ -68,7 +68,7 @@ class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(24, 24, 24, 10),
+          padding: const EdgeInsets.fromLTRB(24, 50, 24, 10),
           child: SingleChildScrollView(
             child: Container(
               height: MediaQuery.of(context).size.height - // total height
