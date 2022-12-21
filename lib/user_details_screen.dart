@@ -287,6 +287,32 @@ class _UserDetalisState extends State<UserDetalisScreen> {
                                           ],
                                         )),
                               Container(
+                                  width: double.infinity,
+                                  padding: const EdgeInsets.all(5),
+                                  margin:
+                                      const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                                  decoration: BoxDecoration(
+                                      borderRadius:
+                                          CustomStyles.radiusAnimalScreen,
+                                      color: CustomColors
+                                          .homeScreenAnimalBoxColor),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        users.last.credits.toString(),
+                                        style: TextStyle(
+                                            color: const Color.fromARGB(
+                                                255, 0, 0, 0),
+                                            fontSize: CustomStyles.fontSize20),
+                                        maxLines:
+                                            CustomStyles.animalScreenMaxLines,
+                                      ),
+                                      Icon(Icons.monetization_on),
+                                    ],
+                                  )),
+                              Container(
                                 width: double.infinity,
                                 padding: const EdgeInsets.all(5),
                                 margin:

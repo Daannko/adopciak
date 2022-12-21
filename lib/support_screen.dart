@@ -201,19 +201,42 @@ class _SupportScreenState extends State<SupportScreen> {
                                       )
                                     ],
                                   ),
-                                  SupportDialogButton(
-                                    onSupportAccept: (value) {
-                                      modifySupport(value,
-                                          _auth.currentUser!.uid, thisItem.uId);
-                                    },
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        flex: 1,
+                                        child: SupportDialogButton(
+                                          onSupportAccept: (value) {
+                                            modifySupport(
+                                                value,
+                                                _auth.currentUser!.uid,
+                                                thisItem.uId);
+                                          },
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 1,
+                                        child: Container(
+                                            height: 40,
+                                            width: double.infinity,
+                                            decoration: BoxDecoration(
+                                              color: CustomColors.thirdColor,
+                                              borderRadius:
+                                                  CustomStyles.radiusAdoptuj,
+                                            ),
+                                            child: TextButton(
+                                              onPressed: () => endSupport(
+                                                  _auth.currentUser!.uid,
+                                                  thisItem.uId),
+                                              child: Text("Skończ wspomagać",
+                                                  style: TextStyle(
+                                                      fontSize: CustomStyles
+                                                          .fontListView,
+                                                      color: Colors.black)),
+                                            )),
+                                      )
+                                    ],
                                   ),
-                                  TextButton(
-                                    onPressed: () => endSupport(
-                                        _auth.currentUser!.uid, thisItem.uId),
-                                    child: Text(
-                                      "Skończ wspomagać",
-                                    ),
-                                  )
                                 ],
                               ),
                             ),
