@@ -321,21 +321,20 @@ class _UserDetalisState extends State<UserDetalisScreen> {
                                     borderRadius:
                                         CustomStyles.radiusAnimalScreen,
                                     color: CustomColors.thirdColor),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(Icons.password),
-                                    TextButton(
-                                      child: const Text(
-                                        "Zmien Haslo",
-                                        style: TextStyle(
-                                            color: Colors.black, fontSize: 27),
-                                      ),
-                                      onPressed: () {
-                                        _dialogBuilder(context);
-                                      },
-                                    )
-                                  ],
+                                child: SizedBox(
+                                  width: double.infinity,
+                                  child: TextButton.icon(
+                                    onPressed: () {
+                                      _dialogBuilder(context);
+                                    },
+                                    icon: Icon(Icons.password,
+                                        color: Colors.black),
+                                    label: const Text(
+                                      "Change password",
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 27),
+                                    ),
+                                  ),
                                 ),
                               ),
                               Container(
@@ -347,21 +346,20 @@ class _UserDetalisState extends State<UserDetalisScreen> {
                                     borderRadius:
                                         CustomStyles.radiusAnimalScreen,
                                     color: CustomColors.fourthColor),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(Icons.logout),
-                                    TextButton(
-                                      child: const Text(
-                                        "Logoutuj się",
-                                        style: TextStyle(
-                                            color: Colors.black, fontSize: 27),
-                                      ),
-                                      onPressed: () {
-                                        _logout();
-                                      },
-                                    )
-                                  ],
+                                child: SizedBox(
+                                  width: double.infinity,
+                                  child: TextButton.icon(
+                                    onPressed: () {
+                                      _logout();
+                                    },
+                                    icon:
+                                        Icon(Icons.logout, color: Colors.black),
+                                    label: const Text(
+                                      "Log out",
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 27),
+                                    ),
+                                  ),
                                 ),
                               )
                             ],

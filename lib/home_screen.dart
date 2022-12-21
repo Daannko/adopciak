@@ -61,42 +61,42 @@ class _HomeScreenState extends State<HomeScreen> {
     db.collection("users").doc(_auth.currentUser!.uid).get().then((value) {
       final data = value.data();
       supportedList = data!["Supports"];
-    });
 
-    db.collection("animals").get().then(((value) async {
-      for (int i = 0; i < value.size; i++) {
-        final data = value.docs[i].data();
+      db.collection("animals").get().then(((value) async {
+        for (int i = 0; i < value.size; i++) {
+          final data = value.docs[i].data();
 
-        if (supportedList.contains(data["Id"])) continue;
-        if (data["Visible"] == true) {
-          animals.add(Animal(
-              data["Id"],
-              data["Age"],
-              data["Breed"],
-              data["Name"],
-              data["Info"],
-              data["Location"],
-              data["Owner"],
-              data["OwnerId"],
-              data["Type"],
-              data["ImageName"],
-              data["OfferType"],
-              data["DateStart"],
-              data["DateEnd"],
-              data["Visible"]));
-          // print(data["Type"]);
-          // print(filterNames.contains(data["Type"]));
+          if (supportedList.contains(data["Id"])) continue;
+          if (data["Visible"] == true) {
+            animals.add(Animal(
+                data["Id"],
+                data["Age"],
+                data["Breed"],
+                data["Name"],
+                data["Info"],
+                data["Location"],
+                data["Owner"],
+                data["OwnerId"],
+                data["Type"],
+                data["ImageName"],
+                data["OfferType"],
+                data["DateStart"],
+                data["DateEnd"],
+                data["Visible"]));
+            // print(data["Type"]);
+            // print(filterNames.contains(data["Type"]));
 
-          String? path = await firebaseStorageSerivce
-              .getImage(data["ImageName"].toString());
-          images.add(Image.network(path!));
+            String? path = await firebaseStorageSerivce
+                .getImage(data["ImageName"].toString());
+            images.add(Image.network(path!));
+          }
         }
-      }
 
-      setState(() {
-        displayList = true;
-      });
-    }));
+        setState(() {
+          displayList = true;
+        });
+      }));
+    });
   }
 
   void changeData() {
@@ -299,11 +299,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                               flex: 2,
                                               child: Column(
                                                 children: [
+                                                  Text(thisItem.name,
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontStyle: FontStyle
+                                                              .italic)),
                                                   Text(
                                                     thisItem.owner,
-                                                  ),
-                                                  Text(
-                                                    thisItem.name,
                                                   ),
                                                 ],
                                               ),
@@ -318,6 +321,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             borderRadius:
                                                 CustomStyles.radiusAdoptuj,
                                           ),
+
                                           child: thisItem.offerType
                                                   .toString()
                                                   .contains("Support")
@@ -334,6 +338,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     takeAction(thisItem);
                                                   },
                                                   child: Text(
+
                                                     thisItem.offerType
                                                         .toString(),
                                                     style: TextStyle(

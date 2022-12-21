@@ -1,6 +1,7 @@
 import 'dart:core';
 
 import 'package:adopciak/animal_screen.dart';
+import 'package:adopciak/widgets/plain_dialog.dart';
 import 'package:adopciak/widgets/search_bar.dart';
 import 'package:adopciak/widgets/support_dialog.dart';
 import 'package:flutter/material.dart';
@@ -204,35 +205,26 @@ class _SupportScreenState extends State<SupportScreen> {
                                       Expanded(
                                         flex: 1,
                                         child: SupportDialogButton(
-                                          onSupportAccept: (value) {
-                                            modifySupport(
-                                                value,
-                                                _auth.currentUser!.uid,
-                                                thisItem.uId);
-                                          },
-                                        ),
+                                            onSupportAccept: (value) {
+                                              modifySupport(
+                                                  value,
+                                                  _auth.currentUser!.uid,
+                                                  thisItem.uId);
+                                            },
+                                            buttonText: "Edit Support"),
                                       ),
                                       Expanded(
-                                        flex: 1,
-                                        child: Container(
-                                            height: 40,
-                                            width: double.infinity,
-                                            decoration: BoxDecoration(
-                                              color: CustomColors.thirdColor,
-                                              borderRadius:
-                                                  CustomStyles.radiusAdoptuj,
-                                            ),
-                                            child: TextButton(
-                                              onPressed: () => endSupport(
-                                                  _auth.currentUser!.uid,
-                                                  thisItem.uId),
-                                              child: Text("Skończ wspomagać",
-                                                  style: TextStyle(
-                                                      fontSize: CustomStyles
-                                                          .fontListView,
-                                                      color: Colors.black)),
-                                            )),
-                                      )
+                                          flex: 1,
+                                          child: PlainDialog(
+                                            content:
+                                                "Are you sure you want to stop supporting this pet?",
+                                            title: "Stop supporting",
+                                            yesCallback: () => endSupport(
+                                                _auth.currentUser!.uid,
+                                                thisItem.uId),
+                                            noCallback: () {},
+                                            buttonText: "Stop supporting",
+                                          ))
                                     ],
                                   ),
                                 ],

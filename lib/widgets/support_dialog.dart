@@ -7,9 +7,11 @@ class SupportDialogButton extends StatefulWidget {
   const SupportDialogButton({
     super.key,
     required this.onSupportAccept,
+    required this.buttonText,
   });
 
   final ValueChanged<int> onSupportAccept;
+  final String buttonText;
 
   @override
   State<SupportDialogButton> createState() => _SupportDialogButtonState();
@@ -28,7 +30,6 @@ class _SupportDialogButtonState extends State<SupportDialogButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40,
       width: double.infinity,
       decoration: BoxDecoration(
         color: CustomColors.fourthColor,
@@ -37,7 +38,7 @@ class _SupportDialogButtonState extends State<SupportDialogButton> {
       child: TextButton(
         onPressed: (() => {showMyDialog(context)}),
         child: Text(
-          "Support",
+          widget.buttonText,
           style: TextStyle(
               fontSize: CustomStyles.fontListView, color: Colors.black),
         ),
@@ -57,7 +58,7 @@ class _SupportDialogButtonState extends State<SupportDialogButton> {
                 const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25.0),
-              color: Colors.redAccent,
+              color: CustomColors.toastColor,
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
