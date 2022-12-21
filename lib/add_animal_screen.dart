@@ -22,12 +22,12 @@ class AddAnimalScreen extends StatefulWidget {
 
 class _AddAnimalScreenStatus extends State<AddAnimalScreen> {
   final _auth = FirebaseAuth.instance;
-  String name = "a";
+  String name = "";
   int age = 0;
-  String breed = "a";
-  String owner = "a";
-  String location = "a";
-  String info = "a";
+  String breed = "";
+  String owner = "";
+  String location = "";
+  String info = "";
   String errorMessage = "";
   String offertType = "";
   String dateStart = "";

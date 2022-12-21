@@ -202,8 +202,8 @@ class _MyAnimalsState extends State<MyAnimals> {
                                                 animals[index]),
                                             child: Text(
                                               animals[index].visible
-                                                  ? "Oddawaj buta frajerze"
-                                                  : "Adoptowany",
+                                                  ? "Adopt"
+                                                  : "Adopted",
                                               style: TextStyle(
                                                   fontSize:
                                                       CustomStyles.fontListView,
