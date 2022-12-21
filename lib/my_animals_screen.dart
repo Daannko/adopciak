@@ -114,19 +114,6 @@ class _MyAnimalsState extends State<MyAnimals> {
       child: Center(
         child: Column(
           children: [
-            SearchBar(
-              filterNames: filterNames,
-              filterValues: filterValues,
-              onSelectedFiltersAnimalsChanged: (value) {
-                setState(() {
-                  filterValues = value;
-                });
-              },
-              onTextChanged: (value) {
-                searchText = value;
-                setState(() {});
-              },
-            ),
             Flexible(
                 child: displayList
                     ? ListView.builder(
@@ -208,6 +195,34 @@ class _MyAnimalsState extends State<MyAnimals> {
                                                               .fourthColor),
                                                     ],
                                                   ),
+                                                  Row(
+                                                    children: [
+                                                      Expanded(
+                                                        flex: 1,
+                                                        child: Container(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(5),
+                                                          alignment:
+                                                              Alignment.center,
+                                                          child: Text(
+                                                            thisItem.visible
+                                                                ? "Visible"
+                                                                : "Hidden",
+                                                            style: TextStyle(
+                                                                fontSize: 15),
+                                                            maxLines: CustomStyles
+                                                                .animalScreenMaxLines,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Icon(
+                                                          Icons
+                                                              .remove_red_eye_outlined,
+                                                          color: CustomColors
+                                                              .fourthColor),
+                                                    ],
+                                                  ),
                                                 ],
                                               ),
                                             )
@@ -226,8 +241,8 @@ class _MyAnimalsState extends State<MyAnimals> {
                                                 animals[index]),
                                             child: Text(
                                               animals[index].visible
-                                                  ? "Show"
-                                                  : "Hide",
+                                                  ? "Hide"
+                                                  : "Show",
                                               style: TextStyle(
                                                   fontSize:
                                                       CustomStyles.fontListView,
