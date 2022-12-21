@@ -139,7 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 const Text("To adopt a pet please contact: "),
                 Text("Name: ${anml.owner}"),
-                Text("Tel: ${usr.id}")
+                Text("Tel: ${usr["PhoneNumber"]}")
               ],
             ),
           ),
@@ -178,7 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 const Text("To adopt a pet please contact: "),
                 Text("Name: ${anml.owner}"),
-                Text("Tel: ${usr.id}"),
+                Text("Tel: ${usr["PhoneNumber"]}"),
                 Text("Adoption time: ${anml.dateStart} - ${anml.dateEnd}")
               ],
             ),
@@ -321,7 +321,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                             borderRadius:
                                                 CustomStyles.radiusAdoptuj,
                                           ),
-
                                           child: thisItem.offerType
                                                   .toString()
                                                   .contains("Support")
@@ -339,7 +338,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     takeAction(thisItem);
                                                   },
                                                   child: Text(
-
                                                     thisItem.offerType
                                                         .toString(),
                                                     style: TextStyle(
