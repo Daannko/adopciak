@@ -31,8 +31,8 @@ class _NavBarScreenState extends State<NavBarScreen> {
       HomeScreen(setToRefresh: setToRefresh),
       SupportScreen(setToRefresh: setToRefresh),
       AddAnimalScreen(),
-      UserDetalisScreen(),
-      MyAnimals(setToRefresh: setToRefresh)
+      MyAnimals(setToRefresh: setToRefresh),
+      UserDetalisScreen()
     ];
   }
 
@@ -43,7 +43,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
           (_widgetOptions[index] as HomeScreen).refresh();
         else if (index == 1)
           (_widgetOptions[index] as SupportScreen).refresh();
-        else if (index == 4) (_widgetOptions[index] as MyAnimals).refresh();
+        else if (index == 3) (_widgetOptions[index] as MyAnimals).refresh();
         _refreshList[index] = false;
       }
       _selectedIndex = index;
@@ -74,16 +74,16 @@ class _NavBarScreenState extends State<NavBarScreen> {
             backgroundColor: CustomColors.secondColor,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'User',
-            backgroundColor: CustomColors.secondColor,
-          ),
-          BottomNavigationBarItem(
             icon: Transform.rotate(
               angle: 180 * math.pi / 180,
               child: Icon(Icons.catching_pokemon_rounded),
             ),
             label: 'My animals',
+            backgroundColor: CustomColors.secondColor,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'User',
             backgroundColor: CustomColors.secondColor,
           ),
         ],
