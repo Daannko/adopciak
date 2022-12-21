@@ -45,12 +45,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void initState() {
     super.initState();
-
     widget.refresh = getDatabaseData;
-
     myController.addListener(changeData);
-
-    widget.refresh = getDatabaseData;
     getDatabaseData();
   }
 
@@ -314,7 +310,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                             )
                                           ],
                                         ),
-
                                         Container(
                                           height: 40,
                                           width: double.infinity,
@@ -343,7 +338,6 @@ class _HomeScreenState extends State<HomeScreen> {
 //                                                _auth.currentUser!.uid,
 //                                                thisItem.uId);
 //                                          },
-
                                         ),
                                       ],
                                     ),
