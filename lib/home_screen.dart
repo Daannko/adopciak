@@ -138,8 +138,44 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const Text("To adopt a pet please contact: "),
-                Text("Name: ${anml.owner}"),
-                Text("Tel: ${usr["PhoneNumber"]}")
+                Row(
+                  children: [
+                    Icon(Icons.person, color: CustomColors.fourthColor),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        padding: const EdgeInsets.all(5),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "${anml.owner}",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.italic),
+                          maxLines: CustomStyles.animalScreenMaxLines,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Icon(Icons.phone, color: CustomColors.fourthColor),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        padding: const EdgeInsets.all(5),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "${usr["PhoneNumber"]}",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.italic),
+                          maxLines: CustomStyles.animalScreenMaxLines,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
@@ -171,15 +207,76 @@ class _HomeScreenState extends State<HomeScreen> {
           title: const Text('Adopt a pet'),
           content: Container(
             alignment: Alignment.centerLeft,
-            height: 100,
+            height: 148,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const Text("To adopt a pet please contact: "),
-                Text("Name: ${anml.owner}"),
-                Text("Tel: ${usr["PhoneNumber"]}"),
-                Text("Adoption time: ${anml.dateStart} - ${anml.dateEnd}")
+                Row(
+                  children: [
+                    Icon(Icons.person, color: CustomColors.fourthColor),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        padding: const EdgeInsets.all(5),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "${anml.owner}",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.italic),
+                          maxLines: CustomStyles.animalScreenMaxLines,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Icon(Icons.phone, color: CustomColors.fourthColor),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        padding: const EdgeInsets.all(5),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "${usr["PhoneNumber"]}",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.italic),
+                          maxLines: CustomStyles.animalScreenMaxLines,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Icon(Icons.calendar_month, color: CustomColors.fourthColor),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        padding: const EdgeInsets.all(5),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Adoption time",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.italic),
+                          maxLines: CustomStyles.animalScreenMaxLines,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  margin: EdgeInsets.all(5),
+                  child: Text("${anml.dateStart} - ${anml.dateEnd}",
+                      style:
+                          TextStyle(fontStyle: FontStyle.italic, fontSize: 17)),
+                )
               ],
             ),
           ),

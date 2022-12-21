@@ -80,28 +80,40 @@ class _SupportDialogButtonState extends State<SupportDialogButton> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text("Provide monthly donation"),
+                const Text("Provide monthly donation",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    )),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     TextButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                                CustomColors.fourthColor)),
                         onPressed: () {
                           _controller.text = '5';
                         },
-                        child: Text("5",
-                            style: TextStyle(color: CustomColors.fourthColor))),
+                        child:
+                            Text("5", style: TextStyle(color: Colors.white))),
                     TextButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                                CustomColors.fourthColor)),
                         onPressed: () {
                           _controller.text = '25';
                         },
-                        child: Text("25",
-                            style: TextStyle(color: CustomColors.fourthColor))),
+                        child:
+                            Text("25", style: TextStyle(color: Colors.white))),
                     TextButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                                CustomColors.fourthColor)),
                         onPressed: () {
                           _controller.text = '100';
                         },
-                        child: Text("100",
-                            style: TextStyle(color: CustomColors.fourthColor))),
+                        child:
+                            Text("100", style: TextStyle(color: Colors.white))),
                   ],
                 ),
                 TextField(
