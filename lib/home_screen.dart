@@ -139,7 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 const Text("To adopt a pet please contact: "),
                 Text("Name: ${anml.owner}"),
-                Text("Tel: ${usr.id}")
+                Text("Tel: ${usr["PhoneNumber"]}")
               ],
             ),
           ),
@@ -178,7 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 const Text("To adopt a pet please contact: "),
                 Text("Name: ${anml.owner}"),
-                Text("Tel: ${usr.id}"),
+                Text("Tel: ${usr["PhoneNumber"]}"),
                 Text("Adoption time: ${anml.dateStart} - ${anml.dateEnd}")
               ],
             ),
