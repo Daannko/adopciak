@@ -179,7 +179,7 @@ class _MyAnimalsState extends State<MyAnimals> {
                                               child: Column(
                                                 children: [
                                                   Text(
-                                                    thisItem.visible.toString(),
+                                                    "temp",
                                                   ),
                                                   Text(
                                                     thisItem.name,
