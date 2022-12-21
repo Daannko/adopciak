@@ -138,8 +138,44 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const Text("To adopt a pet please contact: "),
-                Text("Name: ${anml.owner}"),
-                Text("Tel: ${usr.id}")
+                Row(
+                  children: [
+                    Icon(Icons.person, color: CustomColors.fourthColor),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        padding: const EdgeInsets.all(5),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "${anml.owner}",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.italic),
+                          maxLines: CustomStyles.animalScreenMaxLines,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Icon(Icons.phone, color: CustomColors.fourthColor),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        padding: const EdgeInsets.all(5),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "${usr["PhoneNumber"]}",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.italic),
+                          maxLines: CustomStyles.animalScreenMaxLines,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
@@ -171,15 +207,76 @@ class _HomeScreenState extends State<HomeScreen> {
           title: const Text('Adopt a pet'),
           content: Container(
             alignment: Alignment.centerLeft,
-            height: 100,
+            height: 148,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const Text("To adopt a pet please contact: "),
-                Text("Name: ${anml.owner}"),
-                Text("Tel: ${usr.id}"),
-                Text("Adoption time: ${anml.dateStart} - ${anml.dateEnd}")
+                Row(
+                  children: [
+                    Icon(Icons.person, color: CustomColors.fourthColor),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        padding: const EdgeInsets.all(5),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "${anml.owner}",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.italic),
+                          maxLines: CustomStyles.animalScreenMaxLines,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Icon(Icons.phone, color: CustomColors.fourthColor),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        padding: const EdgeInsets.all(5),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "${usr["PhoneNumber"]}",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.italic),
+                          maxLines: CustomStyles.animalScreenMaxLines,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Icon(Icons.calendar_month, color: CustomColors.fourthColor),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        padding: const EdgeInsets.all(5),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Adoption time",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.italic),
+                          maxLines: CustomStyles.animalScreenMaxLines,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  margin: EdgeInsets.all(5),
+                  child: Text("${anml.dateStart} - ${anml.dateEnd}",
+                      style:
+                          TextStyle(fontStyle: FontStyle.italic, fontSize: 17)),
+                )
               ],
             ),
           ),
@@ -216,7 +313,7 @@ class _HomeScreenState extends State<HomeScreen> {
         support(anml);
         break;
       default:
-        print("NIGGERR takeAction in home_screen");
+        print("takeAction in home_screen");
         break;
     }
   }
@@ -299,15 +396,63 @@ class _HomeScreenState extends State<HomeScreen> {
                                               flex: 2,
                                               child: Column(
                                                 children: [
-                                                  Text(thisItem.name,
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontStyle: FontStyle
-                                                              .italic)),
-                                                  Text(
-                                                    thisItem.owner,
+                                                  Row(
+                                                    children: [
+                                                      Expanded(
+                                                        flex: 1,
+                                                        child: Container(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(5),
+                                                          alignment:
+                                                              Alignment.center,
+                                                          child: Text(
+                                                            thisItem.name,
+                                                            style: TextStyle(
+                                                                fontSize: 17,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .italic),
+                                                            maxLines: CustomStyles
+                                                                .animalScreenMaxLines,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Icon(Icons.person,
+                                                          color: CustomColors
+                                                              .fourthColor),
+                                                    ],
                                                   ),
+                                                  Row(
+                                                    children: [
+                                                      Expanded(
+                                                        child: Container(
+                                                          alignment:
+                                                              Alignment.center,
+                                                          child: Text(
+                                                            thisItem.owner,
+                                                            maxLines: CustomStyles
+                                                                .animalScreenMaxLines,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Icon(Icons.contact_mail,
+                                                          color: CustomColors
+                                                              .fourthColor),
+                                                    ],
+                                                  ),
+                                                  // Text(thisItem.name,
+                                                  //     style: TextStyle(
+                                                  //         fontWeight:
+                                                  //             FontWeight.bold,
+                                                  //         fontStyle: FontStyle
+                                                  //             .italic)),
+                                                  // Text(
+                                                  //   thisItem.owner,
+                                                  // ),
                                                 ],
                                               ),
                                             )
@@ -321,7 +466,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                             borderRadius:
                                                 CustomStyles.radiusAdoptuj,
                                           ),
-
                                           child: thisItem.offerType
                                                   .toString()
                                                   .contains("Support")
@@ -339,7 +483,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     takeAction(thisItem);
                                                   },
                                                   child: Text(
-
                                                     thisItem.offerType
                                                         .toString(),
                                                     style: TextStyle(
