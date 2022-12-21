@@ -41,7 +41,8 @@ class _NavBarScreenState extends State<NavBarScreen> {
       if (_refreshList[index]) {
         if (index == 0)
           (_widgetOptions[index] as HomeScreen).refresh();
-        else if (index == 1) (_widgetOptions[index] as SupportScreen).refresh();
+        else if (index == 1)
+          (_widgetOptions[index] as SupportScreen).refresh();
         else if (index == 4) (_widgetOptions[index] as MyAnimals).refresh();
         _refreshList[index] = false;
       }
