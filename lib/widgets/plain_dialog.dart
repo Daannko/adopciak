@@ -47,14 +47,14 @@ class PlainDialog extends StatelessWidget {
               TextButton(
                 onPressed: () => {
                   noCallback(),
-                  Navigator.pop(context, 'Cancel'),
+                  Navigator.pop(context),
                 },
                 child: const Text('Cancel'),
               ),
               TextButton(
                 onPressed: () => {
                   yesCallback(),
-                  Navigator.pop(context, 'OK'),
+                  Navigator.pop(context),
                 },
                 child: const Text('OK'),
               ),

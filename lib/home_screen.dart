@@ -1,6 +1,7 @@
 import 'dart:core';
 
 import 'package:adopciak/animal_screen.dart';
+import 'package:adopciak/widgets/plain_dialog.dart';
 import 'package:adopciak/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
