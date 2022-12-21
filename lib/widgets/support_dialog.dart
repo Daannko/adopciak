@@ -30,7 +30,6 @@ class _SupportDialogButtonState extends State<SupportDialogButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40,
       width: double.infinity,
       decoration: BoxDecoration(
         color: CustomColors.fourthColor,
