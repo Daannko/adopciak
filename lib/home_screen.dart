@@ -321,24 +321,24 @@ class _HomeScreenState extends State<HomeScreen> {
                                             borderRadius:
                                                 CustomStyles.radiusAdoptuj,
                                           ),
-                                          child: TextButton(
-                                            onPressed: () {
-                                              takeAction(thisItem);
-                                            },
-                                            child: thisItem.offerType
-                                                    .toString()
-                                                    .contains("Support")
-                                                ? SupportDialogButton(
-                                                    onSupportAccept: (value) {
-                                                      supportAnimal(
-                                                          value,
-                                                          _auth
-                                                              .currentUser!.uid,
-                                                          thisItem.uId);
-                                                    },
-                                                    buttonText: "Support",
-                                                  )
-                                                : Text(
+
+                                          child: thisItem.offerType
+                                                  .toString()
+                                                  .contains("Support")
+                                              ? SupportDialogButton(
+                                                  onSupportAccept: (value) {
+                                                    supportAnimal(
+                                                        value,
+                                                        _auth.currentUser!.uid,
+                                                        thisItem.uId);
+                                                  },
+                                                )
+                                              : TextButton(
+                                                  onPressed: () {
+                                                    takeAction(thisItem);
+                                                  },
+                                                  child: Text(
+
                                                     thisItem.offerType
                                                         .toString(),
                                                     style: TextStyle(
@@ -346,7 +346,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                             .fontListView,
                                                         color: Colors.black),
                                                   ),
-                                          ),
+                                                ),
                                         ),
                                       ],
                                     ),
