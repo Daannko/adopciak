@@ -20,4 +20,5 @@ class CustomColors {
   static Color thirdColor = Color.fromARGB(255, 164, 190, 123);
   static Color fourthColor = Color.fromARGB(255, 95, 141, 78);
   static Color homeScreenAnimalBoxColor = Color.fromARGB(255, 241, 243, 239);
+  static Color toastColor = Color.fromARGB(255, 247, 135, 113);
 }

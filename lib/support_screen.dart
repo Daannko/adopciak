@@ -228,7 +228,7 @@ class _SupportScreenState extends State<SupportScreen> {
                                               onPressed: () => endSupport(
                                                   _auth.currentUser!.uid,
                                                   thisItem.uId),
-                                              child: Text("Skończ wspomagać",
+                                              child: Text("Stop supporting",
                                                   style: TextStyle(
                                                       fontSize: CustomStyles
                                                           .fontListView,

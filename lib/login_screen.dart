@@ -7,6 +7,7 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:adopciak/model/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'model/styles.dart';
 
@@ -26,6 +27,8 @@ class _LoginScreenState extends State<LoginScreen>
       TextEditingController(text: "");
   final TextEditingController _passwordController =
       TextEditingController(text: "");
+
+  FToast fToast = FToast();
 
   bool saveCredentials = true;
   bool showSpinner = false;
@@ -51,6 +54,28 @@ class _LoginScreenState extends State<LoginScreen>
 
   @override
   Widget build(BuildContext context) {
+    fToast.init(context);
+    _showToast(String message) {
+      Widget toast = Container(
+        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(25.0),
+          color: CustomColors.toastColor,
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(Icons.not_interested_rounded),
+            const SizedBox(
+              width: 12.0,
+            ),
+            Text(message),
+          ],
+        ),
+      );
+      fToast.showToast(child: toast, gravity: ToastGravity.BOTTOM);
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: ModalProgressHUD(
@@ -189,7 +214,10 @@ class _LoginScreenState extends State<LoginScreen>
                         print(e.code);
                       }
 
-                      if (errorMessage.isNotEmpty) errorMessage = "";
+                      if (errorMessage.isNotEmpty) {
+                        _showToast(errorMessage);
+                        errorMessage = "";
+                      }
                       setState(() {
                         showSpinner = false;
                       });
