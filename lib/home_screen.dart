@@ -333,6 +333,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                               .currentUser!.uid,
                                                           thisItem.uId);
                                                     },
+                                                    buttonText: "Support",
                                                   )
                                                 : Text(
                                                     thisItem.offerType

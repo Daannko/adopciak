@@ -7,9 +7,11 @@ class SupportDialogButton extends StatefulWidget {
   const SupportDialogButton({
     super.key,
     required this.onSupportAccept,
+    required this.buttonText,
   });
 
   final ValueChanged<int> onSupportAccept;
+  final String buttonText;
 
   @override
   State<SupportDialogButton> createState() => _SupportDialogButtonState();
@@ -37,7 +39,7 @@ class _SupportDialogButtonState extends State<SupportDialogButton> {
       child: TextButton(
         onPressed: (() => {showMyDialog(context)}),
         child: Text(
-          "Support",
+          widget.buttonText,
           style: TextStyle(
               fontSize: CustomStyles.fontListView, color: Colors.black),
         ),

@@ -9,10 +9,12 @@ class PlainDialog extends StatelessWidget {
     required this.content,
     required this.yesCallback,
     required this.noCallback,
+    required this.buttonText,
   });
 
-  final title;
-  final content;
+  final String buttonText;
+  final String title;
+  final String content;
   final VoidCallback yesCallback;
   final VoidCallback noCallback;
 
@@ -28,7 +30,7 @@ class PlainDialog extends StatelessWidget {
       child: TextButton(
         onPressed: (() => {showMyDialog(context)}),
         child: Text(
-          "Button",
+          buttonText,
           style: TextStyle(
               fontSize: CustomStyles.fontListView, color: Colors.black),
         ),
