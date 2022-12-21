@@ -32,10 +32,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
       SupportScreen(setToRefresh: setToRefresh),
       AddAnimalScreen(),
       UserDetalisScreen(),
-      const Text(
-        'Settings',
-        style: optionStyle,
-      )
+      MyAnimals(setToRefresh: setToRefresh)
     ];
   }
 
@@ -43,8 +40,9 @@ class _NavBarScreenState extends State<NavBarScreen> {
     setState(() {
       if (_refreshList[index]) {
         if (index == 0)
-          (_widgetOptions[0] as HomeScreen).refresh();
-        else if (index == 1) (_widgetOptions[1] as SupportScreen).refresh();
+          (_widgetOptions[index] as HomeScreen).refresh();
+        else if (index == 1) (_widgetOptions[index] as SupportScreen).refresh();
+        else if (index == 4) (_widgetOptions[index] as MyAnimals).refresh();
         _refreshList[index] = false;
       }
       _selectedIndex = index;

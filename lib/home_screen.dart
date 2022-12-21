@@ -45,12 +45,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void initState() {
     super.initState();
-
-    widget.refresh = changeData;
-
-    myController.addListener(changeData);
-
     widget.refresh = getDatabaseData;
+    myController.addListener(changeData);
     getDatabaseData();
   }
 
@@ -326,22 +322,27 @@ class _HomeScreenState extends State<HomeScreen> {
                                             onPressed: () {
                                               takeAction(thisItem);
                                             },
-                                            child: Text(
-                                              thisItem.offerType.toString(),
-                                              style: TextStyle(
-                                                  fontSize:
-                                                      CustomStyles.fontListView,
-                                                  color: Colors.black),
-                                            ),
+                                            child: thisItem.offerType
+                                                    .toString()
+                                                    .contains("Support")
+                                                ? SupportDialogButton(
+                                                    onSupportAccept: (value) {
+                                                      supportAnimal(
+                                                          value,
+                                                          _auth
+                                                              .currentUser!.uid,
+                                                          thisItem.uId);
+                                                    },
+                                                  )
+                                                : Text(
+                                                    thisItem.offerType
+                                                        .toString(),
+                                                    style: TextStyle(
+                                                        fontSize: CustomStyles
+                                                            .fontListView,
+                                                        color: Colors.black),
+                                                  ),
                                           ),
-
-//                                        SupportDialogButton(
-//                                          onSupportAccept: (value) {
-//                                            supportAnimal(
-//                                                value,
-//                                                _auth.currentUser!.uid,
-//                                                thisItem.uId);
-//                                          },
                                         ),
                                       ],
                                     ),

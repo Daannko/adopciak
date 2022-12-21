@@ -14,9 +14,7 @@ class Animal {
   String dateEnd = "";
   bool visible = true;
   List<dynamic> needs = [];
-  List<Map<String, dynamic>> supports = [
-    {'Amount': 0, 'Periodicity': 0, 'UserUid': ""}
-  ];
+  List<Map<String, dynamic>> supports = [];
 
   Animal(
       this.uId,

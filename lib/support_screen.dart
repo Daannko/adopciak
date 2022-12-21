@@ -43,10 +43,8 @@ class _SupportScreenState extends State<SupportScreen> {
 
   void initState() {
     super.initState();
-    myController.addListener(changeData);
-
     widget.refresh = getDatabaseData;
-
+    myController.addListener(changeData);
     getDatabaseData();
   }
 

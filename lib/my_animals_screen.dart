@@ -18,6 +18,9 @@ import 'package:firebase_database/firebase_database.dart';
 import 'services/firebase_storage_service.dart';
 
 class MyAnimals extends StatefulWidget {
+  Function refresh = () => {};
+  final Function(int) setToRefresh;
+  MyAnimals({Key? key, required this.setToRefresh}) : super(key: key);
   @override
   _MyAnimalsState createState() => _MyAnimalsState();
 }
@@ -39,8 +42,17 @@ class _MyAnimalsState extends State<MyAnimals> {
 
   void initState() {
     super.initState();
+    widget.refresh = getDatabaseData;
     myController.addListener(changeData);
+    getDatabaseData();
+  }
 
+  void getDatabaseData() {
+    setState(() {
+      displayList = false;
+      animals = [];
+      images = [];
+    });
     final db = FirebaseFirestore.instance;
     db.collection("animals").get().then(((value) async {
       for (int i = 0; i < value.size; i++) {
@@ -82,6 +94,8 @@ class _MyAnimalsState extends State<MyAnimals> {
         .doc(animal.uId) // <-- Doc ID where data should be updated.
         .update(animal.returnMap())
         .then((value) => {changeData()});
+    widget.setToRefresh(0);
+    widget.setToRefresh(1);
   }
 
   void changeData() {
@@ -184,10 +198,8 @@ class _MyAnimalsState extends State<MyAnimals> {
                                                 CustomStyles.radiusAdoptuj,
                                           ),
                                           child: TextButton(
-                                            onPressed: animals[index].visible
-                                                ? (() => updateVisibility(
-                                                    animals[index]))
-                                                : null,
+                                            onPressed: () => updateVisibility(
+                                                animals[index]),
                                             child: Text(
                                               animals[index].visible
                                                   ? "Oddawaj buta frajerze"
