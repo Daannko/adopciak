@@ -189,13 +189,48 @@ class _SupportScreenState extends State<SupportScreen> {
                                         flex: 2,
                                         child: Column(
                                           children: [
-                                            Text(thisItem.name,
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontStyle:
-                                                        FontStyle.italic)),
-                                            Text(
-                                              thisItem.owner,
+                                            Row(
+                                              children: [
+                                                Expanded(
+                                                  flex: 1,
+                                                  child: Container(
+                                                    padding:
+                                                        const EdgeInsets.all(5),
+                                                    alignment: Alignment.center,
+                                                    child: Text(
+                                                      thisItem.name,
+                                                      style: TextStyle(
+                                                          fontSize: 17,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontStyle:
+                                                              FontStyle.italic),
+                                                      maxLines: CustomStyles
+                                                          .animalScreenMaxLines,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Icon(Icons.person,
+                                                    color: CustomColors
+                                                        .fourthColor),
+                                              ],
+                                            ),
+                                            Row(
+                                              children: [
+                                                Expanded(
+                                                  child: Container(
+                                                    alignment: Alignment.center,
+                                                    child: Text(
+                                                      thisItem.owner,
+                                                      maxLines: CustomStyles
+                                                          .animalScreenMaxLines,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Icon(Icons.contact_mail,
+                                                    color: CustomColors
+                                                        .fourthColor),
+                                              ],
                                             ),
                                           ],
                                         ),

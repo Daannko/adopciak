@@ -132,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
           title: const Text('Adopt a pet'),
           content: Container(
             alignment: Alignment.centerLeft,
-            height: 100,
+            height: 85,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -444,15 +444,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                                               .fourthColor),
                                                     ],
                                                   ),
-                                                  // Text(thisItem.name,
-                                                  //     style: TextStyle(
-                                                  //         fontWeight:
-                                                  //             FontWeight.bold,
-                                                  //         fontStyle: FontStyle
-                                                  //             .italic)),
-                                                  // Text(
-                                                  //   thisItem.owner,
-                                                  // ),
                                                 ],
                                               ),
                                             )
