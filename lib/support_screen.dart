@@ -189,11 +189,13 @@ class _SupportScreenState extends State<SupportScreen> {
                                         flex: 2,
                                         child: Column(
                                           children: [
+                                            Text(thisItem.name,
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontStyle:
+                                                        FontStyle.italic)),
                                             Text(
                                               thisItem.owner,
-                                            ),
-                                            Text(
-                                              thisItem.name,
                                             ),
                                           ],
                                         ),

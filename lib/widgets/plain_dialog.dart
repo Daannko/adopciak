@@ -21,10 +21,9 @@ class PlainDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: CustomColors.fourthColor,
+        color: CustomColors.thirdColor,
         borderRadius: CustomStyles.radiusAdoptuj,
       ),
       child: TextButton(

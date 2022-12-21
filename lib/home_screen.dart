@@ -216,7 +216,7 @@ class _HomeScreenState extends State<HomeScreen> {
         support(anml);
         break;
       default:
-        print("NIGGERR takeAction in home_screen");
+        print("takeAction in home_screen");
         break;
     }
   }
@@ -299,15 +299,63 @@ class _HomeScreenState extends State<HomeScreen> {
                                               flex: 2,
                                               child: Column(
                                                 children: [
-                                                  Text(thisItem.name,
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontStyle: FontStyle
-                                                              .italic)),
-                                                  Text(
-                                                    thisItem.owner,
+                                                  Row(
+                                                    children: [
+                                                      Expanded(
+                                                        flex: 1,
+                                                        child: Container(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(5),
+                                                          alignment:
+                                                              Alignment.center,
+                                                          child: Text(
+                                                            thisItem.name,
+                                                            style: TextStyle(
+                                                                fontSize: 17,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .italic),
+                                                            maxLines: CustomStyles
+                                                                .animalScreenMaxLines,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Icon(Icons.person,
+                                                          color: CustomColors
+                                                              .fourthColor),
+                                                    ],
                                                   ),
+                                                  Row(
+                                                    children: [
+                                                      Expanded(
+                                                        child: Container(
+                                                          alignment:
+                                                              Alignment.center,
+                                                          child: Text(
+                                                            thisItem.owner,
+                                                            maxLines: CustomStyles
+                                                                .animalScreenMaxLines,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Icon(Icons.contact_mail,
+                                                          color: CustomColors
+                                                              .fourthColor),
+                                                    ],
+                                                  ),
+                                                  // Text(thisItem.name,
+                                                  //     style: TextStyle(
+                                                  //         fontWeight:
+                                                  //             FontWeight.bold,
+                                                  //         fontStyle: FontStyle
+                                                  //             .italic)),
+                                                  // Text(
+                                                  //   thisItem.owner,
+                                                  // ),
                                                 ],
                                               ),
                                             )
@@ -321,7 +369,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                             borderRadius:
                                                 CustomStyles.radiusAdoptuj,
                                           ),
-
                                           child: thisItem.offerType
                                                   .toString()
                                                   .contains("Support")
@@ -339,7 +386,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     takeAction(thisItem);
                                                   },
                                                   child: Text(
-
                                                     thisItem.offerType
                                                         .toString(),
                                                     style: TextStyle(
