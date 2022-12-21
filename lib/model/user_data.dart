@@ -4,8 +4,9 @@ class SaveUserData {
   String surname = "";
   List<dynamic> supports = [];
   String email = "";
+  String phoneNumber = "";
 
-  SaveUserData(this.name, this.surname, this.email);
+  SaveUserData(this.name, this.surname, this.email, this.phoneNumber);
 
   Map<String, dynamic> returnMap() {
     final data = {
@@ -14,6 +15,7 @@ class SaveUserData {
       "Surname": surname,
       "Supports": supports,
       "Email": email,
+      "PhoneNumber": phoneNumber
     };
     return data;
   }

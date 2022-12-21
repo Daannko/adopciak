@@ -1,10 +1,12 @@
 import 'package:adopciak/add_animal_screen.dart';
 import 'package:adopciak/model/colors.dart';
 import 'package:adopciak/model/styles.dart';
+import 'package:adopciak/my_animals_screen.dart';
 import 'package:adopciak/user_details_screen.dart';
 import 'package:adopciak/support_screen.dart';
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
+import 'dart:math' as math;
 
 class NavBarScreen extends StatefulWidget {
   @override
@@ -78,8 +80,11 @@ class _NavBarScreenState extends State<NavBarScreen> {
             backgroundColor: CustomColors.secondColor,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
+            icon: Transform.rotate(
+              angle: 180 * math.pi / 180,
+              child: Icon(Icons.catching_pokemon_rounded),
+            ),
+            label: 'My animals',
             backgroundColor: CustomColors.secondColor,
           ),
         ],
