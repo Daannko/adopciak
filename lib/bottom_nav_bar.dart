@@ -32,10 +32,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
       SupportScreen(setToRefresh: setToRefresh),
       AddAnimalScreen(),
       UserDetalisScreen(),
-      const Text(
-        'Settings',
-        style: optionStyle,
-      )
+      MyAnimals()
     ];
   }
 

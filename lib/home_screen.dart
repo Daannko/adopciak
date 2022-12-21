@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
 
-    widget.f = changeData;
+    widget.refresh = getDatabaseData;
 
     myController.addListener(changeData);
 
