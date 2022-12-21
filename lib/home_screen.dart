@@ -332,6 +332,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                         _auth.currentUser!.uid,
                                                         thisItem.uId);
                                                   },
+                                                  buttonText: "Support",
                                                 )
                                               : TextButton(
                                                   onPressed: () {
