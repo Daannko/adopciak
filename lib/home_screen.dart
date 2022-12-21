@@ -300,10 +300,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                               child: Column(
                                                 children: [
                                                   Text(
-                                                    thisItem.owner,
+                                                    thisItem.name,
+                                                    style: TextStyle(
+                                                      fontWeight: FontWeight.bold,
+                                        fontStyle: FontStyle.italic)
                                                   ),
                                                   Text(
-                                                    thisItem.name,
+                                                    thisItem.owner,
                                                   ),
                                                 ],
                                               ),
