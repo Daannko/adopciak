@@ -233,8 +233,7 @@ class _MyAnimalsState extends State<MyAnimals> {
                                                       CustomStyles.fontListView,
                                                   color: animals[index].visible
                                                       ? Colors.black
-                                                      : CustomColors
-                                                          .toastColor),
+                                                      : Colors.black),
                                             ),
                                           ),
                                         ),
