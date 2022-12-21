@@ -105,6 +105,28 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 height: 8.0,
               ),
               TextField(
+                keyboardType: TextInputType.number,
+                textAlign: TextAlign.center,
+                onChanged: (value) {
+                  registerInfo.phoneNumber = value;
+                  //Do something with the user input.
+                },
+                decoration: InputDecoration(
+                    hintText: 'Phone Number',
+                    contentPadding: EdgeInsets.all(20.0),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: CustomColors.inputTextBorderColor,
+                            width: 2)),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: CustomColors.selectedInputTextBorderColor,
+                            width: 2))),
+              ),
+              const SizedBox(
+                height: 8.0,
+              ),
+              TextField(
                 obscureText: true,
                 autocorrect: false,
                 enableSuggestions: false,
@@ -185,8 +207,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       FirebaseFirestore.instance
                           .collection("users")
                           .doc(currentUserUid)
-                          .set(SaveUserData(registerInfo.name,
-                                  registerInfo.surname, registerInfo.email)
+                          .set(SaveUserData(
+                                  registerInfo.name,
+                                  registerInfo.surname,
+                                  registerInfo.email,
+                                  registerInfo.phoneNumber.toString())
                               .returnMap());
 
                       Navigator.pushReplacementNamed(context, 'navbar_screen');

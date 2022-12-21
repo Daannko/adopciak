@@ -4,4 +4,5 @@ class RegisterInfo {
   String passwordTwo = "";
   String name = "";
   String surname = "";
+  String phoneNumber = "";
 }

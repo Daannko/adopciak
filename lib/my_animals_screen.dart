@@ -17,14 +17,12 @@ import 'package:firebase_database/firebase_database.dart';
 
 import 'services/firebase_storage_service.dart';
 
-class HomeScreen extends StatefulWidget {
-  late Function f = () => {print("cipa")};
-
+class MyAnimals extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _MyAnimalsState createState() => _MyAnimalsState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _MyAnimalsState extends State<MyAnimals> {
   final _auth = FirebaseAuth.instance;
   final FirebaseStorageService firebaseStorageSerivce =
       Get.put(FirebaseStorageService());
@@ -41,9 +39,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void initState() {
     super.initState();
-
-    widget.f = changeData;
-
     myController.addListener(changeData);
 
     final db = FirebaseFirestore.instance;
@@ -51,35 +46,42 @@ class _HomeScreenState extends State<HomeScreen> {
       for (int i = 0; i < value.size; i++) {
         final data = value.docs[i].data();
 
-        if (data["Visible"] == true) {
-          animals.add(Animal(
-              data["Id"],
-              data["Age"],
-              data["Breed"],
-              data["Name"],
-              data["Info"],
-              data["Location"],
-              data["Owner"],
-              data["OwnerId"],
-              data["Type"],
-              data["ImageName"],
-              data["OfferType"],
-              data["DateStart"],
-              data["DateEnd"],
-              data["Visible"]));
-          // print(data["Type"]);
-          // print(filterNames.contains(data["Type"]));
+        animals.add(Animal(
+            data["Id"],
+            data["Age"],
+            data["Breed"],
+            data["Name"],
+            data["Info"],
+            data["Location"],
+            data["Owner"],
+            data["OwnerId"],
+            data["Type"],
+            data["ImageName"],
+            data["OfferType"],
+            data["DateStart"],
+            data["DateEnd"],
+            data["Visible"]));
+        // print(data["Type"]);
+        // print(filterNames.contains(data["Type"]));
 
-          String? path = await firebaseStorageSerivce
-              .getImage(data["ImageName"].toString());
-          images.add(Image.network(path!));
-        }
+        String? path =
+            await firebaseStorageSerivce.getImage(data["ImageName"].toString());
+        images.add(Image.network(path!));
       }
-
       setState(() {
         displayList = true;
       });
     }));
+  }
+
+  Future<void> updateVisibility(Animal animal) async {
+    animal.visible = !animal.visible;
+
+    var collection = FirebaseFirestore.instance.collection('animals');
+    collection
+        .doc(animal.uId) // <-- Doc ID where data should be updated.
+        .update(animal.returnMap())
+        .then((value) => {changeData()});
   }
 
   void changeData() {
@@ -90,112 +92,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   String searchText = "";
 
-  Future<void> adopt(BuildContext context, Animal anml) async {
-    final usr = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(anml.ownerUId)
-        .get();
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Adopt a pet'),
-          content: Container(
-            alignment: Alignment.centerLeft,
-            height: 100,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const Text("To adopt a pet please contact: "),
-                Text("Name: ${anml.owner}"),
-                Text("Tel: ${usr.id}")
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.labelLarge,
-              ),
-              child: const Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  Future<void> adoptForAPeriod(BuildContext context, Animal anml) async {
-    final usr = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(anml.ownerUId)
-        .get();
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Adopt a pet'),
-          content: Container(
-            alignment: Alignment.centerLeft,
-            height: 100,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const Text("To adopt a pet please contact: "),
-                Text("Name: ${anml.owner}"),
-                Text("Tel: ${usr.id}"),
-                Text("Adoption time: ${anml.dateStart} - ${anml.dateEnd}")
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: Theme.of(context).textTheme.labelLarge,
-              ),
-              child: const Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  void support(Animal anml) {
-    print("Support");
-  }
-
-  void takeAction(Animal anml) {
-    String type = anml.offerType;
-    switch (type) {
-      case 'Adopt':
-        adopt(context, anml);
-        break;
-      case 'Adopt for period of time':
-        adoptForAPeriod(context, anml);
-        break;
-      case 'Support':
-        support(anml);
-        break;
-      default:
-        print("NIGGERR takeAction in home_screen");
-        break;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    animals.forEach((element) {
-      print(element.offerType);
-    });
     return Scaffold(
         body: Container(
       color: CustomColors.homePageBackgroundColor,
@@ -221,11 +119,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemCount: animals.length,
                         itemBuilder: (BuildContext context, int index) {
                           Animal thisItem = animals[index];
-                          return thisItem.name
-                                      .toLowerCase()
-                                      .contains(searchText.toLowerCase()) &&
-                                  filterValues[filterNames.indexOf(
-                                      thisItem.type.toString().toLowerCase())]
+                          return thisItem.ownerUId
+                                  .contains(_auth.currentUser!.uid.toString())
                               ? GestureDetector(
                                   onTap: () {
                                     Navigator.of(context).push(
@@ -270,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               child: Column(
                                                 children: [
                                                   Text(
-                                                    thisItem.owner,
+                                                    thisItem.visible.toString(),
                                                   ),
                                                   Text(
                                                     thisItem.name,
@@ -289,15 +184,20 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 CustomStyles.radiusAdoptuj,
                                           ),
                                           child: TextButton(
-                                            onPressed: () {
-                                              takeAction(thisItem);
-                                            },
+                                            onPressed: animals[index].visible
+                                                ? (() => updateVisibility(
+                                                    animals[index]))
+                                                : null,
                                             child: Text(
-                                              thisItem.offerType.toString(),
+                                              animals[index].visible
+                                                  ? "Oddawaj buta frajerze"
+                                                  : "Adoptowany",
                                               style: TextStyle(
                                                   fontSize:
                                                       CustomStyles.fontListView,
-                                                  color: Colors.black),
+                                                  color: animals[index].visible
+                                                      ? Colors.black
+                                                      : Colors.red),
                                             ),
                                           ),
                                         ),
