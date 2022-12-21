@@ -198,10 +198,8 @@ class _MyAnimalsState extends State<MyAnimals> {
                                                 CustomStyles.radiusAdoptuj,
                                           ),
                                           child: TextButton(
-                                            onPressed: animals[index].visible
-                                                ? (() => updateVisibility(
-                                                    animals[index]))
-                                                : null,
+                                            onPressed: () => updateVisibility(
+                                                animals[index]),
                                             child: Text(
                                               animals[index].visible
                                                   ? "Oddawaj buta frajerze"
