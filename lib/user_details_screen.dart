@@ -50,10 +50,6 @@ class _UserDetalisState extends State<UserDetalisScreen> {
             data["Email"], data["Name"], data["Surname"]);
 
         users.add(user);
-
-        // String? path =
-        //     await firebaseStorageSerivce.getImage(data["imageName"].toString());
-        // images.add(Image.network(path!));
       }
       setState(() {
         displayList = true;
@@ -163,13 +159,13 @@ class _UserDetalisState extends State<UserDetalisScreen> {
           height: double.infinity,
           color: CustomColors.homePageBackgroundColor,
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+            padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
             child: SingleChildScrollView(
               child: Container(
-                margin: CustomStyles.marginsAll20,
-                decoration: BoxDecoration(
-                  borderRadius: CustomStyles.radius20,
-                ),
+                // margin: CustomStyles.marginsAll20,
+                // decoration: BoxDecoration(
+                //   borderRadius: CustomStyles.radius20,
+                // ),
                 child: !displayList
                     ? const Center(
                         child: CircularProgressIndicator(),
@@ -186,18 +182,18 @@ class _UserDetalisState extends State<UserDetalisScreen> {
                         ),
                         Container(
                           width: double.infinity,
-                          margin: CustomStyles.margin10,
-                          padding: CustomStyles.paddingAll7,
                           child: Column(
                             children: [
                               Container(
                                   width: double.infinity,
-                                  margin: CustomStyles.margin10,
-                                  padding: CustomStyles.paddingAll7,
+                                  padding: const EdgeInsets.all(5),
+                                  margin:
+                                      const EdgeInsets.fromLTRB(10, 10, 10, 0),
                                   decoration: BoxDecoration(
-                                      borderRadius: CustomStyles.radius30,
-                                      color:
-                                          CustomColors.animalScreenBodyColor),
+                                      borderRadius:
+                                          CustomStyles.radiusAnimalScreen,
+                                      color: CustomColors
+                                          .homeScreenAnimalBoxColor),
                                   child: editName
                                       ? SizedBox(
                                           width: double.infinity,
@@ -215,6 +211,8 @@ class _UserDetalisState extends State<UserDetalisScreen> {
                                           ),
                                         )
                                       : Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
                                               users.last.name,
@@ -237,15 +235,16 @@ class _UserDetalisState extends State<UserDetalisScreen> {
                                             ),
                                           ],
                                         )),
-                              const Text(" "),
                               Container(
                                   width: double.infinity,
-                                  margin: CustomStyles.margin10,
-                                  padding: CustomStyles.paddingAll7,
+                                  padding: const EdgeInsets.all(5),
+                                  margin:
+                                      const EdgeInsets.fromLTRB(10, 10, 10, 0),
                                   decoration: BoxDecoration(
-                                      borderRadius: CustomStyles.radius30,
-                                      color:
-                                          CustomColors.animalScreenBodyColor),
+                                      borderRadius:
+                                          CustomStyles.radiusAnimalScreen,
+                                      color: CustomColors
+                                          .homeScreenAnimalBoxColor),
                                   child: editSurname
                                       ? SizedBox(
                                           width: double.infinity,
@@ -263,6 +262,8 @@ class _UserDetalisState extends State<UserDetalisScreen> {
                                           ),
                                         )
                                       : Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
                                               users.last.surname,
@@ -287,38 +288,82 @@ class _UserDetalisState extends State<UserDetalisScreen> {
                                         )),
                               Container(
                                   width: double.infinity,
-                                  margin: CustomStyles.margin10,
-                                  padding: CustomStyles.paddingAll7,
+                                  padding: const EdgeInsets.all(5),
+                                  margin:
+                                      const EdgeInsets.fromLTRB(10, 10, 10, 0),
                                   decoration: BoxDecoration(
-                                      borderRadius: CustomStyles.radius30,
-                                      color: Colors.red.shade300),
-                                  child: TextButton(
-                                    child: const Text(
-                                      "Zmien Haslo",
-                                      style: TextStyle(
-                                          color: Colors.black, fontSize: 27),
-                                    ),
-                                    onPressed: () {
-                                      _dialogBuilder(context);
-                                    },
+                                      borderRadius:
+                                          CustomStyles.radiusAnimalScreen,
+                                      color: CustomColors
+                                          .homeScreenAnimalBoxColor),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        users.last.credits.toString(),
+                                        style: TextStyle(
+                                            color: const Color.fromARGB(
+                                                255, 0, 0, 0),
+                                            fontSize: CustomStyles.fontSize20),
+                                        maxLines:
+                                            CustomStyles.animalScreenMaxLines,
+                                      ),
+                                      Icon(Icons.monetization_on),
+                                    ],
                                   )),
                               Container(
-                                  width: double.infinity,
-                                  margin: CustomStyles.margin10,
-                                  padding: CustomStyles.paddingAll7,
-                                  decoration: BoxDecoration(
-                                      borderRadius: CustomStyles.radius30,
-                                      color: Colors.red.shade300),
-                                  child: TextButton(
-                                    child: const Text(
-                                      "Logoutuj się",
-                                      style: TextStyle(
-                                          color: Colors.black, fontSize: 27),
-                                    ),
-                                    onPressed: () {
-                                      _logout();
-                                    },
-                                  ))
+                                width: double.infinity,
+                                padding: const EdgeInsets.all(5),
+                                margin:
+                                    const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                                decoration: BoxDecoration(
+                                    borderRadius:
+                                        CustomStyles.radiusAnimalScreen,
+                                    color: CustomColors.thirdColor),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.password),
+                                    TextButton(
+                                      child: const Text(
+                                        "Zmien Haslo",
+                                        style: TextStyle(
+                                            color: Colors.black, fontSize: 27),
+                                      ),
+                                      onPressed: () {
+                                        _dialogBuilder(context);
+                                      },
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                width: double.infinity,
+                                padding: const EdgeInsets.all(5),
+                                margin:
+                                    const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                                decoration: BoxDecoration(
+                                    borderRadius:
+                                        CustomStyles.radiusAnimalScreen,
+                                    color: CustomColors.fourthColor),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.logout),
+                                    TextButton(
+                                      child: const Text(
+                                        "Logoutuj się",
+                                        style: TextStyle(
+                                            color: Colors.black, fontSize: 27),
+                                      ),
+                                      onPressed: () {
+                                        _logout();
+                                      },
+                                    )
+                                  ],
+                                ),
+                              )
                             ],
                           ),
                         ),

@@ -80,11 +80,11 @@ class _LoginScreenState extends State<LoginScreen>
                       contentPadding: CustomStyles.paddingAll20,
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: CustomColors.inputTextBorderColor,
+                              color: CustomColors.thirdColor,
                               width: CustomStyles.width)),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: CustomColors.selectedInputTextBorderColor,
+                              color: CustomColors.fourthColor,
                               width: CustomStyles.width))),
                 ),
                 SizedBox(
@@ -108,11 +108,11 @@ class _LoginScreenState extends State<LoginScreen>
                       contentPadding: CustomStyles.paddingAll20,
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: CustomColors.inputTextBorderColor,
+                              color: CustomColors.thirdColor,
                               width: CustomStyles.width)),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                              color: CustomColors.selectedInputTextBorderColor,
+                              color: CustomColors.fourthColor,
                               width: CustomStyles.width))),
                 ),
                 SizedBox(
@@ -134,8 +134,7 @@ class _LoginScreenState extends State<LoginScreen>
                 TextButton(
                     style: TextButton.styleFrom(
                         foregroundColor: Colors.white,
-                        backgroundColor:
-                            CustomColors.selectedInputTextBorderColor),
+                        backgroundColor: CustomColors.fourthColor),
                     child: Text('Login',
                         style: TextStyle(fontSize: CustomStyles.fontSize40)),
                     onPressed: () async {
@@ -207,7 +206,7 @@ class _LoginScreenState extends State<LoginScreen>
                   child: Text(
                     "Sign Up now to get access.",
                     style: TextStyle(
-                        color: CustomColors.selectedInputTextBorderColor,
+                        color: CustomColors.fourthColor,
                         fontSize: CustomStyles.fontSize18,
                         fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,

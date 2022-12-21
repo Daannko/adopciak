@@ -67,91 +67,201 @@ class _AnimeScreenState extends State<AnimalScreen> {
               child: Container(
                 margin: CustomStyles.marginsAll20,
                 decoration: BoxDecoration(
-                  borderRadius: CustomStyles.radius20,
-                ),
+                    // borderRadius: CustomStyles.radius20,
+                    ),
                 child: !displayList
                     ? Center(
                         child: CircularProgressIndicator(),
                       )
                     : Column(children: [
                         Container(
+                          padding: const EdgeInsets.all(5),
+                          margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                          alignment: Alignment.center,
+                          width: double.infinity,
                           decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(spreadRadius: 1, blurRadius: 1)
+                              borderRadius: CustomStyles.radiusAnimalScreen,
+                              color: CustomColors.homeScreenAnimalBoxColor),
+                          child: Row(
+                            children: [
+                              Icon(Icons.person,
+                                  color: CustomColors.fourthColor),
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  padding: const EdgeInsets.all(5),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    "${animals.last.name}",
+                                    style: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                        fontStyle: FontStyle.italic),
+                                    maxLines: CustomStyles.animalScreenMaxLines,
+                                  ),
+                                ),
+                              ),
                             ],
-                            borderRadius: CustomStyles.radius20,
                           ),
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                              color: CustomColors.homeScreenAnimalBoxColor,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 2,
+                                  blurRadius: 4,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                              borderRadius: CustomStyles.radiusAnimalScreen),
                           child: ClipRRect(
-                              borderRadius: CustomStyles.radius20,
+                              borderRadius: CustomStyles.radiusAnimalScreen,
                               child: image.last),
                         ),
                         Container(
                           width: double.infinity,
-                          margin: CustomStyles.margin10,
-                          padding: CustomStyles.paddingAll7,
+                          padding: const EdgeInsets.all(5),
+                          margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                           decoration: BoxDecoration(
-                              borderRadius: CustomStyles.radius30,
-                              color: CustomColors.animalScreenBodyColor),
+                              borderRadius: CustomStyles.radiusAnimalScreen,
+                              color: CustomColors.homeScreenAnimalBoxColor),
                           child: Row(
                             children: [
-                              Text(
-                                "${animals.last.type}",
-                                style: TextStyle(
-                                    fontSize: CustomStyles.fontSize20),
-                                maxLines: CustomStyles.animalScreenMaxLines,
-                              ),
-                              Text(
-                                " ${animals.last.breed}: ",
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 0, 0, 0),
-                                    fontSize: CustomStyles.fontSize20),
-                                maxLines: CustomStyles.animalScreenMaxLines,
-                              ),
-                              Text(
-                                "${animals.last.name} ",
-                                style: TextStyle(
-                                    fontSize: CustomStyles.fontSize20),
-                                maxLines: CustomStyles.animalScreenMaxLines,
+                              Icon(Icons.style,
+                                  color: CustomColors.fourthColor),
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    "${animals.last.breed}",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                    ),
+                                    maxLines: CustomStyles.animalScreenMaxLines,
+                                  ),
+                                ),
                               ),
                             ],
                           ),
                         ),
                         Container(
                           width: double.infinity,
-                          margin: CustomStyles.margin10,
-                          padding: CustomStyles.paddingAll7,
+                          padding: const EdgeInsets.all(5),
+                          margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                           decoration: BoxDecoration(
-                              borderRadius: CustomStyles.radius30,
-                              color: CustomColors.animalScreenBodyColor),
-                          child: Text(
-                            "Location: ${animals.last.location}",
-                            style: TextStyle(fontSize: CustomStyles.fontSize20),
-                            maxLines: CustomStyles.animalScreenMaxLines,
+                              borderRadius: CustomStyles.radiusAnimalScreen,
+                              color: CustomColors.homeScreenAnimalBoxColor),
+                          child: Row(
+                            children: [
+                              Icon(Icons.calendar_month,
+                                  color: CustomColors.fourthColor),
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    "${animals.last.age}",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                    ),
+                                    maxLines: CustomStyles.animalScreenMaxLines,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         Container(
                           width: double.infinity,
-                          margin: CustomStyles.margin10,
-                          padding: CustomStyles.paddingAll7,
+                          padding: const EdgeInsets.all(5),
+                          margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                           decoration: BoxDecoration(
-                              borderRadius: CustomStyles.radius30,
-                              color: CustomColors.animalScreenBodyColor),
-                          child: Text(
-                            "Owner: ${animals.last.owner}",
-                            style: TextStyle(fontSize: CustomStyles.fontSize20),
-                            maxLines: CustomStyles.animalScreenMaxLines,
+                              borderRadius: CustomStyles.radiusAnimalScreen,
+                              color: CustomColors.homeScreenAnimalBoxColor),
+                          child: Row(
+                            children: [
+                              Icon(Icons.signpost,
+                                  color: CustomColors.fourthColor),
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    "${animals.last.location}",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                    ),
+                                    maxLines: CustomStyles.animalScreenMaxLines,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         Container(
                           width: double.infinity,
-                          margin: CustomStyles.margin10,
-                          padding: CustomStyles.paddingAll7,
+                          padding: const EdgeInsets.all(5),
+                          margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                           decoration: BoxDecoration(
-                              borderRadius: CustomStyles.radius30,
-                              color: CustomColors.animalScreenBodyColor),
-                          child: Text(
-                            "Info: ${animals.last.info}",
-                            style: TextStyle(fontSize: CustomStyles.fontSize20),
+                              borderRadius: CustomStyles.radiusAnimalScreen,
+                              color: CustomColors.homeScreenAnimalBoxColor),
+                          child: Row(
+                            children: [
+                              Icon(Icons.contact_mail,
+                                  color: CustomColors.fourthColor),
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    "${animals.last.owner}",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                    ),
+                                    maxLines: CustomStyles.animalScreenMaxLines,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.all(5),
+                          margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                          decoration: BoxDecoration(
+                              borderRadius: CustomStyles.radiusAnimalScreen,
+                              color: CustomColors.homeScreenAnimalBoxColor),
+                          child: Row(
+                            children: [
+                              Icon(Icons.article,
+                                  color: CustomColors.fourthColor),
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    "${animals.last.info}",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ]),
